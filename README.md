@@ -1,15 +1,7 @@
-# shalotts
+# #Shalotts [0.10.10-Alpha]
 
-To install dependencies:
+Preset on Elysia framework for Vue.
 
-```bash
-bun install
-```
+Stack: `Elysia`, `Vue`, `Pinia`, `Directus/SDK`
 
-To run:
-
-```bash
-bun run index.ts
-```
-
-This project was created using `bun init` in bun v1.0.11. [Bun](https://bun.sh) is a fast all-in-one JavaScript runtime.
+![40f68cc0cad0810a1d57b56a1cd3c4c2.gif](40f68cc0cad0810a1d57b56a1cd3c4c2.gif)

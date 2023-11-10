@@ -2,6 +2,7 @@
   "name": "shalotts",
   "module": "index.ts",
   "type": "module",
+  "version": "0.10.10",
   "scripts": {
     "clean": "rm -rf dist && echo 'Done.'",
     "lint": "bun eslint --ext .ts ./",
