@@ -9,8 +9,16 @@
     "hot": "bun run lint && bun --hot index.ts"
   },
   "eslintConfig": {
-    "extends": "@eslint-recommended",
+    "extends": [
+      "@eslint-recommended",
+      "plugin:@typescript-eslint/recommended",
+      "plugin:@typescript-eslint/recommended-requiring-type-checking"
+    ],
+    "parser": "@typescript-eslint/parser",
+    "plugins": ["@typescript-eslint"],
     "parserOptions": {
+      "project": "tsconfig.json",
+      "tsconfigRootDir": ".",
       "ecmaFeatures": {
         "experimentalObjectRestSpread": true
       }
@@ -19,7 +27,8 @@
       "template-curly-spacing": "off",
       "comma-dangle": "off",
       "no-multi-spaces": "off"
-    }
+    },
+    "root": true
   },
   "devDependencies": {
     "@eslint-recommended/eslint-config": "^16.0.3",
@@ -33,10 +42,13 @@
     "@bogeychan/elysia-logger": "^0.0.13",
     "@elysiajs/cors": "^0.7.1",
     "@elysiajs/eden": "^0.7.4",
+    "@typescript-eslint/eslint-plugin": "^6.10.0",
+    "@typescript-eslint/parser": "^6.10.0",
     "buchta": "^0.5.100",
     "elysia": "^0.7.24",
     "elysia-helmet": "^1.0.1",
     "eslint": "^8.53.0",
+    "pino-http": "^8.5.1",
     "pino-pretty": "^10.2.3",
     "vue": "^3.3.8"
   }

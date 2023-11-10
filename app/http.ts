@@ -1,31 +1,35 @@
-import { Elysia } from 'elysia'
-import { helmet } from 'elysia-helmet'
-import { etag }   from '@bogeychan/elysia-etag'
-import pretty     from 'pino-pretty'
-import { logger, pino, fileLogger } from '@bogeychan/elysia-logger'
-import config     from 'shalotts.config'
-import { cors }   from '@elysiajs/cors'
+import { plugins } from 'app/plugins'
+import Elysia      from 'elysia'
+import pretty      from 'pino-pretty'
+import { pino }    from '@bogeychan/elysia-logger'
+import config      from 'shalotts.config'
 
-const stream = pretty({
+export const stream = pretty({
   colorize: true,
+  translateTime: 'SYS:standard',
+  hideObject: true,
+  ignore: 'req,res,responseTime',
+  messageFormat: (log) => {
+    const request = log.request as any
+    if (log.request) return `[${ request.method }] - ${ request.url } - ${ log.responseTime }ms`
+    return `${ log.msg }`
+  },
+  customPrettifiers: {
+    time: timestamp => `🕰 ${ timestamp }`,
+    level: logLevel => `LEVEL: ${ logLevel }`,
+  },
 })
 
 export const log = pino(stream)
 
-const date = new Date()
-const logFileName = `${date.getFullYear()}_${date.getMonth()}_${date.getDay()}.log`
-
 export const App = new Elysia()
-  .use(fileLogger({ file: `./app/log/${logFileName}` }))
-  .use(logger(stream))
-  .use(
-    helmet({
-      xFrameOptions: { action: 'deny' },
-    }),
-  )
-  .use(cors())
-  .use(etag())
-  .get('/', (context) => {
+
+for (const plugin of plugins(stream)) {
+  App.use(plugin)
+}
+
+App
+  .get('/', () => {
     return 'pino-pretty'
   })
   .listen({
