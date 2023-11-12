@@ -1,6 +1,6 @@
 # #Shalotts [0.10.10-Alpha]
 
-Preset on Elysia framework for Vue.
+ElysiaJS Boilerplate for Vue.
 
 Stack: `Elysia`, `Vue`, `Pinia`, `Directus/SDK`
 

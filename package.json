@@ -5,35 +5,72 @@
   "version": "0.10.10",
   "scripts": {
     "clean": "rm -rf dist && echo 'Done.'",
-    "lint": "bun eslint --ext .ts ./",
+    "lint": "bun eslint --fix ./",
     "dev": "bun index.ts",
-    "hot": "bun run lint && bun --hot index.ts"
+    "hot": "bun --hot index.ts"
   },
   "eslintConfig": {
     "extends": [
       "@eslint-recommended",
       "plugin:@typescript-eslint/recommended",
-      "plugin:@typescript-eslint/recommended-requiring-type-checking"
+      "plugin:@typescript-eslint/recommended-requiring-type-checking",
+      "plugin:prettier/recommended"
     ],
     "parser": "@typescript-eslint/parser",
-    "plugins": ["@typescript-eslint"],
+    "plugins": [
+      "@typescript-eslint"
+    ],
     "parserOptions": {
       "project": "tsconfig.json",
       "tsconfigRootDir": ".",
+      "extraFileExtensions": [".vue"],
       "ecmaFeatures": {
         "experimentalObjectRestSpread": true
       }
     },
     "rules": {
-      "template-curly-spacing": "off",
-      "comma-dangle": "off",
-      "no-multi-spaces": "off"
+      "template-curly-spacing": 0,
+      "comma-dangle": 0,
+      "no-multi-spaces": 0,
+      "@typescript-eslint/no-explicit-any": 0,
+      "@typescript-eslint/no-unsafe-assignment": 0,
+      "@typescript-eslint/no-unsafe-member-access": 0,
+      "object-curly-newline": [
+        "error",
+        {
+          "consistent": true,
+          "multiline": true
+        }
+      ]
     },
     "root": true
   },
+  "prettier": {
+    "useTabs": false,
+    "semi": true,
+    "singleQuote": true,
+    "quoteProps": "as-needed",
+    "jsxSingleQuote": false,
+    "bracketSameLine": false,
+    "proseWrap": "preserve",
+    "arrowParens": "avoid",
+    "trailingComma": "all",
+    "endOfLine": "lf",
+    "printWidth": 100,
+    "importOrder": ["^@core/(.*)$", "^@server/(.*)$", "^@ui/(.*)$", "^[./]"],
+    "importOrderSeparation": true,
+    "importOrderSortSpecifiers": true,
+    "bracketSpacing": true
+  },
   "devDependencies": {
     "@eslint-recommended/eslint-config": "^16.0.3",
-    "bun-types": "latest"
+    "bun-types": "latest",
+    "eslint": "^8.53.0",
+    "eslint-config-prettier": "^9.0.0",
+    "eslint-plugin-prettier": "^5.0.1",
+    "@trivago/prettier-plugin-sort-imports": "^4.3.0",
+    "@typescript-eslint/eslint-plugin": "^6.10.0",
+    "@typescript-eslint/parser": "^6.10.0"
   },
   "peerDependencies": {
     "typescript": "^5.0.0"
@@ -43,14 +80,12 @@
     "@bogeychan/elysia-logger": "^0.0.13",
     "@elysiajs/cors": "^0.7.1",
     "@elysiajs/eden": "^0.7.4",
-    "@typescript-eslint/eslint-plugin": "^6.10.0",
-    "@typescript-eslint/parser": "^6.10.0",
-    "buchta": "^0.5.100",
+    "@vitejs/plugin-vue": "^4.4.1",
     "elysia": "^0.7.24",
     "elysia-helmet": "^1.0.1",
-    "eslint": "^8.53.0",
-    "pino-http": "^8.5.1",
     "pino-pretty": "^10.2.3",
+    "prettier": "^3.0.3",
+    "vike": "latest",
     "vue": "^3.3.8"
   }
 }

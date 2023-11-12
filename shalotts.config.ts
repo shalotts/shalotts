@@ -1,4 +1,4 @@
-import { defineConfig } from 'app/module/tool/tool.config'
+import { defineConfig } from 'app/module/tool/tool.config';
 
 export default defineConfig({
   mode: 'server',
@@ -6,4 +6,4 @@ export default defineConfig({
     host: 'localhost',
     port: 3000,
   },
-})
+});

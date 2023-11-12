@@ -1,4 +1,11 @@
 {
+  "include": [
+    "**/*.ts",
+    "**/*.vue"
+  ],
+  "exclude": [
+    "node_modules"
+  ],
   "compilerOptions": {
     "target": "esnext",
     "module": "esnext",
@@ -11,6 +18,17 @@
       "bun-types"
       // add Bun global
     ],
-    "baseUrl": "."
+    "baseUrl": ".",
+    "paths": {
+      "~/*": [
+        "./*"
+      ],
+      "~app/": [
+        "./app/*"
+      ],
+      "~main/": [
+        "./src/*"
+      ]
+    }
   }
 }

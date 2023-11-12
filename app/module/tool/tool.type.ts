@@ -1,5 +1,7 @@
 import { HTTPMethod } from '@elysiajs/cors';
 
+type Origin = string | RegExp | ((request: Request) => boolean | void);
+
 interface CORSConfig {
   /**
    * @default `true`
@@ -28,7 +30,7 @@ interface CORSConfig {
    *
    * - `Array<string | RegExp | Function>` - Will try to find truthy value of all options above. Will accept request if one is `true`.
    */
-  origin?: Origin | boolean | Origin[]
+  origin?: Origin | boolean | Origin[];
   /**
    * @default `*`
    *
@@ -46,7 +48,7 @@ interface CORSConfig {
    * - `HTTPMethod[]` - Allow multiple HTTP methods.
    * - eg: ['GET', 'PUT', 'POST']
    */
-  methods?: undefined | null | '' | '*' | HTTPMethod | HTTPMethod[]
+  methods?: undefined | null | '' | '*' | HTTPMethod | HTTPMethod[];
   /**
    * @default `*`
    *
@@ -61,7 +63,7 @@ interface CORSConfig {
    * - `string[]` - Allow multiple HTTP methods.
    *     - eg: ['Content-Type', 'Authorization']
    */
-  allowedHeaders?: string | string[]
+  allowedHeaders?: string | string[];
   /**
    * @default `*`
    *
@@ -76,7 +78,7 @@ interface CORSConfig {
    * - `string[]` - Allow multiple HTTP methods.
    *     - eg: ['Content-Type', 'X-Powered-By']
    */
-  exposedHeaders?: string | string[]
+  exposedHeaders?: string | string[];
   /**
    * @default `false`
    *
@@ -86,7 +88,7 @@ interface CORSConfig {
    *
    * - `boolean` - Available if set to `true`.
    */
-  credentials?: boolean
+  credentials?: boolean;
   /**
    * @default `5`
    *
@@ -96,7 +98,7 @@ interface CORSConfig {
    *
    * - `number` - Duration in seconds to indicates how long the results of a preflight request can be cached.
    */
-  maxAge?: number
+  maxAge?: number;
   /**
    * @default `true`
    *
@@ -104,18 +106,18 @@ interface CORSConfig {
    *
    * - `boolean` - Available if set to `true`.
    */
-  preflight?: boolean
+  preflight?: boolean;
 }
 
 export interface IAppConfig {
-  mode: 'server' | 'client'
+  mode: 'server' | 'client';
   server: {
-    host: string
+    host: string;
     secured?: {
-      cors: CORSConfig
-      force: boolean
-      hsts?: boolean
-    },
-    port: number
-  }
+      cors: CORSConfig;
+      force: boolean;
+      hsts?: boolean;
+    };
+    port: number;
+  };
 }
