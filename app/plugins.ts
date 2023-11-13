@@ -4,10 +4,10 @@ import { cors } from '@elysiajs/cors';
 import { helmet } from 'elysia-helmet';
 import { Transform } from 'node:stream';
 
+// @ts-ignore
 export const plugins = (stream: Transform<any>) => {
   return {
-    development: [],
-    production: [
+    base: [
       fileLogger({ file: `${import.meta.dir}/log/app.log` }),
       logger({ stream }),
       helmet({
@@ -16,5 +16,7 @@ export const plugins = (stream: Transform<any>) => {
       cors(),
       etag(),
     ],
+    development: [],
+    production: [],
   };
 };
