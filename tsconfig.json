@@ -1,6 +1,7 @@
 {
   "include": [
     "**/*.ts",
+    "**/*.tsx",
     "**/*.vue"
   ],
   "exclude": [
@@ -11,7 +12,9 @@
     "target": "esnext",
     "module": "esnext",
     "moduleResolution": "node",
+    "resolveJsonModule": true,
     "esModuleInterop": true,
+    "jsx": "react-native",
     "forceConsistentCasingInFileNames": true,
     "strict": true,
     "skipLibCheck": true,
