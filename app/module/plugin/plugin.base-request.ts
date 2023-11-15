@@ -10,7 +10,7 @@ export const pluginBaseRequest = (log: Logger<pretty.PrettyStream>) => {
   return new Elysia()
     .get('/', ({ set }) => {
       set.headers['Content-Type'] = 'text/html';
-      return TEMPLATE_BASE();
+      return 'test';
     })
     .onError(({ request, code, error, set }) => {
       set.headers['Content-Type'] = 'text/html';

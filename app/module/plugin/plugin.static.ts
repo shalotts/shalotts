@@ -1,7 +1,7 @@
 import Elysia from 'elysia';
 import { readdir, stat } from 'node:fs/promises';
 import { resolve, basename } from 'node:path';
-import { resolve as resolveFn } from 'path/posix';
+import { resolve as resolveFunction } from 'node:path/posix';
 
 const listFiles = async (directory: string): Promise<string[]> => {
   const files = await readdir(directory);
@@ -40,7 +40,7 @@ export const pluginStatic = async (config: Partial<TStaticConfig> = _default) =>
     },
   });
 
-  let files = await listFiles(resolveFn(<string>config.assets));
+  let files = await listFiles(resolveFunction(<string>config.assets));
   files = files.filter(file => !(config.ignorePatterns as string[]).includes(file));
   const publicName = basename(<string>config.assets);
 

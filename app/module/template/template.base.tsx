@@ -1,8 +1,16 @@
+import type { TemplateWrapped } from 'vike/dist/esm/node/runtime/html/renderHtml';
+import { escapeInject, dangerouslySkipEscape } from 'vike/server';
+
 /**
- * @constructor
+ * @description Base template for render html
+ * @param {string} html Vue app html
+ * @returns {{ documentHtml: TemplateWrapped, pageContext: object }} special escaped template
  */
-export default function TEMPLATE_BASE() {
-  return `<!DOCTYPE html>
+export default function TEMPLATE_BASE(html: string = '<h1>Sharlotts</h1>'): {
+  documentHtml: TemplateWrapped;
+  pageContext: any;
+} {
+  const documentHtml = escapeInject`<!DOCTYPE html>
 <html class="no-js" lang="">
 
 <head>
@@ -24,8 +32,12 @@ export default function TEMPLATE_BASE() {
 </head>
 
 <body>
-  <h1>Shalotts</h1>
+  <div id="app">${dangerouslySkipEscape(html)}</div>
 </body>
 
 </html>`;
+  return {
+    documentHtml,
+    pageContext: {},
+  };
 }
