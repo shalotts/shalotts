@@ -19,7 +19,8 @@
     "strict": true,
     "skipLibCheck": true,
     "types": [
-      "bun-types"
+      "bun-types",
+      "vite/client"
       // add Bun global
     ],
     "baseUrl": ".",

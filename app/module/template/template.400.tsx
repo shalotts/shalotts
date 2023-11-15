@@ -35,7 +35,6 @@ export default function TEMPLATE_ERROR(message: string) {
 
     p {
       margin: 0 auto;
-      width: 280px;
     }
 
     @media only screen and (max-width: 280px) {
@@ -56,7 +55,7 @@ export default function TEMPLATE_ERROR(message: string) {
 
 <body>
   <h1>Server Error</h1>
-  <p>${message}</p>
+  <p style='margin: 20px 0'>${message.split('\\n').join('<br/>')}</p>
   <a href='/'>Go home</a>
 </body>
 
