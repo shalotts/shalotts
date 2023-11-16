@@ -1,4 +1,7 @@
-export default function TEMPLATE_NOT_FOUND() {
+/**
+ * @returns {string} html
+ */
+export default function TEMPLATE_NOT_FOUND(): string {
   return `<!DOCTYPE html>
 <html lang='en'>
 
@@ -60,7 +63,5 @@ export default function TEMPLATE_NOT_FOUND() {
   <a href='/'>Go home</a>
 </body>
 
-</html>
-<!-- IE needs 512+ bytes: https://docs.microsoft.com/archive/blogs/ieinternals/friendly-http-error-pages -->
-`;
+</html>`;
 }

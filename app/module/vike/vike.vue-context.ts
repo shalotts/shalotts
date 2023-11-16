@@ -1,6 +1,6 @@
 import type { PageContextServer } from '../vike/vike.type';
 import { inject } from 'vue';
-import type App from '@vue/runtime-core/dist/runtime-core';
+import App from '@vue/runtime-core/dist/runtime-core';
 
 const key = Symbol('key');
 

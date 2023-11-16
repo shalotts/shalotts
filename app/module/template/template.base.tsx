@@ -3,8 +3,8 @@ import { escapeInject, dangerouslySkipEscape } from 'vike/server';
 import { IHtmlHead } from '~/app/module/template/template.type';
 
 /**
- * @description Base template for render html
- * @param head
+ * @description Base template for render escaped html
+ * @param {IHtmlHead} head meta tags
  * @param {string} html Vue app html
  * @returns {TemplateWrapped} special escaped template
  */
@@ -37,5 +37,5 @@ export default function TEMPLATE_BASE(
   <div id="app">${dangerouslySkipEscape(html)}</div>
 </body>
 
-</html>`
+</html>`;
 }

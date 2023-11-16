@@ -1,4 +1,8 @@
-export default function TEMPLATE_ERROR(message: string) {
+/**
+ * @param {string} message app html
+ * @returns {string} html
+ */
+export default function TEMPLATE_ERROR(message: string): string {
   return `<!DOCTYPE html>
 <html lang='en'>
 
@@ -59,7 +63,5 @@ export default function TEMPLATE_ERROR(message: string) {
   <a href='/'>Go home</a>
 </body>
 
-</html>
-<!-- IE needs 512+ bytes: https://docs.microsoft.com/archive/blogs/ieinternals/friendly-http-error-pages -->
-`;
+</html>`;
 }

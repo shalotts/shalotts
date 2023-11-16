@@ -1,11 +1,16 @@
 import { createSSRApp, h } from 'vue';
 import type { VNode } from 'vue';
 import { setPageContext } from '../vike/vike.vue-context';
+// @ts-ignore
 import Layout from './layout.vue';
 import type { PageContextServer } from '../vike/vike.type';
-import type App from '@vue/runtime-core/dist/runtime-core';
 
-export const renderClient = (pageContext: PageContextServer): App<any> => {
+/**
+ * @description Render function for "/renderer/_default.page.client"
+ * @param {PageContextServer} pageContext page context
+ * @returns {object} elysia app
+ */
+export const renderClient = (pageContext: PageContextServer): object => {
   const { Page, pageProps } = pageContext;
   if (!Page) throw new Error('Client-side render() hook expects pageContext.Page to be defined');
 
@@ -13,7 +18,7 @@ export const renderClient = (pageContext: PageContextServer): App<any> => {
     render(): VNode {
       // eslint-disable-next-line @typescript-eslint/no-unsafe-call
       return h(
-        Layout,
+        <string>Layout,
         {},
         {
           default(): VNode {

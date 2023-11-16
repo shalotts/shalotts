@@ -5,7 +5,6 @@ import { pino } from '@bogeychan/elysia-logger';
 import config from 'shalotts.config';
 import { $shalotts } from '~/app/const';
 import { relativeURL } from '~/app/module/helper/helper.url';
-import BASE_HTML_TEMPLATE from '~/app/module/template/template.base';
 
 export const stream = pretty({
   colorize: true,
@@ -17,11 +16,11 @@ export const stream = pretty({
     // eslint-disable-next-line sonarjs/no-nested-template-literals
     if (log.request)
       // eslint-disable-next-line @typescript-eslint/no-unsafe-argument
-      return `[${ request.method }] - ${ relativeURL(request.url) }  - ${ (log as any).responseTime }ms`;
-    return `${ (log as any).msg }`;
+      return `[${request.method}] - ${relativeURL(request.url)}  - ${(log as any).responseTime}ms`;
+    return `${(log as any).msg}`;
   },
   customPrettifiers: {
-    time: timestamp => `🕰 ${ typeof timestamp === 'string' ? timestamp : 'no-time' }`,
+    time: timestamp => `🕰 ${typeof timestamp === 'string' ? timestamp : 'no-time'}`,
   },
 });
 
@@ -31,8 +30,8 @@ export const App = new Elysia();
 
 const pluginList = plugins(log, stream);
 const moddedPlugins = $shalotts.state.isProduction
-  ? [...pluginList.base, ...pluginList.production]
-  : [...pluginList.base, ...pluginList.development];
+  ? [...pluginList.production, ...pluginList.base]
+  : [...pluginList.development, ...pluginList.base];
 
 for (const plugin of moddedPlugins) {
   App.use(plugin);
