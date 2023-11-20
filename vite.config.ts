@@ -5,6 +5,7 @@ import vike from 'vike/plugin';
 export default defineConfig({
   plugins: [vue(), vike()],
   resolve: {
+    dedupe: ['vue'],
     alias: {
       '~/*': './*',
       '~app/': './app/*',

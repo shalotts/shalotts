@@ -6,11 +6,14 @@ import Counter from './counter.vue';
   <h1>Welcome</h1>
   This page is:
   <ul>
-    <li>Rendered to HTML.</li>
+    <li>Rendered to HTML. ss ss</li>
     <li>Interactive. <Counter /></li>
+    <strong>Rendered</strong>
   </ul>
 </template>
 
-<style scoped>
-
+<style scoped lang='postcss'>
+  ul {
+    background: brown;
+  }
 </style>
