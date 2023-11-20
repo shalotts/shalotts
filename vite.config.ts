@@ -4,4 +4,11 @@ import vike from 'vike/plugin';
 
 export default defineConfig({
   plugins: [vue(), vike()],
+  resolve: {
+    alias: {
+      '~/*': './*',
+      '~app/': './app/*',
+      '~main/': './src/*',
+    },
+  },
 });

@@ -25,7 +25,6 @@ export const plugins = (log: Logger<pretty.PrettyStream>, stream: Transform<any>
     base: [
       // eslint-disable-next-line @typescript-eslint/no-unsafe-call
       elysiaConnectDecorate(),
-      pluginVike(),
       fileLogger({ file: `${import.meta.dir}/log/app.log` }),
       logger({ stream }),
       compression(),
@@ -37,6 +36,7 @@ export const plugins = (log: Logger<pretty.PrettyStream>, stream: Transform<any>
       etag(),
       pluginBaseRequest(log),
       // rateLimit(),
+      pluginVike(),
     ],
   };
 };

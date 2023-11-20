@@ -16,6 +16,7 @@ export const serverRender = async (
   if (!Page) throw new Error('My render() hook expects pageContext.Page to be defined');
 
   // eslint-disable-next-line @typescript-eslint/no-unsafe-argument,@typescript-eslint/no-unsafe-call
+  // @ts-ignore
   const app = createApp(Page, pageProps, pageContext);
   const appHtml = await renderToString(app);
 

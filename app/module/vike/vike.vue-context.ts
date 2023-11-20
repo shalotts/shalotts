@@ -1,6 +1,7 @@
 import type { PageContextServer } from '../vike/vike.type';
 import { inject } from 'vue';
 import App from '@vue/runtime-core/dist/runtime-core';
+import Element = HTMLRewriterTypes.Element;
 
 const key = Symbol('key');
 
@@ -18,7 +19,7 @@ export function usePageContext(): unknown | undefined {
  * @param {App} app hosted app element
  * @param {PageContextServer} pageContext page context
  */
-export function setPageContext(app: App, pageContext: PageContextServer) {
+export function setPageContext(app: any, pageContext: PageContextServer) {
   // eslint-disable-next-line @typescript-eslint/no-unsafe-call
   app.provide(key, pageContext);
 }

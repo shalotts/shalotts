@@ -8,7 +8,10 @@
     "node_modules"
   ],
   "compilerOptions": {
-    "lib": ["ESNext"],
+    "lib": [
+      "ESNext",
+      "dom"
+    ],
     "target": "esnext",
     "module": "esnext",
     "moduleResolution": "node",

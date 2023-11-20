@@ -1,6 +1,7 @@
 import { Elysia } from 'elysia';
 import { renderPage } from 'vike/server';
-import { relativeURL } from '~/app/module/helper/helper.url';
+import { fixRoute, relativeURL } from '~/app/module/helper/helper.url';
+import { ConnectedContext } from '~/app/module/plugin/plugin.type';
 import {
   viteDevelopment,
   viteDevelopmentMiddleware,
@@ -19,20 +20,17 @@ export default function pluginVike(): Elysia {
     })
     .onBeforeHandle(async context => {
       // eslint-disable-next-line @typescript-eslint/no-unsafe-call
-      const handled = await (context as any).elysiaConnect(viteDevelopmentMiddleware, context);
-      log.info(
-        `[vite] ${handled ? '✓' : '✝'} [${JSON.stringify(context)}] ${relativeURL(
-          context.request.url,
-        )}`,
-      );
+      const connected = context as ConnectedContext;
+      const handled = await connected.elysiaConnect(viteDevelopmentMiddleware, context);
+      log.info(`[VDM] ${handled ? '✓' : '✝'}  ${relativeURL(context.request.url)}`);
       // eslint-disable-next-line @typescript-eslint/no-unsafe-return
       if (handled) return handled;
     })
-    .get('*', async ({ set, request }) => {
-      const urlOriginal = relativeURL(request.url);
-      console.log(urlOriginal);
-      if (!urlOriginal) return 'not found';
+    .get('*', async context => {
+      const { set, request } = context;
+      const urlOriginal = fixRoute(request.url) || '';
 
+      log.info(`[vike] pageContextInit ${relativeURL(urlOriginal)}`);
       const pageContext = await renderPage({ urlOriginal });
       const { httpResponse } = pageContext;
 

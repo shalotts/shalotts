@@ -12,8 +12,9 @@ Base stack: `Elysia`, `Vue`, `Pinia`, `Directus/SDK`
 2. [X] Linter + Prettier
 3. [X] Logs
 4. [X] Static Files
-5. [ ] Vite middleware
-6. [ ] Vike plugin
+5. [X] Vite middleware
+6. [X] Vike plugin
+7. [ ] Unhead
 7. [ ] Security-Content support
 8. [ ] EarlyHints
 9. [ ] Streaming (Range response)
