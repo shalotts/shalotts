@@ -15,6 +15,8 @@
 
 Base stack: `Elysia`, `Vue`, `Pinia`, `Directus/SDK`
 
+Watch docs https://shalodoc.netlify.app
+
 ![lady_shalott](./doc/img/40f68cc0cad0810a1d57b56a1cd3c4c2.gif)
 
 ## Roadmap
@@ -43,13 +45,4 @@ Base stack: `Elysia`, `Vue`, `Pinia`, `Directus/SDK`
 19. [ ] SSR PROD
 20. [ ] SPA DEV
 21. [ ] SPA PROD
-
-## Docs:
-
-- [Installation](#)
-- [Introduction](#)
-- [Routing](#)
-- [Docker-Compose](#)
-- [Deploy](#)
-- [Support](#)
 
