@@ -1,3 +1,14 @@
+
+[![Netlify Status](https://api.netlify.com/api/v1/badges/0c200c59-83c4-4fe9-9c37-8803e265f186/deploy-status)](https://app.netlify.com/sites/shalodoc/deploys)
+![GitHub code size in bytes](https://img.shields.io/github/languages/code-size/shalotts/shalotts)
+[![Code Coverage](https://img.shields.io/codecov/c/github/shalotts/shalotts)](https://codecov.io/github/username/repo)
+![GitHub Releases](https://img.shields.io/github/downloads/shalotts/shalotts/version/total)
+![GitHub](https://img.shields.io/github/license/shalotts/shalotts)
+
+[![Telegram](https://badgen.net/badge/icon/telegram?icon=telegram&label)](https://t.me/francyfox)
+[![Discord](https://img.shields.io/discord/server_id)](https://discord.gg/3fr58Fx6)
+
+
 # #Shalotts [0.10.10-Alpha]
 
 [Elysia](https://elysiajs.com) with [Vike](https://vike.dev) plugin with [Vue](https://vuejs.org) support.
@@ -14,7 +25,9 @@ Base stack: `Elysia`, `Vue`, `Pinia`, `Directus/SDK`
 4. [X] Static Files
 5. [X] Vite middleware
 6. [X] Vike plugin
+7. [ ] Docs
 7. [ ] Unhead
+8. [ ] Split plugins (Awesome Shalotts)
 7. [ ] Security-Content support
 8. [ ] EarlyHints
 9. [ ] Streaming (Range response)

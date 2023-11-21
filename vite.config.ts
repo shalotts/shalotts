@@ -12,4 +12,7 @@ export default defineConfig({
       '~main/': './src/*',
     },
   },
+  build: {
+    target: 'esnext',
+  },
 });

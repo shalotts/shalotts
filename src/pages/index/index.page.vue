@@ -8,7 +8,6 @@ import Counter from './counter.vue';
   <ul>
     <li>Rendered to HTML. ss ss</li>
     <li>Interactive. <Counter /></li>
-    <strong>Rendered</strong>
   </ul>
 </template>
 

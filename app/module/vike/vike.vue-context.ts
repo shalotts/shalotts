@@ -1,7 +1,5 @@
 import type { PageContextServer } from '../vike/vike.type';
 import { inject } from 'vue';
-import App from '@vue/runtime-core/dist/runtime-core';
-import Element = HTMLRewriterTypes.Element;
 
 const key = Symbol('key');
 
@@ -16,7 +14,7 @@ export function usePageContext(): unknown | undefined {
 
 /**
  * @description setPageContext
- * @param {App} app hosted app element
+ * @param {object} app hosted app element
  * @param {PageContextServer} pageContext page context
  */
 export function setPageContext(app: any, pageContext: PageContextServer) {

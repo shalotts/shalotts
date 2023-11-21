@@ -5,13 +5,14 @@
   "version": "0.10.10",
   "scripts": {
     "clean": "rm -rf dist && echo 'Done.'",
-    "lint": "bun eslint --fix ./",
+    "lint": "bun eslint --cache --fix ./",
     "dev": "vite",
     "hot": "bun --hot index.ts"
   },
   "eslintConfig": {
     "extends": [
       "@eslint-recommended",
+      "plugin:vue/vue3-recommended",
       "plugin:@typescript-eslint/recommended",
       "plugin:@typescript-eslint/recommended-requiring-type-checking",
       "plugin:prettier/recommended"
@@ -94,6 +95,7 @@
     "elysia-nocache": "^0.0.1",
     "elysia-rate-limit": "^1.2.0",
     "elysia-vite": "^0.2.0",
+    "eslint-plugin-vue": "^9.18.1",
     "pino-pretty": "^10.2.3",
     "prettier": "^3.0.3",
     "vike": "latest",
