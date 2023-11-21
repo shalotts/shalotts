@@ -11,6 +11,8 @@ export default defineConfig({
   resolve: {
     dedupe: ['vue'],
     alias: {
+      '~/*': `${root}/`,
+      '~app/': `${root}/app/`,
       '#root': `${root}/src/`,
     },
   },
