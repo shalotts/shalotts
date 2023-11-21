@@ -6,7 +6,7 @@
   "scripts": {
     "clean": "rm -rf dist && echo 'Done.'",
     "lint": "bun eslint --cache --fix ./",
-    "dev": "vite",
+    "dev": "bun run vite",
     "hot": "bun --hot index.ts"
   },
   "eslintConfig": {
@@ -17,12 +17,14 @@
       "plugin:@typescript-eslint/recommended-requiring-type-checking",
       "plugin:prettier/recommended"
     ],
-    "parser": "@typescript-eslint/parser",
+    "parser": "vue-eslint-parser",
     "plugins": [
       "@typescript-eslint"
     ],
     "parserOptions": {
-      "project": "tsconfig.json",
+      "parser": "@typescript-eslint/parser",
+      "sourceType": "module",
+      "project": ["tsconfig.json"],
       "tsconfigRootDir": ".",
       "extraFileExtensions": [".vue"],
       "ecmaFeatures": {
@@ -43,7 +45,8 @@
           "consistent": true,
           "multiline": true
         }
-      ]
+      ],
+      "vue/multi-word-component-names": 0
     },
     "root": true
   },
@@ -67,17 +70,18 @@
   "imports": {
     "~/*": "./*",
     "~app/": "./app/*",
-    "~main/": "./src/*"
+    "#root/": "./src/*"
   },
   "devDependencies": {
     "@eslint-recommended/eslint-config": "^16.0.3",
+    "@trivago/prettier-plugin-sort-imports": "^4.3.0",
+    "@typescript-eslint/eslint-plugin": "^6.10.0",
+    "@typescript-eslint/parser": "^6.10.0",
     "bun-types": "latest",
     "eslint": "^8.53.0",
     "eslint-config-prettier": "^9.0.0",
     "eslint-plugin-prettier": "^5.0.1",
-    "@trivago/prettier-plugin-sort-imports": "^4.3.0",
-    "@typescript-eslint/eslint-plugin": "^6.10.0",
-    "@typescript-eslint/parser": "^6.10.0"
+    "vite-plugin-eslint": "^1.8.1"
   },
   "peerDependencies": {
     "typescript": "^5.0.0"

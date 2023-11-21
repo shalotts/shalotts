@@ -1,5 +1,6 @@
 <script setup>
-defineProps(['is404'])
+// eslint-disable-next-line vue/require-prop-types
+defineProps(['is404']);
 </script>
 
 <template>
@@ -13,6 +14,4 @@ defineProps(['is404'])
   </div>
 </template>
 
-<style scoped>
-
-</style>
+<style scoped></style>
