@@ -20,4 +20,3 @@ export default defineConfig({
     target: 'esnext',
   },
 });
-console.log(`${path.dirname(url.fileURLToPath(import.meta.url))}`);

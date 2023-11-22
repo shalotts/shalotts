@@ -17,3 +17,7 @@ export const fixRoute = (route: string): string => {
 
   return route;
 };
+
+export const isStaticFilePath = (path: string) => {
+  return path.match(/(\.\w+$)|@vite|@id|@react-refresh/);
+};

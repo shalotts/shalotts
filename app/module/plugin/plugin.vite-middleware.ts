@@ -4,7 +4,7 @@ export const viteDevelopment = await createServer({
   root: ROOT_DIR,
   publicDir: 'public',
   server: {
-    middlewareMode: true,
+    middlewareMode: 'ssr',
   },
 });
 

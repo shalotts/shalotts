@@ -6,7 +6,9 @@
   "scripts": {
     "clean": "rm -rf dist && echo 'Done.'",
     "lint": "bun eslint --cache --fix ./",
-    "dev": "bun run vite",
+    "dev:server": "bun index.ts",
+    "debug": "DEBUG=vite:* bun run dev:server",
+    "dev:vite": "DEBUG=vite:* bun run vite",
     "hot": "bun --hot index.ts"
   },
   "eslintConfig": {
@@ -100,6 +102,7 @@
     "elysia-rate-limit": "^1.2.0",
     "elysia-vite": "^0.2.0",
     "eslint-plugin-vue": "^9.18.1",
+    "picocolors": "^1.0.0",
     "pino-pretty": "^10.2.3",
     "prettier": "^3.0.3",
     "vike": "latest",

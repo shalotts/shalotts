@@ -5,7 +5,9 @@ import { pino } from '@bogeychan/elysia-logger';
 import config from 'shalotts.config';
 import { $shalotts } from '~/app/const';
 import { relativeURL } from '~/app/module/helper/helper.url';
+import pc from 'picocolors';
 
+// @ts-ignore
 export const stream = pretty({
   colorize: true,
   translateTime: 'SYS:standard',
@@ -21,6 +23,9 @@ export const stream = pretty({
   },
   customPrettifiers: {
     time: timestamp => `🕰 ${typeof timestamp === 'string' ? timestamp : 'no-time'}`,
+    // @ts-ignore
+    pid: (pid: number) => pc.dim(pid),
+    hostname: () => '',
   },
 });
 
