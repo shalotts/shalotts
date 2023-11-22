@@ -27,7 +27,8 @@ Watch docs https://shalodoc.netlify.app
 4. [X] Static Files
 5. [X] Vite middleware
 6. [X] Vike plugin
-7. [X] Docs
+7. [X] Init Docs project
+8. [ ] SSR Bundle // @fix @vite/client 404
 7. [ ] Unhead
 8. [ ] Split plugins (Awesome Shalotts)
 7. [ ] Security-Content support
