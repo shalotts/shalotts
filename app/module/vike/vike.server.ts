@@ -18,7 +18,7 @@ export const serverRender = async (
   // eslint-disable-next-line @typescript-eslint/no-unsafe-argument,@typescript-eslint/no-unsafe-call
   // @ts-ignore
   const app = createApp(Page, pageProps, pageContext);
-  const appHtml = await renderToString(app);
+  const appHtml = Page ? await renderToString(app) : ''; // SSR | SPA
 
   // See https://vike.dev/head
   const { documentProps } = pageContext.exports;

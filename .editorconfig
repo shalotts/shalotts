@@ -1,5 +1,11 @@
 root = true
 
+[*.md]
+trim_trailing_whitespace = false
+
+[*.js]
+trim_trailing_whitespace = true
+
 [*]
 end_of_line = lf
 charset = utf-8

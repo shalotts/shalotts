@@ -7,7 +7,13 @@ import url from 'node:url';
 
 const root = path.dirname(url.fileURLToPath(import.meta.url));
 export default defineConfig({
-  plugins: [vue(), vike(), eslint()],
+  plugins: [
+    vike({ prerender: true }),
+    vue({
+      include: [/\.vue$/, /\.md$/],
+    }),
+    eslint(),
+  ],
   resolve: {
     dedupe: ['vue'],
     alias: {
@@ -16,7 +22,13 @@ export default defineConfig({
       '#root': `${root}/src/`,
     },
   },
+  css: {
+    transformer: 'lightningcss',
+    devSourcemap: true,
+  },
   build: {
+    manifest: true,
     target: 'esnext',
+    cssMinify: 'lightningcss',
   },
 });

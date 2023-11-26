@@ -9,7 +9,8 @@
     "dev:server": "bun index.ts",
     "debug": "DEBUG=vite:* bun run dev:server",
     "dev:vite": "DEBUG=vite:* bun run vite",
-    "hot": "bun --hot index.ts"
+    "hot": "bun --hot index.ts",
+    "pm2": "pm2 start --interpreter ~/.bun/bin/bun --name shalotts-server index.ts"
   },
   "eslintConfig": {
     "extends": [
@@ -69,6 +70,11 @@
     "importOrderSortSpecifiers": true,
     "bracketSpacing": true
   },
+  "husky": {
+    "hooks": {
+      "pre-commit": "bun run lint"
+    }
+  },
   "imports": {
     "~/*": "./*",
     "~app/": "./app/*",
@@ -77,12 +83,16 @@
   "devDependencies": {
     "@eslint-recommended/eslint-config": "^16.0.3",
     "@trivago/prettier-plugin-sort-imports": "^4.3.0",
+    "@types/express": "^4.17.21",
     "@typescript-eslint/eslint-plugin": "^6.10.0",
     "@typescript-eslint/parser": "^6.10.0",
     "bun-types": "latest",
     "eslint": "^8.53.0",
     "eslint-config-prettier": "^9.0.0",
     "eslint-plugin-prettier": "^5.0.1",
+    "husky": "^8.0.3",
+    "lightningcss": "^1.22.1",
+    "pm2": "^5.3.0",
     "vite-plugin-eslint": "^1.8.1"
   },
   "peerDependencies": {
