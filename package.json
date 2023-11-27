@@ -2,7 +2,7 @@
   "name": "shalotts",
   "module": "index.ts",
   "type": "module",
-  "version": "0.10.10",
+  "version": "0.20.00",
   "scripts": {
     "clean": "rm -rf dist && echo 'Done.'",
     "lint": "bun eslint --cache --fix ./",
@@ -10,7 +10,8 @@
     "debug": "DEBUG=vite:* bun run dev:server",
     "dev:vite": "DEBUG=vite:* bun run vite",
     "hot": "bun --hot index.ts",
-    "pm2": "pm2 start --interpreter ~/.bun/bin/bun --name shalotts-server index.ts"
+    "pm2": "pm2 start --interpreter ~/.bun/bin/bun --name shalotts-server index.ts",
+    "prepare": "husky install"
   },
   "eslintConfig": {
     "extends": [
@@ -27,9 +28,13 @@
     "parserOptions": {
       "parser": "@typescript-eslint/parser",
       "sourceType": "module",
-      "project": ["tsconfig.json"],
+      "project": [
+        "tsconfig.json"
+      ],
       "tsconfigRootDir": ".",
-      "extraFileExtensions": [".vue"],
+      "extraFileExtensions": [
+        ".vue"
+      ],
       "ecmaFeatures": {
         "experimentalObjectRestSpread": true
       }
@@ -66,14 +71,22 @@
     "trailingComma": "all",
     "endOfLine": "lf",
     "printWidth": 100,
-    "importOrder": ["^@core/(.*)$", "^@server/(.*)$", "^@ui/(.*)$", "^[./]"],
+    "importOrder": [
+      "^@core/(.*)$",
+      "^@server/(.*)$",
+      "^@ui/(.*)$",
+      "^[./]"
+    ],
     "importOrderSeparation": true,
     "importOrderSortSpecifiers": true,
     "bracketSpacing": true
   },
+  "lint-staged": {
+    "*.{ts,tsx}": ["eslint --fix", "prettier --write"]
+  },
   "husky": {
     "hooks": {
-      "pre-commit": "bun run lint"
+      "pre-commit": "bun run lint-staged"
     }
   },
   "imports": {
@@ -91,7 +104,7 @@
     "eslint": "^8.53.0",
     "eslint-config-prettier": "^9.0.0",
     "eslint-plugin-prettier": "^5.0.1",
-    "husky": "^8.0.3",
+    "husky": "^8.0.0",
     "lightningcss": "^1.22.1",
     "pm2": "^5.3.0",
     "vike-vue": "^0.5.0",
@@ -115,6 +128,7 @@
     "elysia-rate-limit": "^1.2.0",
     "elysia-vite": "^0.2.0",
     "eslint-plugin-vue": "^9.18.1",
+    "lint-staged": "^15.1.0",
     "picocolors": "^1.0.0",
     "pino-pretty": "^10.2.3",
     "prettier": "^3.0.3",

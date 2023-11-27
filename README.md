@@ -1,5 +1,4 @@
 
-[![Netlify Status](https://api.netlify.com/api/v1/badges/0c200c59-83c4-4fe9-9c37-8803e265f186/deploy-status)](https://app.netlify.com/sites/shalodoc/deploys)
 ![GitHub code size in bytes](https://img.shields.io/github/languages/code-size/shalotts/shalotts)
 [![Code Coverage](https://img.shields.io/codecov/c/github/shalotts/shalotts)](https://codecov.io/github/username/repo)
 ![GitHub Releases](https://img.shields.io/github/downloads/shalotts/shalotts/version/total)
@@ -8,8 +7,15 @@
 [![Telegram](https://badgen.net/badge/icon/telegram?icon=telegram&label)](https://t.me/francyfox)
 [![Discord](https://img.shields.io/discord/server_id)](https://discord.gg/3fr58Fx6)
 
+### STAGES
+- **TESTING**
+- - [![Netlify Status](https://api.netlify.com/api/v1/badges/c7c2ffb5-7ea6-4047-80db-f5838f9c8b41/deploy-status)](https://app.netlify.com/sites/test-shalotts/deploys)
+- **PRODUCTION**
+- - Not Ready
+- **DOC**
+- - [![Netlify Status](https://api.netlify.com/api/v1/badges/0c200c59-83c4-4fe9-9c37-8803e265f186/deploy-status)](https://app.netlify.com/sites/shalodoc/deploys)
 
-# #Shalotts [0.10.10-Alpha]
+# #Shalotts [0.20.00-Alpha]
 
 [Elysia](https://elysiajs.com) with [Vike](https://vike.dev) plugin with [Vue](https://vuejs.org) support.
 
@@ -28,22 +34,27 @@ Watch docs https://shalodoc.netlify.app
 5. [X] Vite middleware
 6. [X] Vike plugin
 7. [X] Init Docs project
-8. [ ] SSR Bundle // @fix @vite/client 404
-7. [ ] Unhead
-8. [ ] Split plugins (Awesome Shalotts)
-7. [ ] Security-Content support
-8. [ ] EarlyHints
-9. [ ] Streaming (Range response)
-10. [ ] Routing
-11. [ ] Slug
-12. [ ] Pinia store middleware
-13. [ ] DirectUS SDK
-14. [ ] DirectUS Preview
-15. [ ] DirectUS Schema AutoImport
-16. [ ] DirectUS Forms
-17. [ ] DirectUS Page Builder
-18. [ ] SSR DEV
-19. [ ] SSR PROD
-20. [ ] SPA DEV
-21. [ ] SPA PROD
+8. [X] SSR DEV VITE
+9. [X] NETLIFY FUNCTIONS
+10. [X] EarlyHints
+11. [X] Streaming (Range response)
+12. [ ] Split plugins (Awesome Shalotts)
+13. [ ] First SSR Tests
+14. [ ] Unhead
+15. [ ] Differ Responses (Bot or Client)
+16. [ ] SSR Bundle from Bun // @fix @vite/client 404
+17. [ ] Security-Content support
+18. [ ] Routing
+19. [ ] Slug
+20. [ ] Pinia store middleware
+21. [ ] DirectUS SDK
+22. [ ] DirectUS Preview
+23. [ ] DirectUS Schema AutoImport
+24. [ ] DirectUS Forms
+25. [ ] DirectUS Page Builder
+26. [ ] FROM NODE TO BUN
+27. [ ] SSR DEV BUN
+28. [ ] SSR PROD BUN
+29. [ ] SPA DEV BUN
+30. [ ] SPA PROD BUN
 
