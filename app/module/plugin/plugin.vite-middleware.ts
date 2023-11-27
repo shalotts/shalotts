@@ -5,6 +5,11 @@ export const viteDevelopment = await createServer({
   server: {
     middlewareMode: true,
   },
+  optimizeDeps: {
+    disabled: true,
+  },
 });
+
+await viteDevelopment.pluginContainer.buildStart({});
 
 export const viteDevelopmentMiddleware = viteDevelopment.middlewares;
