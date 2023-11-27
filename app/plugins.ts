@@ -1,8 +1,8 @@
-// import { etag } from '@bogeychan/elysia-etag';
-// import { compression } from 'elysia-compression';
+import { etag } from '@bogeychan/elysia-etag';
+import { compression } from 'elysia-compression';
 import { fileLogger, logger } from '@bogeychan/elysia-logger';
-// import { cors } from '@elysiajs/cors';
-// import { helmet } from 'elysia-helmet';
+import { cors } from '@elysiajs/cors';
+import { helmet } from 'elysia-helmet';
 import { Transform } from 'node:stream';
 import { STATIC_DIR_CLIENT } from '~/app/const';
 // import { pluginBaseRequest } from '~/app/module/plugin/plugin.base-request';
@@ -25,13 +25,13 @@ export const plugins = (log: Logger<pretty.PrettyStream>, stream: Transform<any>
       elysiaConnectDecorate(),
       fileLogger({ file: `${import.meta.dir}/log/app.log` }),
       logger({ stream }),
-      // compression(),
-      // helmet({
-      //   xFrameOptions: { action: 'deny' },
-      //   contentSecurityPolicy: false,
-      // }),
-      // cors(),
-      // etag(),
+      compression(),
+      helmet({
+        xFrameOptions: { action: 'deny' },
+        contentSecurityPolicy: false,
+      }),
+      cors(),
+      etag(),
       // pluginBaseRequest(log),
       // rateLimit(),
     ],

@@ -15,8 +15,8 @@ export const serverRender = async (
   const { Page, pageProps, config } = pageContext;
   if (!Page) throw new Error('My render() hook expects pageContext.Page to be defined');
 
-  // eslint-disable-next-line @typescript-eslint/no-unsafe-argument,@typescript-eslint/no-unsafe-call
   // @ts-ignore
+  // eslint-disable-next-line @typescript-eslint/no-unsafe-argument,@typescript-eslint/no-unsafe-call
   const app = createApp(Page, pageProps, pageContext);
   const appHtml = Page ? await renderToString(app) : ''; // SSR | SPA
 

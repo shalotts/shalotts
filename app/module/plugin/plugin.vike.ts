@@ -11,7 +11,10 @@ export const vikeConnectMiddleware = async (
   next: NextFunction,
 ) => {
   try {
-    const pageContextInit = { urlOriginal: request.url };
+    const pageContextInit = {
+      urlOriginal: request.url,
+      userAgent: request.headers['user-agent'],
+    };
     const pageContext = await renderPage(pageContextInit);
     const { httpResponse, errorWhileRendering } = pageContext;
 
@@ -20,7 +23,7 @@ export const vikeConnectMiddleware = async (
     }
 
     if (httpResponse) {
-      const { body, statusCode, headers, earlyHints } = httpResponse;
+      const { statusCode, headers, earlyHints } = httpResponse;
 
       for (const [name, value] of headers) {
         response.setHeader(name, value);
@@ -34,7 +37,7 @@ export const vikeConnectMiddleware = async (
       }
 
       response.statusCode = statusCode;
-      response.end(body);
+      httpResponse.pipe(response);
     } else {
       next();
     }
