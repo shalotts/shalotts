@@ -1,0 +1,11 @@
+[build]
+publish = "dist/client/"
+command = "bun install && bun run vite build"
+
+[functions]
+directory = "functions/"
+
+[[redirects]]
+from = "/*"
+to = "/.netlify/functions/index"
+status = 200

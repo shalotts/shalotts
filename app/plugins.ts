@@ -26,10 +26,6 @@ export const plugins = (log: Logger<pretty.PrettyStream>, stream: Transform<any>
       fileLogger({ file: `${import.meta.dir}/log/app.log` }),
       logger({ stream }),
       compression(),
-      helmet({
-        xFrameOptions: { action: 'deny' },
-        contentSecurityPolicy: false,
-      }),
       cors(),
       etag(),
       // pluginBaseRequest(log),
@@ -41,6 +37,13 @@ export const plugins = (log: Logger<pretty.PrettyStream>, stream: Transform<any>
       elysiaConnect(viteDevelopmentMiddleware, { name: 'vite-middleware' }),
       pluginVike(),
     ],
-    production: [pluginStatic({ assets: STATIC_DIR_CLIENT }), pluginVike()],
+    production: [
+      helmet({
+        xFrameOptions: { action: 'deny' },
+        contentSecurityPolicy: false,
+      }),
+      pluginStatic({ assets: STATIC_DIR_CLIENT }),
+      pluginVike(),
+    ],
   };
 };
