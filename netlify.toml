@@ -3,9 +3,9 @@ publish = "dist/client/"
 command = "bun install && bun run vite build"
 
 [functions]
-directory = "functions/"
+directory = "/app/module/adapter/netlify/functions"
 
 [[redirects]]
 from = "/*"
-to = "/.netlify/functions/index"
+to = "/app/module/adapter/netlify/functions/index.ts"
 status = 200
