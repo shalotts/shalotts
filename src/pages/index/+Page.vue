@@ -4,9 +4,9 @@ import Counter from '#root/pages/index/counter.vue';
 
 <template>
   <div>
-    <h1>Welcome</h1>
+    <h1 class="mb-[2px]">Welcome</h1>
     This page is:
-    <ul>
+    <ul class="p-5">
       <li>Rendered to HTML. ss ss</li>
       <li>Interactive. <Counter /></li>
     </ul>
@@ -16,5 +16,8 @@ import Counter from '#root/pages/index/counter.vue';
 <style scoped lang="postcss">
 ul {
   background: brown;
+  li {
+    color: #fff;
+  }
 }
 </style>

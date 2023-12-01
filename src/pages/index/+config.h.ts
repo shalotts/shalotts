@@ -1,4 +1,4 @@
 export default {
-  title: 'My Vike app',
-  description: 'This app showcases using Vike',
+  title: '#Shalotts',
+  description: 'Test site',
 };

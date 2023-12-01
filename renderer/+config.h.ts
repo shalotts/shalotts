@@ -1,6 +1,8 @@
 import type { Config } from 'vike/types';
+import vikeVue from 'vike-vue';
 
-export default {
+const config = {
+  passToClient: ['pageProps', 'urlPathname', 'is404', 'urlParsed'],
   meta: {
     title: {
       // Make `title` value available on both the server and client
@@ -11,4 +13,9 @@ export default {
       env: { server: true },
     },
   },
+  extends: vikeVue,
+};
+
+export default {
+  ...config,
 } satisfies Config;

@@ -4,15 +4,17 @@ import vike from 'vike/plugin';
 import eslint from 'vite-plugin-eslint';
 import path from 'node:path';
 import url from 'node:url';
+import UnoCSS from 'unocss/vite';
 
 const root = path.dirname(url.fileURLToPath(import.meta.url));
 export default defineConfig({
   plugins: [
-    vike({ prerender: true }),
     vue({
       include: [/\.vue$/, /\.md$/],
     }),
+    vike(),
     eslint(),
+    UnoCSS(),
   ],
   resolve: {
     dedupe: ['vue'],
@@ -30,5 +32,11 @@ export default defineConfig({
     manifest: true,
     target: 'esnext',
     cssMinify: 'lightningcss',
+    rollupOptions: {
+      input: {
+        '@shalotts/entry': `${root}/src/client.ts`,
+      },
+    },
   },
+  cacheDir: './cache',
 });
