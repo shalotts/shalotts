@@ -32,11 +32,6 @@ export default defineConfig({
     manifest: true,
     target: 'esnext',
     cssMinify: 'lightningcss',
-    rollupOptions: {
-      input: {
-        '@shalotts/entry': `${root}/src/client.ts`,
-      },
-    },
   },
   cacheDir: './cache',
 });
