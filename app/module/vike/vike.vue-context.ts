@@ -8,8 +8,8 @@ const key = Symbol('key');
  */
 // eslint-disable-next-line @typescript-eslint/no-redundant-type-constituents
 export function usePageContext(): unknown | undefined {
-  // eslint-disable-next-line @typescript-eslint/no-unsafe-call
-  return inject(key);
+	// eslint-disable-next-line @typescript-eslint/no-unsafe-call
+	return inject(key);
 }
 
 /**
@@ -18,6 +18,6 @@ export function usePageContext(): unknown | undefined {
  * @param {PageContextServer} pageContext page context
  */
 export function setPageContext(app: any, pageContext: PageContextServer) {
-  // eslint-disable-next-line @typescript-eslint/no-unsafe-call
-  app.provide(key, pageContext);
+	// eslint-disable-next-line @typescript-eslint/no-unsafe-call
+	app.provide(key, pageContext);
 }

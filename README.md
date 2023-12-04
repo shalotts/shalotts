@@ -17,9 +17,11 @@
 
 # #Shalotts [0.20.00-Alpha]
 
-[Hono](https://elysiajs.com) with [Vike](https://vike.dev) plugin with [Vue](https://vuejs.org) support.
+<img width="150" height="150" src="doc/img/shalotts.png" alt="logo">
 
-Base stack: `Hono`, `Vue`, `Pinia`, `Directus/SDK`
+[Elysia](https://elysiajs.com) with [Vike](https://vike.dev) plugin with [Vue](https://vuejs.org) support.
+
+Base stack: `Elysia`, `Vue`, `Pinia`, `Directus/SDK`
 
 Watch docs https://shalodoc.netlify.app
 
@@ -28,21 +30,22 @@ Watch docs https://shalodoc.netlify.app
 ## Roadmap
 
 1. [X] Base Core
-2. [X] Linter + Prettier
-3. [X] Logs
-4. [X] Static Files
-5. [X] Vite middleware
-6. [X] Vike plugin
-7. [X] Init Docs project
-8. [X] SSR DEV VITE
-9. [X] NETLIFY FUNCTIONS
-10. [X] EarlyHints
-11. [X] Streaming (Range response)
+2. [ ] Linter + Prettier
+3. [ ] Logs
+4. [ ] Static Files
+5. [ ] Vite middleware
+6. [ ] Vike plugin
+7. [ ] Init Docs project
+8. [ ] SSR DEV VITE
+9. [ ] NETLIFY FUNCTIONS
+10. [ ] EarlyHints
+11. [ ] Streaming (Range response)
 12. [ ] Split plugins (Awesome Shalotts)
 13. [ ] First SSR Tests
 14. [ ] Unhead
 15. [ ] Differ Responses (Bot or Client)
-16. [ ] SSR Bundle from Bun // @fix @vite/client 404
+16. [ ] Replace large modules (like pinno-pretty)
+16. [ ] SSR Bundle from Deno // @fix @vite/client 404
 17. [ ] Security-Content support
 18. [ ] Routing
 19. [ ] Slug
