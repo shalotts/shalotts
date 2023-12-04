@@ -1,10 +1,10 @@
-import { plugins } from 'app/plugins';
+import { plugins } from '/app/plugins.ts';
 import Elysia from 'elysia';
 import pretty from 'pino-pretty';
 import { pino } from '@bogeychan/elysia-logger';
-import config from 'shalotts.config';
-import { $shalotts } from '~/app/const';
-import { relativeURL } from '~/app/module/helper/helper.url';
+import config from '/shalotts.config.ts';
+import { $shalotts } from '/app/const.ts';
+import { relativeURL } from '/app/module/helper/helper.url.ts';
 import pc from 'picocolors';
 
 // @ts-ignore
@@ -13,7 +13,7 @@ export const stream = pretty({
   translateTime: 'SYS:standard',
   hideObject: true,
   ignore: 'req,res,responseTime',
-  messageFormat: log => {
+  messageFormat: (log: any) => {
     const request = log.request as any;
     // eslint-disable-next-line sonarjs/no-nested-template-literals
     if (log.request)
@@ -22,8 +22,7 @@ export const stream = pretty({
     return `${(log as any).msg}`;
   },
   customPrettifiers: {
-    time: timestamp => `🕰 ${typeof timestamp === 'string' ? timestamp : 'no-time'}`,
-    // @ts-ignore
+    time: (timestamp: any) => `🕰 ${typeof timestamp === 'string' ? timestamp : 'no-time'}`,
     pid: (pid: number) => pc.dim(pid),
     hostname: () => '',
   },

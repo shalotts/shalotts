@@ -3,7 +3,7 @@
  * @returns {string} html
  */
 export default function TEMPLATE_ERROR(message: string): string {
-  return `<!DOCTYPE html>
+	return `<!DOCTYPE html>
 <html lang='en'>
 
 <head>

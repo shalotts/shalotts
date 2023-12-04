@@ -1,4 +1,4 @@
 export default {
-  title: '#Shalotts',
-  description: 'Test site',
+	title: '#Shalotts',
+	description: 'Test site',
 };

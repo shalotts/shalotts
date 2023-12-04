@@ -4,18 +4,19 @@ import { fileLogger, logger } from '@bogeychan/elysia-logger';
 import { cors } from '@elysiajs/cors';
 import { helmet } from 'elysia-helmet';
 import { Transform } from 'node:stream';
-import { STATIC_DIR_CLIENT } from '~/app/const';
+import { STATIC_DIR_CLIENT } from '/app/const.ts';
 // import { pluginBaseRequest } from '~/app/module/plugin/plugin.base-request';
-import { pluginStatic } from '~/app/module/plugin/plugin.static';
-import { pluginTrace } from '~/app/module/plugin/plugin.trace';
+import { pluginStatic } from '/app/module/plugin/plugin.static.ts';
+import { pluginTrace } from '/app/module/plugin/plugin.trace.ts';
 import pretty from 'pino-pretty';
 import type { Logger } from 'pino';
 // @ts-ignore
 // import { rateLimit } from 'elysia-rate-limit';
-import pluginVike from '~/app/module/plugin/plugin.vike';
+import pluginVike from '/app/module/plugin/plugin.vike.ts';
 // @ts-ignore
 import { elysiaConnectDecorate, elysiaConnect } from 'elysia-connect';
-import { viteDevelopmentMiddleware } from '~/app/module/plugin/plugin.vite-middleware';
+import { viteDevelopmentMiddleware } from '/app/module/plugin/plugin.vite-middleware.ts';
+import 'npm:@bogeychan/elysia-polyfills/deno/index.js';
 
 // @ts-ignore
 export const plugins = (log: Logger<pretty.PrettyStream>, stream: Transform<any>) => {

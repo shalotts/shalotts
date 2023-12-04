@@ -8,27 +8,27 @@ type PageProps = NonNullable<unknown>;
 // https://vike.dev/pageContext#typescript
 
 declare global {
-  // eslint-disable-next-line @typescript-eslint/no-namespace
-  namespace Vike {
-    interface PageContext {
-      // @ts-ignore
-      Page: Page;
-      pageProps?: PageProps;
-      urlPathname: string;
-      exports: {
-        documentProps?: {
-          title?: string;
-          description?: string;
-        };
-      };
-    }
-  }
+	// eslint-disable-next-line @typescript-eslint/no-namespace
+	namespace Vike {
+		interface PageContext {
+			// @ts-ignore
+			Page: Page;
+			pageProps?: PageProps;
+			urlPathname: string;
+			exports: {
+				documentProps?: {
+					title?: string;
+					description?: string;
+				};
+			};
+		}
+	}
 }
 
 export type { PageProps };
 export type { Component };
 export type {
-  PageContextServer,
-  PageContextClientWithServerRouting as PageContextClient,
-  PageContextWithServerRouting as PageContext,
+	PageContextClientWithServerRouting as PageContextClient,
+	PageContextServer,
+	PageContextWithServerRouting as PageContext,
 } from 'vike/types';

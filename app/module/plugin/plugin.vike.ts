@@ -1,53 +1,53 @@
 import { Elysia } from 'elysia';
-import type { Request, Response, NextFunction } from 'express';
+import type { NextFunction, Request, Response } from 'express';
 import { renderPage } from 'vike/server';
 import { ConnectedContext } from '~/app/module/plugin/plugin.type';
 import { viteDevelopment } from '~/app/module/plugin/plugin.vite-middleware';
 import { log } from '~/app/http';
 
 export const vikeConnectMiddleware = async (
-  request: Request,
-  response: Response,
-  next: NextFunction,
+	request: Request,
+	response: Response,
+	next: NextFunction,
 ) => {
-  try {
-    const pageContextInit = {
-      urlOriginal: request.url,
-      userAgent: request.headers['user-agent'],
-    };
-    const pageContext = await renderPage(pageContextInit);
-    const { httpResponse, errorWhileRendering } = pageContext;
+	try {
+		const pageContextInit = {
+			urlOriginal: request.url,
+			userAgent: request.headers['user-agent'],
+		};
+		const pageContext = await renderPage(pageContextInit);
+		const { httpResponse, errorWhileRendering } = pageContext;
 
-    if (errorWhileRendering) {
-      log.error(errorWhileRendering);
-    }
+		if (errorWhileRendering) {
+			log.error(errorWhileRendering);
+		}
 
-    if (httpResponse) {
-      const { statusCode, headers, earlyHints } = httpResponse;
+		if (httpResponse) {
+			const { statusCode, headers, earlyHints } = httpResponse;
 
-      for (const [name, value] of headers) {
-        response.setHeader(name, value);
-      }
+			for (const [name, value] of headers) {
+				response.setHeader(name, value);
+			}
 
-      if (response.writeEarlyHints) {
-        response.writeEarlyHints({
-          // eslint-disable-next-line unicorn/prevent-abbreviations
-          link: earlyHints.map(e => e.earlyHintLink),
-        });
-      }
+			if (response.writeEarlyHints) {
+				response.writeEarlyHints({
+					// eslint-disable-next-line unicorn/prevent-abbreviations
+					link: earlyHints.map((e) => e.earlyHintLink),
+				});
+			}
 
-      response.statusCode = statusCode;
-      httpResponse.pipe(response);
-    } else {
-      next();
-    }
-  } catch (error) {
-    const Error = error as Error;
-    viteDevelopment.ssrFixStacktrace(Error);
-    log.error(Error.stack);
-    response.statusCode = 500;
-    response.end(Error.stack);
-  }
+			response.statusCode = statusCode;
+			httpResponse.pipe(response);
+		} else {
+			next();
+		}
+	} catch (error) {
+		const Error = error as Error;
+		viteDevelopment.ssrFixStacktrace(Error);
+		log.error(Error.stack);
+		response.statusCode = 500;
+		response.end(Error.stack);
+	}
 };
 
 /**
@@ -55,19 +55,19 @@ export const vikeConnectMiddleware = async (
  *  @returns { Elysia } plugin
  */
 export default function pluginVike(): Elysia {
-  const app = new Elysia();
+	const app = new Elysia();
 
-  app.get('*', async context => {
-    const response = await (context as ConnectedContext).elysiaConnect(
-      vikeConnectMiddleware,
-      context,
-    );
-    // eslint-disable-next-line @typescript-eslint/no-unsafe-return
-    if (response) return response;
-  });
+	app.get('*', async (context) => {
+		const response = await (context as ConnectedContext).elysiaConnect(
+			vikeConnectMiddleware,
+			context,
+		);
+		// eslint-disable-next-line @typescript-eslint/no-unsafe-return
+		if (response) return response;
+	});
 
-  return app.onStop(async () => {
-    log.info(`Vite stopped`);
-    return await viteDevelopment.close();
-  });
+	return app.onStop(async () => {
+		log.info(`Vite stopped`);
+		return await viteDevelopment.close();
+	});
 }
