@@ -1,0 +1,8 @@
+{
+    "name": "@shalotts/app",
+    "version": "0.20.0",
+    "description": "Stack with Deno.js",
+    "keywords": [],
+    "author": "shalotts",
+    "license": "MIT"
+  }
