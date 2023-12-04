@@ -17,9 +17,9 @@
 
 # #Shalotts [0.20.00-Alpha]
 
-[Elysia](https://elysiajs.com) with [Vike](https://vike.dev) plugin with [Vue](https://vuejs.org) support.
+[Hono](https://elysiajs.com) with [Vike](https://vike.dev) plugin with [Vue](https://vuejs.org) support.
 
-Base stack: `Elysia`, `Vue`, `Pinia`, `Directus/SDK`
+Base stack: `Hono`, `Vue`, `Pinia`, `Directus/SDK`
 
 Watch docs https://shalodoc.netlify.app
 
