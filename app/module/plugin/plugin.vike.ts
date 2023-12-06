@@ -2,7 +2,6 @@ import { Elysia } from 'elysia';
 import type { Request, Response, NextFunction } from 'express';
 import { renderPage } from 'vike/server';
 import { ConnectedContext } from '~/app/module/plugin/plugin.type';
-import { viteDevelopment } from '~/app/module/plugin/plugin.vite-middleware';
 import { log } from '~/app/http';
 
 export const vikeConnectMiddleware = async (
@@ -43,7 +42,6 @@ export const vikeConnectMiddleware = async (
     }
   } catch (error) {
     const Error = error as Error;
-    viteDevelopment.ssrFixStacktrace(Error);
     log.error(Error.stack);
     response.statusCode = 500;
     response.end(Error.stack);
@@ -66,8 +64,5 @@ export default function pluginVike(): Elysia {
     if (response) return response;
   });
 
-  return app.onStop(async () => {
-    log.info(`Vite stopped`);
-    return await viteDevelopment.close();
-  });
+  return app;
 }

@@ -14,8 +14,7 @@ import type { Logger } from 'pino';
 // import { rateLimit } from 'elysia-rate-limit';
 import pluginVike from '~/app/module/plugin/plugin.vike';
 // @ts-ignore
-import { elysiaConnectDecorate, elysiaConnect } from 'elysia-connect';
-import { viteDevelopmentMiddleware } from '~/app/module/plugin/plugin.vite-middleware';
+import { elysiaConnectDecorate } from 'elysia-connect';
 
 // @ts-ignore
 export const plugins = (log: Logger<pretty.PrettyStream>, stream: Transform<any>) => {
@@ -31,12 +30,7 @@ export const plugins = (log: Logger<pretty.PrettyStream>, stream: Transform<any>
       // pluginBaseRequest(log),
       // rateLimit(),
     ],
-    development: [
-      pluginTrace(log),
-      // eslint-disable-next-line @typescript-eslint/no-unsafe-call
-      elysiaConnect(viteDevelopmentMiddleware, { name: 'vite-middleware' }),
-      pluginVike(),
-    ],
+    development: [pluginTrace(log), pluginVike()],
     production: [
       helmet({
         xFrameOptions: { action: 'deny' },
