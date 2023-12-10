@@ -7,8 +7,10 @@ import url from 'node:url';
 import UnoCSS from 'unocss/vite';
 
 const root = path.dirname(url.fileURLToPath(import.meta.url));
+const ElysiaPlugin = await import('./package/vite/dist/index.js');
 export default defineConfig({
   plugins: [
+    ElysiaPlugin.default(),
     vue({
       include: [/\.vue$/, /\.md$/],
     }),

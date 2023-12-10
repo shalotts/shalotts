@@ -7,5 +7,5 @@ directory = "/app/module/adapter/netlify/functions"
 
 [[redirects]]
 from = "/*"
-to = "/app/module/adapter/netlify/functions/index.ts"
+to = "/app/module/adapter/netlify/functions/elysia.plugin.ts"
 status = 200

@@ -60,7 +60,9 @@
         }
       ],
       "vue/multi-word-component-names": 0,
-      "unicorn/filename-case": 0
+      "unicorn/filename-case": 0,
+      "eslint-comments/no-unlimited-disable": 0,
+      "unicorn/no-abusive-eslint-disable": 0
     },
     "root": true
   },
@@ -142,6 +144,7 @@
     "picocolors": "^1.0.0",
     "pino-pretty": "^10.2.3",
     "prettier": "^3.0.3",
+    "shumai": "^0.1.2",
     "vike": "latest",
     "vite": "^5.0.5",
     "vue": "^3.3.8"
