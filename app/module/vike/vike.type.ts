@@ -1,4 +1,4 @@
-import type { ComponentPublicInstance } from 'vue';
+import type { ComponentPublicInstance } from "vue";
 
 type Component = ComponentPublicInstance;
 export type Page = Component;
@@ -31,4 +31,4 @@ export type {
   PageContextServer,
   PageContextClientWithServerRouting as PageContextClient,
   PageContextWithServerRouting as PageContext,
-} from 'vike/types';
+} from "vike/types";

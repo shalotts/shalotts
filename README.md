@@ -38,23 +38,24 @@ Watch docs https://shalodoc.netlify.app
 9. [X] NETLIFY FUNCTIONS
 10. [X] EarlyHints
 11. [X] Streaming (Range response)
-12. [ ] Split plugins (Awesome Shalotts)
-13. [ ] First SSR Tests
-14. [ ] Unhead
-15. [ ] Differ Responses (Bot or Client)
-16. [ ] SSR Bundle from Bun // @fix @vite/client 404
-17. [ ] Security-Content support
-18. [ ] Routing
-19. [ ] Slug
-20. [ ] Pinia store middleware
-21. [ ] DirectUS SDK
-22. [ ] DirectUS Preview
-23. [ ] DirectUS Schema AutoImport
-24. [ ] DirectUS Forms
-25. [ ] DirectUS Page Builder
-26. [ ] FROM NODE TO BUN
-27. [ ] SSR DEV BUN
-28. [ ] SSR PROD BUN
-29. [ ] SPA DEV BUN
-30. [ ] SPA PROD BUN
+12. [ ] Vavite full support
+13. [ ] Split plugins (Awesome Shalotts)
+14. [ ] First SSR Tests
+15. [ ] Unhead
+16. [ ] Differ Responses (Bot or Client)
+17. [ ] SSR Bundle from Bun // @fix @vite/client 404
+18. [ ] Security-Content support
+19. [ ] Routing
+20. [ ] Slug
+21. [ ] Pinia store middleware
+22. [ ] DirectUS SDK
+23. [ ] DirectUS Preview
+24. [ ] DirectUS Schema AutoImport
+25. [ ] DirectUS Forms
+26. [ ] DirectUS Page Builder
+27. [ ] FROM NODE TO BUN
+28. [ ] SSR DEV BUN
+29. [ ] SSR PROD BUN
+30. [ ] SPA DEV BUN
+31. [ ] SPA PROD BUN
 

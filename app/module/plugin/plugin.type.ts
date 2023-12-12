@@ -1,4 +1,4 @@
-import { Context } from 'elysia';
+import { Context } from "elysia";
 
 export interface Connected {
   /**
@@ -7,4 +7,5 @@ export interface Connected {
    */
   elysiaConnect: (middleware: any, context: Context) => Promise<any>;
 }
+
 export interface ConnectedContext extends Context, Connected {}

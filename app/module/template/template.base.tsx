@@ -1,6 +1,6 @@
-import type { TemplateWrapped } from 'vike/dist/esm/node/runtime/html/renderHtml';
-import { escapeInject, dangerouslySkipEscape } from 'vike/server';
-import { IHtmlHead } from '~/app/module/template/template.type';
+import type { TemplateWrapped } from "vike/dist/esm/node/runtime/html/renderHtml";
+import { escapeInject, dangerouslySkipEscape } from "vike/server";
+import { IHtmlHead } from "~/app/module/template/template.type";
 
 /**
  * @description Base template for render escaped html
@@ -10,7 +10,7 @@ import { IHtmlHead } from '~/app/module/template/template.type';
  */
 export default function TEMPLATE_BASE(
   head: IHtmlHead,
-  html: string = '<h1>Sharlotts</h1>',
+  html: string = "<h1>Sharlotts</h1>",
 ): TemplateWrapped {
   return escapeInject`<!DOCTYPE html>
 <html class="no-js" lang="">

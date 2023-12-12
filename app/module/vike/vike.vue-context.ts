@@ -1,7 +1,7 @@
-import type { PageContextServer } from '../vike/vike.type';
-import { inject } from 'vue';
+import type { PageContextServer } from "../vike/vike.type";
+import { inject } from "vue";
 
-const key = Symbol('key');
+const key = Symbol("key");
 
 /**
  * @returns { object } Returns page context

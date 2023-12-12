@@ -9,6 +9,7 @@
     "typescript": "^5.0.0"
   },
   "dependencies": {
+    "@vavite/connect": "^3.0.0",
     "vite": "^5.0.6"
   }
 }

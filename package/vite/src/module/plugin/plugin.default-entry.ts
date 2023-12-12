@@ -1,4 +1,4 @@
-import { Plugin } from 'vite';
+import { Plugin } from "vite";
 
 interface DefaultNodeEntryOptions {
   elysiaEntry?: string;
@@ -10,10 +10,10 @@ interface DefaultNodeEntryOptions {
  */
 function makeDefaultNodeEntry(elysiaEntry: string | undefined) {
   if (!elysiaEntry) {
-    throw new Error('No elysia entry found');
+    throw new Error("No elysia entry found");
   }
 
-  return `console.log('default entry')`;
+  return "console.log('default entry')";
 }
 
 /**
@@ -21,13 +21,13 @@ function makeDefaultNodeEntry(elysiaEntry: string | undefined) {
  * @param {DefaultNodeEntryOptions} options - Options
  */
 export function defaultNodeEntry(options: DefaultNodeEntryOptions): Plugin {
-  const name = 'virtual:elysia:default-node-entry';
+  const name = "virtual:elysia:default-node-entry";
   let root: string;
   const elysiaEntry = options.elysiaEntry;
 
   return {
     name,
-    enforce: 'pre',
+    enforce: "pre",
     config(config) {
       root = config.root ?? process.cwd();
     },

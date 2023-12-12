@@ -59,7 +59,7 @@ export default function TEMPLATE_ERROR(message: string): string {
 
 <body>
   <h1>Server Error</h1>
-  <p style='margin: 20px 0'>${message.split('\\n').join('<br/>')}</p>
+  <p style='margin: 20px 0'>${message.split("\\n").join("<br/>")}</p>
   <a href='/'>Go home</a>
 </body>
 
