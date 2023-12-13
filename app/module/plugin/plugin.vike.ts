@@ -1,21 +1,68 @@
-import { Elysia } from "elysia";
-import type { Request, Response, NextFunction } from "express";
-import { renderPage } from "vike/server";
-import { $shalotts, ROOT_DIR } from "~/app/const";
-import { ConnectedContext } from "~/app/module/plugin/plugin.type";
-import { log } from "~/app/http";
-import viteDevServer from "vavite/vite-dev-server";
+import { Elysia } from 'elysia';
+import type { Context } from 'elysia';
+import type { NextFunction, Request, Response } from 'express';
+import viteDevServer from 'vavite/vite-dev-server';
+import { renderPage } from 'vike/server';
+import { log } from '~/app/http';
+import { ConnectedContext } from '~/app/module/plugin/plugin.type';
 
+/**
+ * @description Bun version SSR middleware
+ * @param { Context } root0 -
+ * @param { Context.Request } root0.request -
+ * @param { Context.set } root0.set -
+ * @returns { Promise<string> } SSR string response
+ */
+export const vikeMiddeleware = async ({ request, set }: Context) => {
+  const pageContextInit = {
+    urlOriginal: request.url,
+    userAgent: request.headers.get('user-agent'),
+  };
+
+  try {
+    const pageContext = await renderPage(pageContextInit);
+    const { httpResponse, errorWhileRendering } = pageContext;
+
+    if (errorWhileRendering) {
+      log.error(errorWhileRendering);
+    }
+    if (httpResponse) {
+      const { headers } = httpResponse;
+
+      for (const [name, value] of headers) {
+        set.headers[name] = value;
+      }
+
+      return httpResponse.getBody();
+    }
+  } catch (error) {
+    const Error = error as Error;
+    viteDevServer?.ssrFixStacktrace(Error);
+    log.error(Error.stack);
+    set.status = 500;
+    return Error.stack;
+  }
+};
+
+/**
+ * @deprecated Express like Middleware for SSR
+ * @param request
+ * @param response
+ * @param next
+ */
 export const vikeConnectMiddleware = async (
   request: Request,
   response: Response,
   next: NextFunction,
 ) => {
   try {
+    const { req } = request as unknown as { req: Request }; // its may be elysia or other request
+    const expectedRequest = req || request;
     const pageContextInit = {
-      urlOriginal: request.url,
-      userAgent: request.headers["user-agent"],
+      urlOriginal: expectedRequest.url,
+      userAgent: expectedRequest.headers['user-agent'],
     };
+
     const pageContext = await renderPage(pageContextInit);
     const { httpResponse, errorWhileRendering } = pageContext;
 
@@ -24,7 +71,7 @@ export const vikeConnectMiddleware = async (
     }
 
     if (httpResponse) {
-      const { statusCode, headers, earlyHints } = httpResponse;
+      const { headers, earlyHints } = httpResponse;
 
       for (const [name, value] of headers) {
         response.setHeader(name, value);
@@ -37,7 +84,6 @@ export const vikeConnectMiddleware = async (
         });
       }
 
-      response.statusCode = statusCode;
       httpResponse.pipe(response);
     } else {
       next();
@@ -57,33 +103,16 @@ export const vikeConnectMiddleware = async (
  */
 export default function pluginVike(): Elysia {
   const app = new Elysia();
+  app.get('*', async (context) => {
+    const vite = await import('vite');
+    const server = await vite.createServer();
+    const middleware = server.middlewares;
+    const response = await (context as ConnectedContext).elysiaConnect(middleware, context);
 
-  if (!$shalotts.state.isProduction) {
-    app.get("*", async (context) => {
-      console.log("ss");
-      const vite = await import("vite");
-      const viteServer = await vite.createServer({
-        root: ROOT_DIR,
-        server: { middlewareMode: true },
-      });
-      const viteDevelopmentMiddleware = viteServer.middlewares;
-      const response = await (context as ConnectedContext).elysiaConnect(
-        viteDevelopmentMiddleware,
-        context,
-      );
-      // eslint-disable-next-line @typescript-eslint/no-unsafe-return
-      if (response) return response;
-    });
-  }
-  app.get("*", async (context) => {
-    await Bun.sleep(300);
-    const response = await (context as ConnectedContext).elysiaConnect(
-      vikeConnectMiddleware,
-      context,
-    );
     // eslint-disable-next-line @typescript-eslint/no-unsafe-return
     if (response) return response;
   });
+  app.get('*', vikeMiddeleware);
 
   return app;
 }

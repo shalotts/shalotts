@@ -1,18 +1,18 @@
-import { plugins } from "~/app/plugins";
-import Elysia from "elysia";
-import pretty from "pino-pretty";
-import { pino } from "@bogeychan/elysia-logger";
-import config from "~/shalotts.config";
-import { $shalotts } from "~/app/const";
-import { relativeURL } from "~/app/module/helper/helper.url";
-import pc from "picocolors";
+import { pino } from '@bogeychan/elysia-logger';
+import Elysia from 'elysia';
+import pc from 'picocolors';
+import pretty from 'pino-pretty';
+import { $shalotts } from '~/app/const';
+import { relativeURL } from '~/app/module/helper/helper.url';
+import { plugins } from '~/app/plugins';
+import config from '~/shalotts.config';
 
 // @ts-ignore
 export const stream = pretty({
   colorize: true,
-  translateTime: "SYS:standard",
+  translateTime: 'SYS:standard',
   hideObject: true,
-  ignore: "req,res,responseTime",
+  ignore: 'req,res,responseTime',
   messageFormat: (log) => {
     const request = log.request as any;
     return log.request
@@ -21,16 +21,16 @@ export const stream = pretty({
       : `${(log as any).msg}`;
   },
   customPrettifiers: {
-    time: (timestamp) => `🕰 ${typeof timestamp === "string" ? timestamp : "no-time"}`,
+    time: (timestamp) => `🕰 ${typeof timestamp === 'string' ? timestamp : 'no-time'}`,
     // @ts-ignore
     pid: (pid: number) => pc.dim(pid),
-    hostname: () => "",
+    hostname: () => '',
   },
 });
 
 export const log = pino(stream);
 
-export const App = new Elysia();
+const app = new Elysia();
 
 const pluginList = plugins(log, stream);
 const moddedPlugins = $shalotts.state.isProduction
@@ -38,12 +38,13 @@ const moddedPlugins = $shalotts.state.isProduction
   : [...pluginList.development, ...pluginList.base];
 
 for (const plugin of moddedPlugins) {
-  App.use(plugin);
+  app.use(plugin);
 }
 
-App.listen({
+app.listen({
   hostname: config.server.host,
   port: config.server.port,
 });
 
 // export type TApp = typeof App
+export default app;

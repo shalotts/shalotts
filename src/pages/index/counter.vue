@@ -1,6 +1,7 @@
 <template>
-  <button type="button"
-          @click="state.count++"
+  <button
+    type="button"
+    @click="state.count++"
   >
     Counter {{ state.count }}
   </button>

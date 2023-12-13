@@ -4,6 +4,6 @@ export default defineConfig({
   mode: 'server',
   server: {
     host: 'localhost',
-    port: 8080,
+    port: 3000,
   },
 });

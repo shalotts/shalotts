@@ -1,3 +1,9 @@
-import { App, log } from "~/app/http";
+import pc from 'picocolors';
+import { $shalotts } from '~/app/const';
+import app, { log } from '~/app/http';
 
-log.info(`Elysia running at http://${App.server?.hostname}:${App.server?.port}`);
+const productionMessage = `${pc.green('[PROD]')} Elysia running at http://${app.server
+  ?.hostname}:${app.server?.port}`;
+const developmentMessage = `${pc.red('[DEV] Not supported. Use vite for development')}`;
+
+log.info($shalotts.state.isProduction ? productionMessage : developmentMessage);

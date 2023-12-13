@@ -15,9 +15,10 @@
   "scripts": {
     "clean": "rm -rf dist && echo 'Done.'",
     "lint": "bun eslint --cache --fix ./",
-    "dev:server": "bun index.ts",
-    "debug": "DEBUG=vite:* bun run dev:server",
-    "dev:vite": "bun run vite",
+    "dev": "bun vite",
+    "prod": "bun --watch index.ts",
+    "debug": "DEBUG=vite:* bun run dev",
+    "build": "bun vite build",
     "hot": "bun --hot index.ts",
     "pm2": "pm2 start --interpreter ~/.bun/bin/bun --name shalotts-server index.ts",
     "prepare": "husky install"
@@ -114,6 +115,7 @@
     "@bogeychan/elysia-logger": "^0.0.13",
     "@elysiajs/cors": "^0.7.1",
     "@elysiajs/eden": "^0.7.4",
+    "@elysiajs/stream": "^0.7.2",
     "@netlify/functions": "^2.4.0",
     "@unhead/vue": "^1.8.8",
     "@vitejs/plugin-vue": "^4.4.1",
