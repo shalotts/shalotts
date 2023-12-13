@@ -17,7 +17,8 @@ export const stream = pretty({
     const request = log.request as any;
 
     return log.request
-      ? // eslint-disable-next-line @typescript-eslint/no-unsafe-argument
+      ? // eslint-disable-next-line operator-linebreak
+        // eslint-disable-next-line @typescript-eslint/no-unsafe-argument
         `[${request.method}] - ${relativeURL(request.url)}  - ${(log as any).responseTime}ms`
       : `${(log as any).msg}`;
   },
