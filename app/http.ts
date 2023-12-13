@@ -14,13 +14,23 @@ export const stream = pretty({
   hideObject: true,
   ignore: 'req,res,responseTime',
   messageFormat: (log) => {
-    const request = log.request as any;
-    // eslint-disable-next-line @typescript-eslint/no-unsafe-argument
-    const message = `[${request.method}] - ${relativeURL(request.url)}  - ${
-      (log as any).responseTime
-    }ms`;
+    const { request } = log as any;
+    const time = +(log as any).responseTime;
+    let coloredTime = time.toString() + 'ms';
 
-    return log.request ? message : `${(log as any).msg}`;
+    if (time < 1) {
+      coloredTime = pc.green(coloredTime);
+    } else if (time > 1 && time < 2) {
+      coloredTime = pc.yellow(coloredTime);
+    } else {
+      coloredTime = pc.red(coloredTime);
+    }
+    // eslint-disable-next-line @typescript-eslint/no-unsafe-argument
+    const message = `[${pc.yellow(request?.method)}] - ${relativeURL(
+      request?.url || '',
+    )}  - ${coloredTime}`;
+
+    return request ? message : `${(log as any).msg}`;
   },
   customPrettifiers: {
     time: (timestamp) => `🕰 ${typeof timestamp === 'string' ? timestamp : 'no-time'}`,

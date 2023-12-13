@@ -178,3 +178,5 @@ dist
 .eslintcache
 cache
 
+# vavite cache
+/renderer/*.mjs
