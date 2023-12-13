@@ -15,6 +15,7 @@ export const stream = pretty({
   ignore: 'req,res,responseTime',
   messageFormat: (log) => {
     const request = log.request as any;
+
     return log.request
       ? // eslint-disable-next-line @typescript-eslint/no-unsafe-argument
         `[${request.method}] - ${relativeURL(request.url)}  - ${(log as any).responseTime}ms`

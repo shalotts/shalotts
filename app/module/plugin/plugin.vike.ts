@@ -1,5 +1,5 @@
-import { Elysia } from 'elysia';
 import type { Context } from 'elysia';
+import { Elysia } from 'elysia';
 import type { NextFunction, Request, Response } from 'express';
 import viteDevServer from 'vavite/vite-dev-server';
 import { renderPage } from 'vike/server';
@@ -46,9 +46,9 @@ export const vikeMiddeleware = async ({ request, set }: Context) => {
 
 /**
  * @deprecated Express like Middleware for SSR
- * @param request
- * @param response
- * @param next
+ * @param { Request } request -
+ * @param { Response } response -
+ * @param { NextFunction } next -
  */
 export const vikeConnectMiddleware = async (
   request: Request,

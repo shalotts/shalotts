@@ -1,5 +1,5 @@
-import { App } from '~/app/http';
+import app from '~/app/http';
 
 export default async (request: Request) => {
-  return App.fetch(request);
+  return app.fetch(request);
 };
