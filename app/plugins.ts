@@ -1,6 +1,6 @@
 // import { etag } from '@bogeychan/elysia-etag';
-// import { compression } from 'elysia-compression';
 import { fileLogger, logger } from '@bogeychan/elysia-logger';
+import { compression } from 'elysia-compression';
 // @ts-ignore
 import { elysiaConnectDecorate } from 'elysia-connect';
 // import { cors } from '@elysiajs/cors';
@@ -26,7 +26,7 @@ export const plugins = (log: Logger<pretty.PrettyStream>, stream: Transform<any>
       elysiaConnectDecorate(),
       fileLogger({ file: `${import.meta.dir}/log/app.log` }),
       logger({ stream }),
-      // compression(),
+      compression(),
       // cors(),
       // etag(),
       // pluginBaseRequest(log),

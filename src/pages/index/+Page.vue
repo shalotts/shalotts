@@ -9,7 +9,7 @@ import Counter from '#root/pages/index/counter.vue';
     </h1>
     This page is:
     <ul class="p-5">
-      <li>Rendered to HTML. ss ss</li>
+      <li>Rendered to HTML.</li>
       <li>Interactive. <Counter /></li>
     </ul>
   </div>

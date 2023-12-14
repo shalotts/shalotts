@@ -17,6 +17,10 @@
 
 # #Shalotts [0.20.00-Alpha]
 
+## DEPRECATED BRANCH.
+
+For production dont use Bun, except as package manager.
+
 [Elysia](https://elysiajs.com) with [Vike](https://vike.dev) plugin with [Vue](https://vuejs.org) support.
 
 Base stack: `Elysia`, `Vue`, `Pinia`, `Directus/SDK`

@@ -15,8 +15,8 @@
   "scripts": {
     "clean": "rm -rf dist && echo 'Done.'",
     "lint": "bun eslint --cache --fix ./",
-    "dev": "bun vite",
-    "prod": "bun --watch index.ts",
+    "dev": "vite",
+    "prod": "bun --bun index.ts",
     "debug": "DEBUG=vite:* bun run dev",
     "build": "bun vite build",
     "hot": "bun --hot index.ts",
