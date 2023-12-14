@@ -1,5 +1,16 @@
 {
   "compilerOptions": {
+    "paths": {
+      "#root/*": [
+        "./src/*"
+      ],
+      "~/*": [
+        "./*"
+      ],
+      "~app/": [
+        "./app/*"
+      ]
+    },
     "lib": [
       "ESNext"
     ],
