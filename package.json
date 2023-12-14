@@ -1,8 +1,16 @@
 {
-    "name": "@shalotts/app",
-    "version": "0.20.0",
-    "description": "Stack with Deno.js",
-    "keywords": [],
-    "author": "shalotts",
-    "license": "MIT"
+  "name": "shalotts",
+  "module": "app/index.ts",
+  "devDependencies": {
+    "@types/node": "^20.10.4",
+    "bun-types": "latest",
+    "tsup": "^8.0.1"
+  },
+  "peerDependencies": {
+    "typescript": "^5.0.0"
+  },
+  "type": "module",
+  "dependencies": {
+    "fastify": "^4.25.0"
+  }
 }
