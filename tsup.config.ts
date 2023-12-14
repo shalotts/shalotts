@@ -1,9 +1,9 @@
 import { defineConfig } from 'tsup';
 
 export default defineConfig({
-  entry: ['app/index.ts'],
+  entry: ['app/server.ts'],
   format: ['esm'],
-  onSuccess: 'node dist/index.js',
+  onSuccess: 'node dist/server.js',
   splitting: false,
   sourcemap: true,
   clean: true,
