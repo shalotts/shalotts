@@ -10,15 +10,8 @@ export default class HttpModule {
   }
 
   async createServer() {
-    const defaultConfig = async (): Promise<FastifyHttp2SecureOptions<any, any> & FastifyHttpOptions<any>> => {
-      return {
-        // http2: true,
-        // https: {
-        //   allowHTTP1: true,
-        //   key: await readFile(`${ process.cwd() }/asset/https/shalotts.key`),
-        //   cert: await readFile(`${ process.cwd() }/asset/https/shalotts.cert`),
-        // },
-      };
+    const defaultConfig = async (): Promise<FastifyHttp2SecureOptions<any, any> & FastifyHttpOptions<any> | {}> => {
+      return {};
     };
 
     return Fastify(defu(this.config, await defaultConfig()));

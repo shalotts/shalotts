@@ -6,6 +6,7 @@ export default defineConfig({
   onSuccess: 'node dist/server.js',
   splitting: false,
   sourcemap: true,
+  minify: true,
   clean: true,
   watch: true,
 });

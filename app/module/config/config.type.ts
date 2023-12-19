@@ -1,12 +1,21 @@
+import type {
+  FastifyHttp2SecureOptions,
+  FastifyHttpOptions,
+  FastifyListenOptions,
+  FastifyServerOptions,
+} from 'fastify';
+
 export interface IAppConfig {
   mode: 'server' | 'client';
-  server: {
-    host: string;
+  fastifyInstanceOptions?: FastifyServerOptions;
+  fastifyServerOptions?: FastifyHttp2SecureOptions<any> & FastifyHttpOptions<any>;
+  listen: FastifyListenOptions;
+  shalottsOptions?: {
     secured?: {
+      tunnel?: boolean; // cloudflared argo tunnel (warp)
       cors: any;
       force: boolean;
       hsts?: boolean;
     };
-    port: number;
-  };
+  }
 }
