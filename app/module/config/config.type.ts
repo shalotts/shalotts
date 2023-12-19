@@ -13,8 +13,9 @@ export interface IAppConfig {
   shalottsOptions?: {
     secured?: {
       tunnel?: boolean; // cloudflared argo tunnel (warp)
-      cors: any;
-      force: boolean;
+      qr?: boolean;
+      cors?: any;
+      force?: boolean;
       hsts?: boolean;
     };
   }
