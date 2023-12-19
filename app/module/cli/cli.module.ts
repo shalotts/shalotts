@@ -23,14 +23,13 @@ export default class CliModule {
     this.introMessage = serverStartMessage;
 
     if (config.shalottsOptions?.secured?.tunnel) {
-      const child = await this.service.install();
-
+      await this.service.install();
       const tunnel = await this.service.open();
-      const url = await tunnel.url;
-      console.log('ss', url);
-      this.introMessage += cloudflaredAddress(url);
+      const link = await tunnel.url;
+      this.introMessage += cloudflaredAddress(link);
     }
 
     consola.box(this.introMessage);
+
   }
 }

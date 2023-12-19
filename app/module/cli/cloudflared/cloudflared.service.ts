@@ -2,47 +2,21 @@ import { bin, Connection, install, service, tunnel } from 'cloudflared';
 import { consola }                                   from 'consola';
 import { ChildProcess, spawn }                       from 'node:child_process';
 import { existsSync }                                from 'node:fs';
+import { SITE_URL }                                  from '~/app/module/cli/cli.const.tsx';
 
 export default class CloudflaredService {
-  _cloudflaredURL: Promise<string> | null = null;
-
   constructor() {
-  }
-
-  get cloudflaredURL(): Promise<string> | null {
-    return this._cloudflaredURL;
   }
 
   async install() {
     if (!existsSync(bin)) {
       const path = await install(bin);
+      consola.info(`Cloudflared installed to ${ path }`);
+
+      return path;
     }
 
-    const child = spawn(bin, ['--version'], { stdio: 'inherit' });
-
-    child.on('error', (error) => {
-      consola.error(error.message);
-      process.exit(1);
-    });
-
-    child.on('message', (message) => {
-      consola.info(JSON.stringify(message));
-    });
-
-    child.on('close', () => {
-      consola.warn('Cloudflared was closed');
-    });
-
-    child.on('disconnect', () => {
-      consola.warn('Cloudflared was disconnected');
-    });
-
-    child.on('exit', (code) => {
-      consola.error('Cloudflared exited with code', code);
-      process.exit(1);
-    });
-
-    return child.connected;
+    return null;
   }
 
   exist(): boolean {
@@ -69,8 +43,10 @@ export default class CloudflaredService {
     return service.exists();
   }
 
-  async open() {
-    return tunnel({ '--hello-world': null });
+  async open(id: string) {
+    spawn(bin, ['--version'], { stdio: 'inherit' });
+    const options = id ? { '--tunnel-id': id } : { '--url': SITE_URL };
+    return tunnel(options);
   }
 
   async list(tunnel: { connections: Promise<Connection>[], child: ChildProcess }) {
