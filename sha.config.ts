@@ -27,7 +27,7 @@ export default defineConfig({
   },
   shalottsOptions: {
     secured: {
-      tunnel: true,
+      tunnel: 'shalotts',
     },
   }
 });

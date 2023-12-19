@@ -12,7 +12,7 @@ export interface IAppConfig {
   listen: FastifyListenOptions;
   shalottsOptions?: {
     secured?: {
-      tunnel?: boolean; // cloudflared argo tunnel (warp)
+      tunnel?: boolean | string; // cloudflared argo tunnel (warp)
       qr?: boolean;
       cors?: any;
       force?: boolean;

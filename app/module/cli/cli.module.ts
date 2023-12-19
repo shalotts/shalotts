@@ -24,7 +24,8 @@ export default class CliModule {
 
     if (config.shalottsOptions?.secured?.tunnel) {
       await this.service.install();
-      const tunnel = await this.service.open();
+      const tunnelName = typeof config.shalottsOptions?.secured?.tunnel === 'string' ? config.shalottsOptions?.secured?.tunnel : '';
+      const tunnel = await this.service.open(tunnelName);
       const link = await tunnel.url;
       this.introMessage += cloudflaredAddress(link);
     }
