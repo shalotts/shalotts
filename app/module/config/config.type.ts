@@ -16,6 +16,7 @@ import type {
 export interface ShalottsOptions {
   secured?: {
     tunnel?: boolean | string; // cloudflared argo tunnel (warp)
+    tunnelHost?: string;
     qr?: boolean;
     cors?: any;
     force?: boolean;

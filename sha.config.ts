@@ -28,6 +28,8 @@ export default defineConfig({
   shalottsOptions: {
     secured: {
       tunnel: 'shalotts',
+      tunnelHost: 'shalotts.site',
+      qr: false,
     },
   }
 });
