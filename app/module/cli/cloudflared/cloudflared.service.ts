@@ -46,7 +46,6 @@ export default class CloudflaredService {
   async open(name: string = '') {
     spawn(bin, ['--version'], { stdio: 'inherit' });
     const options = name ? { '--name': name } : { '--url': SITE_URL };
-    consola.log(options);
     return tunnel(options);
   }
 

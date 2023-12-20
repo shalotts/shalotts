@@ -1,4 +1,5 @@
 import consola                                    from 'consola';
+import { colors }                                 from 'consola/utils';
 import { cloudflaredAddress, serverStartMessage } from '~/app/module/cli/cli.const.tsx';
 import CliService                                 from '~/app/module/cli/cli.service.ts';
 import config                                     from '~/sha.config.ts';
@@ -24,10 +25,11 @@ export default class CliModule {
 
     if (config.shalottsOptions?.secured?.tunnel) {
       await this.service.install();
-      const tunnelName = typeof config.shalottsOptions?.secured?.tunnel === 'string' ? config.shalottsOptions?.secured?.tunnel : '';
-      const tunnel = await this.service.open(tunnelName);
-      const link = await tunnel.url;
-      this.introMessage += cloudflaredAddress(link);
+      const hasTunnelName = typeof config.shalottsOptions?.secured?.tunnel === 'string';
+      const tunnelName = hasTunnelName ? config.shalottsOptions?.secured?.tunnel : '';
+      const tunnel = await this.service.open(tunnelName as string);
+      const link = hasTunnelName ? `domain: ${ tunnelName }` : await tunnel.url;
+      this.introMessage += cloudflaredAddress(colors.yellow(link));
     }
 
     consola.box(this.introMessage);

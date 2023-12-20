@@ -18,5 +18,5 @@ export interface IAppConfig {
       force?: boolean;
       hsts?: boolean;
     };
-  }
+  };
 }
