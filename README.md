@@ -1,18 +1,18 @@
-# shalotts
+# #Sha.lotts
+
+### Boilerplate for fullstack Vue SSR App.
+
+<img src="asset/public/mstile-150x150.png" style='float: left'>
+
 
 To install dependencies:
 
 ```bash
-bun install
+bun i
 ```
 
 To run:
 
 ```bash
-bun run index.ts
-```
-
-```bash
-openssl req -x509 -newkey rsa:2048 -nodes -sha256 -subj '/CN=localhost' \
-  -keyout shalotts.key -out shalotts.cert
+bun dev
 ```

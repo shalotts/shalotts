@@ -1,5 +1,3 @@
-import { resolve } from 'node:path';
-
 export interface IENVConfig {
   readonly MODE: string;
   readonly SENTRY_HOST: string;
@@ -12,10 +10,10 @@ export const ENV_VAR: IENVConfig = {
 
 export const $shalotts = {
   state: {
-    isProduction: ENV_VAR.MODE === 'production',
+    isProduction: ENV_VAR.MODE === 'production' || ENV_VAR.MODE === 'prod',
   },
 };
-export const ROOT_DIR: string = resolve(process.cwd(), '../');
+export const ROOT_DIR: string = process.cwd();
 export const PUBLIC_DIR: string = `${ ROOT_DIR }/public`;
 export const STATIC_DIR_CLIENT: string = $shalotts.state.isProduction
   ? `${ ROOT_DIR }/dist/client`

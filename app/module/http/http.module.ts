@@ -1,7 +1,6 @@
-import { defu }                           from 'defu';
-import type { FastifyHttp2SecureOptions } from 'fastify';
-import Fastify                            from 'fastify';
-import { readFile }                       from 'node:fs/promises';
+import { defu }                                               from 'defu';
+import type { FastifyHttp2SecureOptions, FastifyHttpOptions } from 'fastify';
+import Fastify                                                from 'fastify';
 
 export default class HttpModule {
   config: FastifyHttp2SecureOptions<any> | {};
@@ -11,15 +10,8 @@ export default class HttpModule {
   }
 
   async createServer() {
-    const defaultConfig = async (): Promise<FastifyHttp2SecureOptions<any, any>> => {
-      return {
-        http2: true,
-        https: {
-          allowHTTP1: true,
-          key: await readFile(`${ process.cwd() }/asset/https/shalotts.key`),
-          cert: await readFile(`${ process.cwd() }/asset/https/shalotts.cert`),
-        },
-      };
+    const defaultConfig = async (): Promise<FastifyHttp2SecureOptions<any, any> & FastifyHttpOptions<any> | {}> => {
+      return {};
     };
 
     return Fastify(defu(this.config, await defaultConfig()));
