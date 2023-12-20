@@ -2,6 +2,18 @@
   "name": "shalotts",
   "module": "app/index.ts",
   "version": "0.30.00",
+  "description": "Shalotts boilerplate for Vue",
+  "keywords": [
+    "shalotts",
+    "boilerplate",
+    "vue",
+    "bun",
+    "vike",
+    "vavite"
+  ],
+  "license": "MIT",
+  "private": false,
+  "repository": "https://github.com/shalotts/shalotts",
   "scripts": {
     "dev": "tsup"
   },
