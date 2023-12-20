@@ -1,5 +1,6 @@
 import consola       from 'consola';
 import { colors }    from 'consola/utils';
+import { checkPort } from 'get-port-please';
 import { $shalotts } from '~/app/const.ts';
 import CliModule     from '~/app/module/cli/cli.module.ts';
 import CliService    from '~/app/module/cli/cli.service.ts';
@@ -23,8 +24,18 @@ for (const plugin of plugins) {
 }
 
 try {
-  await app.listen(config.listen);
-  await cli.start();
+  const {
+    port,
+    host,
+  } = config.listen;
+  const checked = await checkPort(port || 8000, host);
+
+  if (checked) {
+    await app.listen(config.listen);
+    await cli.start();
+  } else {
+    consola.warn(`Port ${ port } is busy. Dont spam process, kill app or change port`);
+  }
 } catch (error: any) {
   app.log.error(error);
   consola.error(colors.red(`${ error.message }`));
