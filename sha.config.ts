@@ -1,6 +1,20 @@
 // import { readFile }     from 'node:fs/promises';
-import { ROOT_DIR }     from '~/app/const.ts';
-import { defineConfig } from '~/app/module/config/config.ts';
+import pino                           from 'pino';
+import { ENV_VAR, LOG_LVL, ROOT_DIR } from '~/app/const.ts';
+import { defineConfig }               from '~/app/module/config/config.ts';
+
+
+export const logger = pino({
+  level: ENV_VAR.LOG_LVL,
+  customLevels: LOG_LVL,
+  useOnlyCustomLevels: true,
+  formatters: {
+    level: (label) => {
+      return { level: label.toUpperCase() };
+    },
+    timestamp: pino.stdTimeFunctions.isoTime,
+  },
+}, pino.destination(`${ ROOT_DIR }/app/log/app.log`));
 
 // const tslCert = async () => {
 //   return {
@@ -12,10 +26,7 @@ import { defineConfig } from '~/app/module/config/config.ts';
 export default defineConfig({
   mode: 'server',
   fastifyInstanceOptions: {
-    logger: {
-      level: 'info',
-      file: `${ ROOT_DIR }/app/log/app.log`,
-    },
+    logger,
   },
   // fastifyServerOptions: {
   //   http2: true,
