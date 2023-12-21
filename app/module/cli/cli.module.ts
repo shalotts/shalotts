@@ -1,10 +1,19 @@
+import { Connection }                             from 'cloudflared';
 import consola                                    from 'consola';
 import { colors }                                 from 'consola/utils';
+import { ChildProcess }                           from 'node:child_process';
+import { renderUnicodeCompact }                   from 'uqr';
 import { cloudflaredAddress, serverStartMessage } from '~/app/module/cli/cli.const.tsx';
 import CliService                                 from '~/app/module/cli/cli.service.ts';
 import config                                     from '~/sha.config.ts';
 
 export default class CliModule {
+  tunnel: {
+    url: Promise<string>;
+    connections: Promise<Connection>[];
+    child: ChildProcess;
+    stop: ChildProcess['kill']
+  } | null = null;
   _introMessage: string = '';
   service: CliService;
 
@@ -27,12 +36,18 @@ export default class CliModule {
       await this.service.install();
       const hasTunnelName = typeof config.shalottsOptions?.secured?.tunnel === 'string';
       const tunnelName = hasTunnelName ? config.shalottsOptions?.secured?.tunnel : '';
-      const tunnel = await this.service.open(tunnelName as string);
-      const link = hasTunnelName ? `domain: ${ tunnelName }` : await tunnel.url;
+      this.tunnel = await this.service.open(tunnelName as string);
+      const link = hasTunnelName ? `https://${ config.shalottsOptions?.secured?.tunnelHost }` : await this.tunnel.url;
       this.introMessage += cloudflaredAddress(colors.yellow(link));
+
+      if (config.shalottsOptions?.secured?.qr) {
+        this.introMessage += '\n\n' + renderUnicodeCompact(link, {
+          ecc: 'L',
+          border: 1,
+        });
+      }
     }
 
     consola.box(this.introMessage);
-
   }
 }
