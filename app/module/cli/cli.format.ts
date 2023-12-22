@@ -38,20 +38,34 @@ export const formatLevel = (level: string) => {
   const padding = isWideEmoji(emoji) ? '' : ' ';
   return emoji + padding;
 };
+
+export const statusColored = (status: number): string | undefined => {
+  const padding = (text: string) => ` ${ text } `;
+  switch (status) {
+    case 200:
+      return colors.bgGreen(padding(status.toString()));
+    case 201:
+      return colors.bgGreenBright(padding(status.toString()));
+    case 404:
+      return colors.bgRed(padding(status.toString()));
+    default:
+      return colors.bgMagenta(padding(status.toString()));
+  }
+};
 export const printMessage = (message: IPinoMessage) => {
   if (!message.msg || message.msg.charAt(0) === 'S') {
     return;
   }
 
-  const status = message.res?.statusCode ? ` ${ message.res?.statusCode?.toString() } ` : '';
+  const status = message.res?.statusCode ? ` ${ statusColored(message.res?.statusCode) } ` : '';
   const arrow = message.req || message.res
-    ? message.req ? '-->' : ''
-    : message.res ? '<--' : '';
+    ? message.req ? '<--' : ''
+    : message.res ? '-->' : '';
   const date = new Date(message.time);
   const time = `${ date.getHours() }:${ date.getMinutes() }:${ date.getSeconds() }:${ date.getMilliseconds() }`;
   const request = message.req ? `${ colors.cyan(' [' + message.req.method + ']') } ${ message.reqId } PATH:${ colors.cyan(message.req.url) }` : '';
-  const response = message.res ? ` ${ colors.magenta(message.responseTime + 'ms' || '') }` : '';
+  const response = message.res ? `${ colors.magenta(message.responseTime + 'ms' || '') }` : '';
 
-  const text = `${ colors.gray(time) } ${ formatLevel(message.level) }  ${ colors.bgMagenta(status) }${ arrow }${ request }${ response } ${ colors.yellow('.:' + message.msg) }`;
+  const text = `${ colors.gray(time) } ${ formatLevel(message.level) } ${ status } ${ arrow }${ request }${ response } ${ colors.yellow('.:' + message.msg) }`;
   consola.log(text);
 }
