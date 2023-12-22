@@ -1,21 +1,10 @@
 // import { readFile }     from 'node:fs/promises';
-import pino                           from 'pino';
-import { ENV_VAR, LOG_LVL, ROOT_DIR } from '~/app/const.ts';
-import { defineConfig }               from '~/app/module/config/config.ts';
+import { defineConfig } from '~/app/module/config/config.ts';
+import LoggerModule     from '~/app/module/logger/logger.module.ts';
 
 
-export const logger = pino({
-  level: ENV_VAR.LOG_LVL,
-  customLevels: LOG_LVL,
-  useOnlyCustomLevels: true,
-  formatters: {
-    level: (label) => {
-      return { level: label.toUpperCase() };
-    },
-    timestamp: pino.stdTimeFunctions.isoTime,
-  },
-}, pino.destination(`${ ROOT_DIR }/app/log/app.log`));
-
+const loggerModule = new LoggerModule();
+export const logger = loggerModule.create();
 // const tslCert = async () => {
 //   return {
 //     allowHTTP1: true,
@@ -36,11 +25,11 @@ export default defineConfig({
     host: 'localhost',
     port: 8000,
   },
-  shalottsOptions: {
-    secured: {
-      tunnel: 'shalotts',
-      tunnelHost: 'shalotts.site',
-      qr: false,
-    },
-  }
+  // shalottsOptions: {
+  //   secured: {
+  //     tunnel: 'shalotts',
+  //     tunnelHost: 'shalotts.site',
+  //     qr: false,
+  //   },
+  // },
 });
