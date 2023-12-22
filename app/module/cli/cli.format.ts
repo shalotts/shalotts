@@ -1,6 +1,6 @@
-import consola                  from 'consola';
-import { colors }               from 'consola/utils';
-import type { IncomingMessage } from 'node:http';
+import consola          from 'consola';
+import { colors }       from 'consola/utils';
+import { IPinoMessage } from '~/app/module/cli/cli.type.ts';
 
 export const emojiLog = {
   emerg: '💀',
@@ -33,46 +33,25 @@ export const formatMessageName = (message: string) => {
 export const isWideEmoji = (character: string): boolean => {
   return character !== '⚠️';
 };
-export const formatLevel = (level: number) => {
-  const levelIndex = Object.keys(LOG_LVL).find((key: string) => LOG_LVL[key] === level);
-  const emoji = emojiLog[levelIndex];
+export const formatLevel = (level: string) => {
+  const emoji = emojiLog[level.toLowerCase()];
   const padding = isWideEmoji(emoji) ? '' : ' ';
   return emoji + padding;
 };
-export const printConsole = (args: any, level: number) => {
-  const [arg] = args;
-
-  if (typeof arg === 'string' && arg.charAt(0) !== 'S') {
-    consola.warn(`${ formatLevel(level) }  ${ arg }`);
-  } else {
-    if (arg.res) {
-      printHTTPMessage(arg.res.request, level, arg.responseTime);
-    }
-  }
-};
-
-export const printHTTPMessage = (process: IncomingMessage, level: number, time: number | null = null) => {
-  let http = `[${ process.method }] ${ process.raw.httpVersion } - ${ process.url }`;
-  const code = process.statusCode || 0;
-  let status = code.toString();
-
-  if (level === 40) {
-    http = colors.yellow(http);
-  } else if (level <= 30) {
-    http = colors.cyan(http);
-  } else {
-    http = colors.red(http);
+export const printMessage = (message: IPinoMessage) => {
+  if (!message.msg || message.msg.charAt(0) === 'S') {
+    return;
   }
 
-  if (code < 300) {
-    status = colors.green(status);
-  } else if (code > 300 && code < 303) {
-    status = colors.yellow(status);
-  } else {
-    status = colors.red(status);
-  }
+  const status = message.res?.statusCode ? ` ${ message.res?.statusCode?.toString() } ` : '';
+  const arrow = message.req || message.res
+    ? message.req ? '-->' : ''
+    : message.res ? '<--' : '';
+  const date = new Date(message.time);
+  const time = `${ date.getHours() }:${ date.getMinutes() }:${ date.getSeconds() }:${ date.getMilliseconds() }`;
+  const request = message.req ? `${ colors.cyan(' [' + message.req.method + ']') } ${ message.reqId } PATH:${ colors.cyan(message.req.url) }` : '';
+  const response = message.res ? ` ${ colors.magenta(message.responseTime + 'ms' || '') }` : '';
 
-  const message = `${ formatLevel(level) }  ${ status } --> ${ http } ${ time ? '-- ' + time : '' }`;
-  consola.info(message);
-};
-
+  const text = `${ colors.gray(time) } ${ formatLevel(message.level) }  ${ colors.bgMagenta(status) }${ arrow }${ request }${ response } ${ colors.yellow('.:' + message.msg) }`;
+  consola.log(text);
+}

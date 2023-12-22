@@ -1,11 +1,23 @@
+import consola                    from 'consola';
 import { defu }                   from 'defu';
 import type { PinoLoggerOptions } from 'fastify/types/logger';
 import pino                       from 'pino';
 import { ENV_VAR, ROOT_DIR }      from '~/app/const.ts';
-import { LOG_LVL }                from '~/app/module/cli/cli.format.ts';
+import { LOG_LVL, printMessage }  from '~/app/module/cli/cli.format.ts';
+import { IPinoMessage }           from '~/app/module/cli/cli.type.ts';
 
 export default class LoggerModule {
   constructor() {
+  }
+
+  pretty(msg: string) {
+    try {
+      const log = JSON.parse(msg) as IPinoMessage;
+      printMessage(log);
+    } catch (e) {
+      const error = e as Error;
+      consola.error(error.message);
+    }
   }
 
   /**
@@ -19,6 +31,7 @@ export default class LoggerModule {
       level: ENV_VAR.LOG_LVL,
       customLevels: LOG_LVL,
       formatters: {
+        bindings: (bindings) => ({ pid: bindings.pid }),
         level: (label) => {
           return { level: label.toUpperCase() };
         },
@@ -45,7 +58,7 @@ export default class LoggerModule {
     } as PinoLoggerOptions;
     const defaultMultiSteam = [
       { stream: pino.destination(`${ ROOT_DIR }/app/log/app.log`) },
-      { stream: process.stdout },
+      { write: this.pretty },
     ];
 
     const multiDef = defu({ i: defaultMultiSteam }, { i: multistream });
