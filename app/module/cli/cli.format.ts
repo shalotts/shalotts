@@ -68,4 +68,4 @@ export const printMessage = (message: IPinoMessage) => {
 
   const text = `${ colors.gray(time) } ${ formatLevel(message.level) } ${ status } ${ arrow }${ request }${ response } ${ colors.yellow('.:' + message.msg) }`;
   consola.log(text);
-}
+};

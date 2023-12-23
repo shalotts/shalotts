@@ -7,6 +7,7 @@ import { defineConfig } from 'vite';
 
 const root = path.dirname(url.fileURLToPath(import.meta.url));
 export default defineConfig({
+  publicDir: `${ root }/asset/public`,
   plugins: [
     ssr(),
     vue({

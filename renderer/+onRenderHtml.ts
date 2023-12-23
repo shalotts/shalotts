@@ -1,7 +1,7 @@
 import { TemplateWrapped }        from 'vike/dist/esm/node/runtime/html/renderHtml';
 import type { PageContextServer } from 'vike/types';
 import { createApp }              from 'vue';
-import { renderToString }         from '../app/module/helper/helper.render';
+import { renderToString }         from '../app/module/helper/helper.render.ts';
 import TEMPLATE_BASE              from '../app/module/template/template.base';
 
 /**

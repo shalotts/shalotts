@@ -7,9 +7,5 @@ export default function BaseRoutes(app: FastifyInstance, options: { name: string
     return '👋🤗🎉💗 Hello ss';
   });
 
-  app.get('/ping', async function handler() {
-    return '🏓 Pong!';
-  });
-
   next();
 }

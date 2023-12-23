@@ -6,7 +6,7 @@ export default defineConfig({
   format: ['esm'],
   target: 'esnext',
   platform: 'node',
-  onSuccess: 'node dist/server.js',
+  onSuccess: 'node --trace-warnings dist/server.js',
   splitting: false,
   sourcemap: true,
   minify: true,
