@@ -32,12 +32,12 @@ export default class CliModule {
   async start() {
     this.introMessage = serverStartMessage;
 
-    if (config.shalottsOptions?.secured?.tunnel) {
+    if (config.shalottsOptions?.tunnel) {
       await this.service.install();
-      const hasTunnelName = typeof config.shalottsOptions?.secured?.tunnel === 'string';
-      const tunnelName = hasTunnelName ? config.shalottsOptions?.secured?.tunnel : '';
+      const hasTunnelName = !!config.shalottsOptions?.tunnelHost;
+      const tunnelName = hasTunnelName ? config.shalottsOptions?.tunnel.name : '';
       this.tunnel = await this.service.open(tunnelName as string);
-      const link = hasTunnelName ? `https://${ config.shalottsOptions?.secured?.tunnelHost }` : await this.tunnel.url;
+      const link = hasTunnelName ? `https://${ config.shalottsOptions?.tunnelHost }` : await this.tunnel.url;
       this.introMessage += cloudflaredAddress(colors.yellow(link));
 
       if (config.shalottsOptions?.secured?.qr) {

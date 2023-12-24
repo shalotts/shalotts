@@ -1,20 +1,5 @@
 import { FastifyInstance, FastifyReply, FastifyRequest } from 'fastify';
 import { renderPage }                                    from 'vike/server';
-import { ROOT_DIR }                                      from '~/app/const.ts';
-import { logger }                                        from '~/sha.config.ts';
-
-
-export const viteMiddleware = async () => {
-  const vite = await import('vite');
-  const server = await vite.createServer({
-    root: ROOT_DIR,
-    server: { middlewareMode: true },
-  });
-
-  server.ssrFixStacktrace(err => logger.error(err.message));
-
-  return server.middlewares;
-}
 
 export const vikeMiddleware = async (request: FastifyRequest, response: FastifyReply) => {
   const pageContextInit = {
@@ -48,13 +33,9 @@ export const vikeMiddleware = async (request: FastifyRequest, response: FastifyR
     response.status(500);
     return Error.stack;
   }
-}
+};
 export default function(app: FastifyInstance, options: { name: string }, next: () => void) {
   options.name = '@shalotts/vike';
-
-  // if (!$shalotts.state.isProduction) {
-  //   app.use(viteMiddleware);
-  // }
 
   app.get('*', vikeMiddleware);
 

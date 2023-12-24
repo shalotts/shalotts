@@ -9,7 +9,8 @@ import { defineConfig } from 'vite';
 const root = path.dirname(url.fileURLToPath(import.meta.url));
 export default defineConfig({
   server: {
-    port: 3001,
+    host: process.env.HOST || 'localhost',
+    port: process.env.PORT || 3000,
   },
   buildSteps: [
     { name: 'client' },
@@ -26,7 +27,7 @@ export default defineConfig({
       handlerEntry: '/dist/server.js',
       serveClientAssetsInDev: true,
     }),
-    ssr({ disableAutoFullBuild: true }),
+    ssr(),
     vue({
       include: [/\.vue$/, /\.md$/],
     }),

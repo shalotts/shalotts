@@ -25,13 +25,12 @@ try {
     port,
     host,
   } = config.listen;
-  const checked = await checkPort(port || 8000, host);
+  const checked = await checkPort(port, host);
 
-  if (checked) {
-    // await app.listen(config.listen);
-    await cli.start();
-  } else {
-    consola.warn(`Port ${ port } is busy. Dont spam process, kill app or change port`);
+  await cli.start();
+
+  if (!checked) {
+    consola.warn(`Port ${ port } is busy. Shalotts reopening...`);
   }
 } catch (error: any) {
   app.log.error(error);
