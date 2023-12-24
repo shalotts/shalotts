@@ -6,7 +6,7 @@ export default defineConfig({
   format: ['esm'],
   target: 'esnext',
   platform: 'node',
-  onSuccess: 'node dist/server.js',
+  onSuccess: 'vavite serve',
   splitting: false,
   sourcemap: true,
   minify: true,

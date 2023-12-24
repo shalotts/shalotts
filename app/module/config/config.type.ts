@@ -6,17 +6,37 @@ import type {
 } from 'fastify';
 
 /**
+ * @description More info https://github.com/withfig/autocomplete/blob/master/src/cloudflared.ts
+ */
+export interface ITunnelOptions {
+  name: string,
+  hostname?: string,
+  destination?: string,
+  url?: string,
+  serviceTokenId?: string,
+  serviceTokenSecret?: string,
+  logDirectory?: string,
+  logLevel?: string,
+  metrics?: string,
+  address?: string,
+  port?: string,
+  upstream?: string,
+  bootstrap?: string,
+  maxUpstreamConns: string,
+}
+
+/**
  * @description
- * @param secured.tunnel - boolean or TUNNEL_NAME
+ * @param {ITunnelOptions} tunnel - The tunnel options
  * @param secured.qr - enable qr code in intro message for production link
  * @param secured.cors
  * @param secured.force
  * @param secured.hsts
  */
 export interface ShalottsOptions {
+  tunnel?: ITunnelOptions,
+  tunnelHost?: string;
   secured?: {
-    tunnel?: boolean | string; // cloudflared argo tunnel (warp)
-    tunnelHost?: string;
     qr?: boolean;
     cors?: any;
     force?: boolean;

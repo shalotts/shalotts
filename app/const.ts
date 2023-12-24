@@ -3,6 +3,8 @@ export interface IENVConfig {
   readonly SENTRY_HOST: string;
   readonly LOG_LVL: string;
   readonly CLOSE_GRACE_DELAY: number;
+  readonly HOST: string;
+  readonly PORT: number;
 }
 
 export const ENV_VAR: IENVConfig = {
@@ -10,6 +12,8 @@ export const ENV_VAR: IENVConfig = {
   SENTRY_HOST: process.env.SENTRY_HOST || '',
   LOG_LVL: process.env.LOG_LVL || 'info',
   CLOSE_GRACE_DELAY: Number(process.env.CLOSE_GRACE_DELAY) || 500,
+  HOST: process.env.HOST || 'localhost',
+  PORT: Number(process.env.PORT) || 3000,
 };
 
 export const $shalotts = {

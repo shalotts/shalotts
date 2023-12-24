@@ -9,7 +9,7 @@ import Counter from '#root/pages/index/counter.vue';
     </h1>
     This page is:
     <ul class='p-5'>
-      <li>Rendered to HTML.</li>
+      <li>ITS NOT WORDPRESS FUCKING IDIOT</li>
       <li>Interactive.
         <Counter />
       </li>
@@ -19,7 +19,7 @@ import Counter from '#root/pages/index/counter.vue';
 
 <style scoped lang='postcss'>
 ul {
-  background: brown;
+  background: cadetblue;
 
   li {
     color: #fff;
