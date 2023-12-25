@@ -11,6 +11,7 @@ import { ROOT_DIR }        from '~/app/const.ts';
 export default async function(app: FastifyInstance, options: { name: string }, next: () => void) {
   options.name = '@shalotts/static';
 
+  console.log(`${ ROOT_DIR }/asset/public`);
   await app.register(FastifyStatic, {
     root: `${ ROOT_DIR }/asset/public`,
   });

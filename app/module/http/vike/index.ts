@@ -23,9 +23,24 @@ export const vikeMiddleware = async (request: FastifyRequest, response: FastifyR
     const {
       statusCode,
       body,
-      contentType,
+      headers,
+      earlyHints,
     } = httpResponse;
-    response.code(statusCode).type(contentType).send(body);
+
+    for (const [key, value] of headers) {
+      response.header(key, value);
+    }
+
+    const recordEarlyHints = earlyHints.map((i) => {
+      return {
+        name: 'Link',
+        value: i.earlyHintLink,
+      };
+    });
+
+    await response.writeEarlyHints(recordEarlyHints);
+
+    response.code(statusCode).send(body);
 
   } catch (e) {
     const Error = e as Error;
