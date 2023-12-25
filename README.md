@@ -13,6 +13,7 @@
  <img align="left" width="33%" src="asset/public/mstile-150x150.png" style='float: left'>
 
 
+Project created with UNIX paths. Will not work on windows. Package manager bun is required.
 To install dependencies:
 
 ```bash

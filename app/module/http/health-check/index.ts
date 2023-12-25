@@ -1,10 +1,6 @@
 import { FastifyInstance } from 'fastify';
 
 export default function(app: FastifyInstance, options: { name: string }, next: () => void) {
-  app.get('/ping', async function handler() {
-    return '🏓 Pong!';
-  });
-
   app.get('/', async function handler(request, response) {
     request.log.info('Health Check Request');
     response.status(200).send();
