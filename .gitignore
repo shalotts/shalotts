@@ -175,3 +175,4 @@ dist
 .DS_Store
 
 /app/log/*
+vite.config.ts.*.mjs
