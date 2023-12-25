@@ -1,10 +1,13 @@
 import { FastifyInstance, FastifyReply, FastifyRequest } from 'fastify';
+import isbot                                             from 'isbot';
+import viteDevServer                                     from 'vavite/vite-dev-server';
 import { renderPage }                                    from 'vike/server';
 
 export const vikeMiddleware = async (request: FastifyRequest, response: FastifyReply) => {
   const pageContextInit = {
     urlOriginal: request.url,
     userAgent: request.headers['user-agent'],
+    isBot: isbot(request.headers['user-agent']),
   };
 
   try {
@@ -44,6 +47,7 @@ export const vikeMiddleware = async (request: FastifyRequest, response: FastifyR
 
   } catch (e) {
     const Error = e as Error;
+    viteDevServer?.ssrFixStacktrace(Error);
     response.log.error(Error.stack);
     response.status(500);
     return Error.stack;

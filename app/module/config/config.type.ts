@@ -16,13 +16,13 @@ export interface ITunnelOptions {
   serviceTokenId?: string,
   serviceTokenSecret?: string,
   logDirectory?: string,
-  logLevel?: string,
+  loglevel?: string,
   metrics?: string,
   address?: string,
   port?: string,
   upstream?: string,
   bootstrap?: string,
-  maxUpstreamConns: string,
+  maxUpstreamConns?: string,
 }
 
 /**

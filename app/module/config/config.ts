@@ -1,12 +1,3 @@
-import pino from 'pino';
+import { IAppConfig } from '~/app/module/config/config.type.ts';
 
-export const defineConfig = (options: {
-  mode: string;
-  shalottsOptions: {
-    tunnelHost: string;
-    secured: { qr: boolean };
-    tunnel: { name: string; url: string }
-  };
-  listen: { port: number; host: string };
-  fastifyInstanceOptions: { logger: any | pino.BaseLogger }
-}) => options;
+export const defineConfig = (options: IAppConfig) => options;
