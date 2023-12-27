@@ -10,7 +10,7 @@ const root = path.dirname(url.fileURLToPath(import.meta.url));
 export default defineConfig({
   server: {
     host: process.env.HOST || 'localhost',
-    port: process.env.PORT || 3000,
+    port: Number(process.env.PORT) || 3000,
   },
   buildSteps: [
     { name: 'client' },
@@ -50,5 +50,5 @@ export default defineConfig({
     target: 'esnext',
     cssMinify: 'lightningcss',
   },
-  cacheDir: './cache',
+  cacheDir: './app/cache',
 });

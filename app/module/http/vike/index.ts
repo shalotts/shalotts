@@ -1,10 +1,14 @@
 import { FastifyInstance, FastifyReply, FastifyRequest } from 'fastify';
+import { fastifyPlugin }                                 from 'fastify-plugin';
+import isbot                                             from 'isbot';
+import viteDevServer                                     from 'vavite/vite-dev-server';
 import { renderPage }                                    from 'vike/server';
 
 export const vikeMiddleware = async (request: FastifyRequest, response: FastifyReply) => {
   const pageContextInit = {
     urlOriginal: request.url,
     userAgent: request.headers['user-agent'],
+    isBot: isbot(request.headers['user-agent']),
   };
 
   try {
@@ -23,21 +27,40 @@ export const vikeMiddleware = async (request: FastifyRequest, response: FastifyR
     const {
       statusCode,
       body,
-      contentType,
+      headers,
+      earlyHints,
     } = httpResponse;
-    response.code(statusCode).type(contentType).send(body);
+
+    for (const [key, value] of headers) {
+      response.header(key, value);
+    }
+
+    const recordEarlyHints = earlyHints.map((i) => {
+      return {
+        name: 'Link',
+        value: i.earlyHintLink,
+      };
+    });
+
+    await response.writeEarlyHints(recordEarlyHints);
+
+    response.code(statusCode).send(body);
 
   } catch (e) {
     const Error = e as Error;
+    viteDevServer?.ssrFixStacktrace(Error);
     response.log.error(Error.stack);
     response.status(500);
     return Error.stack;
   }
 };
-export default function(app: FastifyInstance, options: { name: string }, next: () => void) {
-  options.name = '@shalotts/vike';
 
+const plugin = fastifyPlugin(function(app: FastifyInstance, options: any, done: () => void) {
   app.get('*', vikeMiddleware);
+  done();
+}, {
+  fastify: '4.x',
+  name: '@shalotts/vike',
+});
 
-  next();
-}
+export default plugin;

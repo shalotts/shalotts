@@ -1,6 +1,7 @@
 import consola                    from 'consola';
 import { defu }                   from 'defu';
 import type { PinoLoggerOptions } from 'fastify/types/logger';
+import isbot                      from 'isbot';
 import pino                       from 'pino';
 import { ENV_VAR, ROOT_DIR }      from '~/app/const.ts';
 import { LOG_LVL, printMessage }  from '~/app/module/cli/cli.format.ts';
@@ -46,11 +47,12 @@ export default class LoggerModule {
         },
         req(request) {
           return {
+            ip: request.raw.ip,
+            isBot: isbot(request.headers['user-agent']),
             method: request.method,
             url: request.url,
             headers: request.headers,
             hostname: request.hostname,
-            remoteAddress: request.ip,
             remotePort: request.socket.remotePort,
           };
         },

@@ -1,6 +1,8 @@
 import consola       from 'consola';
 import { colors }    from 'consola/utils';
 import { checkPort } from 'get-port-please';
+import viteDevServer from 'vavite/vite-dev-server';
+import { ENV_VAR }   from '~/app/const.ts';
 import AppModel      from '~/app/module/app/app.model.ts';
 import CliModule     from '~/app/module/cli/cli.module.ts';
 import CliService    from '~/app/module/cli/cli.service.ts';
@@ -33,13 +35,17 @@ export default class AppModule extends AppModel {
       } = config.listen;
       const checked = await checkPort(port, host);
 
+
       await cli.start();
 
-      if (!checked) {
-        consola.warn(`Port ${ port } is busy. Shalotts reopening...`);
+      this.app.log.info(`Shalotts mode: ${ ENV_VAR.MODE }`);
+
+      if (checked && !viteDevServer) {
+        await this.app.listen(config.listen);
       }
+
     } catch (error: any) {
-      this._app.log.error(error);
+      this.app.log.error(error);
       consola.error(colors.red(`${ error.message }`));
       process.exit(1);
     }
