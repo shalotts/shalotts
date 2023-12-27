@@ -30,7 +30,8 @@
     "allowJs": true,
     "types": [
       "node",
-      "vite/client"
+      "vite/client",
+      "jest"
     ]
   }
 }

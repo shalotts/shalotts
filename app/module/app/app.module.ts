@@ -15,10 +15,10 @@ export default class AppModule extends AppModel {
       await import('~/app/module/hook/hook.module.ts'),
     ];
 
-
     for (const module of modules) {
       const initiated = new module.default(this.app);
-      initiated.__init();
+      const { scopedModule } = await initiated.__scoped();
+      this.app.register(scopedModule);
     }
   }
 
