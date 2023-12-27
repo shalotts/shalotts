@@ -2,15 +2,19 @@ import FastifyStatic       from '@fastify/static';
 import { FastifyInstance } from 'fastify';
 import { fastifyPlugin }   from 'fastify-plugin';
 import { join }            from 'node:path';
-import { ROOT_DIR }        from '~/app/const.ts';
 
 /**
  * @description Serve static files from public. Best practice use NGINX or Apache.
  */
 const plugin = fastifyPlugin(function(app: FastifyInstance, options: any, done: () => void) {
-  app.log.info('nodejs serve static');
+  const root = join(__dirname, 'client');
+  app.log.info(`nodejs serve static: "${ root }"`);
   app.register(FastifyStatic, {
-    root: join(ROOT_DIR, 'asset/public'),
+    root,
+    index: false,
+    list: true,
+    serveDotFiles: false,
+    wildcard: false,
   });
 
   done();

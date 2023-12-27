@@ -38,7 +38,7 @@ export default class AppModule extends AppModel {
 
       await cli.start();
 
-      this.app.log.notice(`Shalotts mode: ${ ENV_VAR.MODE }`);
+      this.app.log.info(`Shalotts mode: ${ ENV_VAR.MODE }`);
 
       if (checked && !viteDevServer) {
         await this.app.listen(config.listen);
