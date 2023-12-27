@@ -1,4 +1,5 @@
 import { FastifyInstance, FastifyReply, FastifyRequest } from 'fastify';
+import { fastifyPlugin }                                 from 'fastify-plugin';
 import isbot                                             from 'isbot';
 import viteDevServer                                     from 'vavite/vite-dev-server';
 import { renderPage }                                    from 'vike/server';
@@ -53,10 +54,13 @@ export const vikeMiddleware = async (request: FastifyRequest, response: FastifyR
     return Error.stack;
   }
 };
-export default function(app: FastifyInstance, options: { name: string }, next: () => void) {
-  options.name = '@shalotts/vike';
 
+const plugin = fastifyPlugin(function(app: FastifyInstance, options: any, done: () => void) {
   app.get('*', vikeMiddleware);
+  done();
+}, {
+  fastify: '4.x',
+  name: '@shalotts/vike',
+});
 
-  next();
-}
+export default plugin;

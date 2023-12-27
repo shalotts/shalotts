@@ -8,7 +8,7 @@ export interface IENVConfig {
 }
 
 export const ENV_VAR: IENVConfig = {
-  MODE: process.env.MODE || 'development',
+  MODE: process.env.NODE_ENV || 'development',
   SENTRY_HOST: process.env.SENTRY_HOST || '',
   LOG_LVL: process.env.LOG_LVL || 'info',
   CLOSE_GRACE_DELAY: Number(process.env.CLOSE_GRACE_DELAY) || 500,
@@ -18,6 +18,8 @@ export const ENV_VAR: IENVConfig = {
 
 export const $shalotts = {
   state: {
+    isDevelopment: ENV_VAR.MODE === 'development' || ENV_VAR.MODE === 'dev',
+    isTest: ENV_VAR.MODE === 'test',
     isProduction: ENV_VAR.MODE === 'production' || ENV_VAR.MODE === 'prod',
   },
 };

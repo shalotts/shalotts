@@ -50,5 +50,5 @@ export default defineConfig({
     target: 'esnext',
     cssMinify: 'lightningcss',
   },
-  cacheDir: './cache',
+  cacheDir: './app/cache',
 });
