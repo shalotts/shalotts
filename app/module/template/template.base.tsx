@@ -1,6 +1,6 @@
-import type { TemplateWrapped }                from 'vike/dist/esm/node/runtime/html/renderHtml';
+import type { TemplateWrapped } from 'vike/dist/esm/node/runtime/html/renderHtml';
 import { dangerouslySkipEscape, escapeInject } from 'vike/server';
-import { IHtmlHead }                           from '~/app/module/template/template.type.ts';
+import { IHtmlHead } from '~/app/module/template/template.type.ts';
 
 /**
  * @description Base template for render escaped html

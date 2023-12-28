@@ -1,5 +1,5 @@
 import { FastifyPluginAsync } from 'fastify';
-import { TApp }               from '~/app/server.ts';
+import { TApp } from '~/app/server.ts';
 
 export type AppOptions = {
   // Place your custom options for app below here.
@@ -17,9 +17,7 @@ export default class AppModel {
   }
 
   get pluginAsync(): FastifyPluginAsync<AppOptions> {
-    return async (fastify,
-                  opts) => {
-
+    return async (fastify, opts) => {
     };
   }
 }

@@ -1,15 +1,15 @@
 import fastifyCaching, { FastifyCachingPluginOptions } from '@fastify/caching';
-import cors, { FastifyCorsOptions }                    from '@fastify/cors';
-import fastifyEarlyHints                               from '@fastify/early-hints';
-import fastifyEtag                                     from '@fastify/etag';
-import fastifyHelmet, { FastifyHelmetOptions }         from '@fastify/helmet';
-import { resolve }                                     from 'node:path';
-import { defineConfig }                                from '~/app/module/config/config.ts';
-import BaseRoutes                                      from '~/app/module/http/base-routes';
-import HealthCheck                                     from '~/app/module/http/health-check';
-import ServeStatic                                     from '~/app/module/http/serve-static';
-import LoggerModule                                    from '~/app/module/logger/logger.module.ts';
-
+import cors, { FastifyCorsOptions } from '@fastify/cors';
+import fastifyEarlyHints from '@fastify/early-hints';
+import fastifyEtag from '@fastify/etag';
+import fastifyHelmet, { FastifyHelmetOptions } from '@fastify/helmet';
+import { resolve } from 'node:path';
+import { defineConfig } from '~/app/module/config/config.ts';
+import BaseRoutes from '~/app/module/http/base-routes';
+import HealthCheck from '~/app/module/http/health-check';
+import ServeStatic from '~/app/module/http/serve-static';
+import Vike from '~/app/module/http/vike';
+import LoggerModule from '~/app/module/logger/logger.module.ts';
 
 const loggerModule = new LoggerModule();
 export const logger = loggerModule.create();
@@ -44,9 +44,10 @@ export default defineConfig({
         [fastifyEarlyHints, {}],
         [BaseRoutes, {}],
         [HealthCheck, { prefix: '/health' }],
-        // [Vike, {}],
+        [Vike, {}],
       ],
       development: [],
+      test: [],
       production: [
         [ServeStatic, {}],
       ],

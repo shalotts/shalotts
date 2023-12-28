@@ -1,7 +1,7 @@
 import { IncomingMessage, ServerResponse } from 'node:http';
-import AppModule                           from '~/app/module/app/app.module.ts';
-import HttpModule                          from '~/app/module/http/http.module.ts';
-import config                              from '~/sha.config.ts';
+import AppModule from '~/app/module/app/app.module.ts';
+import HttpModule from '~/app/module/http/http.module.ts';
+import config from '~/sha.config.ts';
 
 const http = new HttpModule(config.fastifyInstanceOptions);
 const FastifyInstance = await http.createServer();

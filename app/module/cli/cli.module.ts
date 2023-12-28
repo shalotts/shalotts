@@ -1,11 +1,11 @@
-import { Connection }                             from 'cloudflared';
-import consola                                    from 'consola';
-import { colors }                                 from 'consola/utils';
-import { ChildProcess }                           from 'node:child_process';
-import { renderUnicodeCompact }                   from 'uqr';
+import { Connection } from 'cloudflared';
+import consola from 'consola';
+import { colors } from 'consola/utils';
+import { ChildProcess } from 'node:child_process';
+import { renderUnicodeCompact } from 'uqr';
 import { cloudflaredAddress, serverStartMessage } from '~/app/module/cli/cli.const.tsx';
-import CliService                                 from '~/app/module/cli/cli.service.ts';
-import config                                     from '~/sha.config.ts';
+import CliService from '~/app/module/cli/cli.service.ts';
+import config from '~/sha.config.ts';
 
 export default class CliModule {
   tunnel: {

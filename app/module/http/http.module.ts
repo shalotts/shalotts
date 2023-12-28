@@ -1,6 +1,6 @@
-import { defu }                                               from 'defu';
+import { defu } from 'defu';
 import type { FastifyHttp2SecureOptions, FastifyHttpOptions } from 'fastify';
-import Fastify                                                from 'fastify';
+import Fastify from 'fastify';
 
 export default class HttpModule {
   config: FastifyHttp2SecureOptions<any> | {};
@@ -10,7 +10,9 @@ export default class HttpModule {
   }
 
   async createServer() {
-    const defaultConfig = async (): Promise<FastifyHttp2SecureOptions<any, any> & FastifyHttpOptions<any> | {}> => {
+    const defaultConfig = async (): Promise<
+      (FastifyHttp2SecureOptions<any, any> & FastifyHttpOptions<any>) | {}
+    > => {
       return {};
     };
 

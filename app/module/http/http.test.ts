@@ -1,43 +1,23 @@
-import { afterAll, beforeAll, describe, expect, it, test } from '@jest/globals';
-import { fastifyPlugin }                                   from 'fastify-plugin';
-import { build }                                           from '~/app/module/helper/helper.build.ts';
+import { describe, expect, test } from '@jest/globals';
+import { build } from '~/app/module/helper/helper.build.ts';
 
-const {
-  app,
-  scopedModule,
-} = await build();
+const app = build();
 describe('base http routes', () => {
+  test('GET:/ping', async () => {
+    const response = await app.inject({
+      url: '/ping',
+    });
 
-  beforeAll(async () => {
-    void app.register(fastifyPlugin(scopedModule));
+    expect(response.statusCode).toEqual(200);
+    expect(response.body).toBe('🏓 Pong!');
   });
 
-  afterAll(() => app.close());
-
-  it('should be async', async () => {
-    test('HAS GET:/ping', () => {
-      const has = app.hasRoute({
-        method: 'GET',
-        url: '/ping',
-      });
-
-      expect(has).toBe(true);
+  test('GET:/health', async () => {
+    const response = await app.inject({
+      url: '/health',
     });
 
-    test('GET:/ping', () => {
-      app.inject({
-        url: '/ping',
-      }).then((response) => {
-        expect(response.statusCode).toEqual(200);
-      });
-    });
-
-    test('GET:/health', () => {
-      app.inject({
-        url: '/health',
-      }).then((response) => {
-        expect(response.statusCode).toEqual(200);
-      });
-    });
+    expect(response.statusCode).toEqual(200);
   });
 });
+

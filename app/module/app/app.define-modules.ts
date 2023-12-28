@@ -1,5 +1,5 @@
 import { FastifyPluginAsync } from 'fastify';
-import { PluginsOptions }     from '~/app/module/plugin/plugin.type.ts';
+import { PluginsOptions } from '~/app/module/plugin/plugin.type.ts';
 
 export default function(){
   const scopedModule: FastifyPluginAsync<PluginsOptions> = async (_app, opts): Promise<void> => {

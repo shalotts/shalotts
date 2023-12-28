@@ -1,14 +1,14 @@
-import consola           from 'consola';
-import { colors }        from 'consola/utils';
+import consola from 'consola';
+import { colors } from 'consola/utils';
 import { fastifyPlugin } from 'fastify-plugin';
-import { checkPort }     from 'get-port-please';
-import viteDevServer     from 'vavite/vite-dev-server';
-import { ENV_VAR }       from '~/app/const.ts';
-import appDefineModules  from '~/app/module/app/app.define-modules.ts';
-import AppModel          from '~/app/module/app/app.model.ts';
-import CliModule         from '~/app/module/cli/cli.module.ts';
-import CliService        from '~/app/module/cli/cli.service.ts';
-import config            from '~/sha.config.ts';
+import { checkPort } from 'get-port-please';
+import viteDevServer from 'vavite/vite-dev-server';
+import { ENV_VAR } from '~/app/const.ts';
+import appDefineModules from '~/app/module/app/app.define-modules.ts';
+import AppModel from '~/app/module/app/app.model.ts';
+import CliModule from '~/app/module/cli/cli.module.ts';
+import CliService from '~/app/module/cli/cli.service.ts';
+import config from '~/sha.config.ts';
 
 export default class AppModule extends AppModel {
   async create() {

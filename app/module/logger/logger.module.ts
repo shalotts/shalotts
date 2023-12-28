@@ -1,11 +1,11 @@
-import consola                    from 'consola';
-import { defu }                   from 'defu';
+import consola from 'consola';
+import { defu } from 'defu';
 import type { PinoLoggerOptions } from 'fastify/types/logger';
-import isbot                      from 'isbot';
-import pino                       from 'pino';
-import { ENV_VAR, ROOT_DIR }      from '~/app/const.ts';
-import { LOG_LVL, printMessage }  from '~/app/module/cli/cli.format.ts';
-import { IPinoMessage }           from '~/app/module/cli/cli.type.ts';
+import isbot from 'isbot';
+import pino from 'pino';
+import { ENV_VAR, ROOT_DIR } from '~/app/const.ts';
+import { LOG_LVL, printMessage } from '~/app/module/cli/cli.format.ts';
+import { IPinoMessage } from '~/app/module/cli/cli.type.ts';
 
 export default class LoggerModule {
   constructor() {

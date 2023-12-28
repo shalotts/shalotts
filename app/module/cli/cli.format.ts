@@ -1,5 +1,5 @@
-import consola          from 'consola';
-import { colors }       from 'consola/utils';
+import consola from 'consola';
+import { colors } from 'consola/utils';
 import { IPinoMessage } from '~/app/module/cli/cli.type.ts';
 
 export const emojiLog = {

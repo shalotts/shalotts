@@ -1,7 +1,7 @@
-import FastifyStatic       from '@fastify/static';
+import FastifyStatic from '@fastify/static';
 import { FastifyInstance } from 'fastify';
-import { fastifyPlugin }   from 'fastify-plugin';
-import { join }            from 'node:path';
+import { fastifyPlugin } from 'fastify-plugin';
+import { join } from 'node:path';
 
 /**
  * @description Serve static files from public. Best practice use NGINX or Apache.

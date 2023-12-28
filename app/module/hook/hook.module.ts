@@ -1,9 +1,9 @@
-import closeWithGrace                  from 'close-with-grace';
-import { FastifyPluginAsync }          from 'fastify';
-import { ENV_VAR }                     from '~/app/const.ts';
-import AppModel                        from '~/app/module/app/app.model.ts';
+import closeWithGrace from 'close-with-grace';
+import { FastifyPluginAsync } from 'fastify';
+import { ENV_VAR } from '~/app/const.ts';
+import AppModel from '~/app/module/app/app.model.ts';
 import { onRequestLog, onResponseLog } from '~/app/module/hook/hook.log.ts';
-import { PluginsOptions }              from '~/app/module/plugin/plugin.type.ts';
+import { PluginsOptions } from '~/app/module/plugin/plugin.type.ts';
 
 export default class HookModule extends AppModel {
   __scoped() {

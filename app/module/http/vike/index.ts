@@ -1,8 +1,8 @@
 import { FastifyInstance, FastifyReply, FastifyRequest } from 'fastify';
-import { fastifyPlugin }                                 from 'fastify-plugin';
-import isbot                                             from 'isbot';
-import viteDevServer                                     from 'vavite/vite-dev-server';
-import { renderPage }                                    from 'vike/server';
+import { fastifyPlugin } from 'fastify-plugin';
+import isbot from 'isbot';
+import viteDevServer from 'vavite/vite-dev-server';
+import { renderPage } from 'vike/server';
 
 export const vikeMiddleware = async (request: FastifyRequest, response: FastifyReply) => {
   const pageContextInit = {
