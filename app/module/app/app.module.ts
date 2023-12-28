@@ -1,41 +1,30 @@
-import consola       from 'consola';
-import { colors }    from 'consola/utils';
-import { checkPort } from 'get-port-please';
-import viteDevServer from 'vavite/vite-dev-server';
-import { ENV_VAR }   from '~/app/const.ts';
-import AppModel      from '~/app/module/app/app.model.ts';
-import CliModule     from '~/app/module/cli/cli.module.ts';
-import CliService    from '~/app/module/cli/cli.service.ts';
-import config        from '~/sha.config.ts';
+import consola           from 'consola';
+import { colors }        from 'consola/utils';
+import { fastifyPlugin } from 'fastify-plugin';
+import { checkPort }     from 'get-port-please';
+import viteDevServer     from 'vavite/vite-dev-server';
+import { ENV_VAR }       from '~/app/const.ts';
+import appDefineModules  from '~/app/module/app/app.define-modules.ts';
+import AppModel          from '~/app/module/app/app.model.ts';
+import CliModule         from '~/app/module/cli/cli.module.ts';
+import CliService        from '~/app/module/cli/cli.service.ts';
+import config            from '~/sha.config.ts';
 
 export default class AppModule extends AppModel {
-  async defineModules() {
-    const modules = [
-      await import('~/app/module/plugin/plugin.module.ts'),
-      await import('~/app/module/hook/hook.module.ts'),
-    ];
-
-    for (const module of modules) {
-      const initiated = new module.default(this.app);
-      const { scopedModule } = await initiated.__scoped();
-      this.app.register(scopedModule);
-    }
-  }
-
   async create() {
     const cliService = new CliService();
     const cli = new CliModule(cliService);
 
-    await this.defineModules();
+    const { scopedModule } = appDefineModules();
+    this.app.register(fastifyPlugin(scopedModule));
 
     try {
       const {
         port,
         host,
       } = config.listen;
-      const checked = await checkPort(port, host);
 
-
+      const checked = await checkPort(port || 3000, host || 'localhost');
       await cli.start();
 
       this.app.log.info(`Shalotts mode: ${ ENV_VAR.MODE }`);

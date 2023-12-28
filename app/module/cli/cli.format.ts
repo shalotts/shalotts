@@ -33,8 +33,11 @@ export const formatMessageName = (message: string) => {
 export const isWideEmoji = (character: string): boolean => {
   return character !== '⚠️';
 };
+
+type TemojiLog = typeof emojiLog;
 export const formatLevel = (level: string) => {
-  const emoji = emojiLog[level.toLowerCase()];
+  const levelType = level.toLowerCase() as unknown as keyof TemojiLog;
+  const emoji = emojiLog[levelType];
   const padding = isWideEmoji(emoji) ? '' : ' ';
   return emoji + padding;
 };
@@ -66,6 +69,6 @@ export const printMessage = (message: IPinoMessage) => {
   const request = message.req ? `${ colors.cyan(' [' + message.req.method + ']') } ${ message.reqId } PATH:${ colors.cyan(message.req.url) }` : '';
   const response = message.res ? `${ colors.magenta(message.responseTime || ' null ' + 'ms' || '') }` : '';
 
-  const text = `${ colors.gray(time) } ${ formatLevel(message.level) } ${ status } ${ arrow }${ request }${ response } ${ colors.yellow('.:' + message.msg) }`;
+  const text = `${ colors.gray(time) } ${ formatLevel(message.level.toString()) } ${ status } ${ arrow }${ request }${ response } ${ colors.yellow('.:' + message.msg) }`;
   consola.log(text);
 };

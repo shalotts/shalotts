@@ -1,13 +1,13 @@
-import Fastify from 'fastify';
+import Fastify      from 'fastify';
+import PluginModule from '~/app/module/plugin/plugin.module.ts';
 
 export const build = async () => {
   const app = Fastify();
+  const plugins = new PluginModule(app as any);
+  const { scopedModule } = await plugins.__scoped();
 
-  beforeAll(async () => {
-    void app.server
-  });
-
-  afterAll(() => app.close());
-
-  return app;
+  return {
+    app,
+    scopedModule,
+  };
 }

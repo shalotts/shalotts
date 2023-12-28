@@ -1,4 +1,7 @@
 {
+  "exclude": [
+    "node_modules"
+  ],
   "compilerOptions": {
     "paths": {
       "#root/*": [
@@ -17,11 +20,13 @@
     "module": "esnext",
     "target": "ES2022",
     "moduleResolution": "bundler",
+    "resolveJsonModule": true,
     "moduleDetection": "force",
     "allowImportingTsExtensions": true,
     "noEmit": true,
     "composite": true,
     "strict": true,
+    "esModuleInterop": true,
     "downlevelIteration": true,
     "skipLibCheck": true,
     "jsx": "react-jsx",

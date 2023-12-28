@@ -14,7 +14,7 @@ export default class PluginModule extends AppModel {
       const scopedModule: FastifyPluginAsync<PluginsOptions> = async (_app, opts): Promise<void> => {
         for (const plugin of plugins) {
           const [instance, options] = plugin;
-          _app.register(instance, options);
+          _app.register((instance as any), options);
         }
       }
 

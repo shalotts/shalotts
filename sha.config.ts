@@ -8,7 +8,6 @@ import { defineConfig }                                from '~/app/module/config
 import BaseRoutes                                      from '~/app/module/http/base-routes';
 import HealthCheck                                     from '~/app/module/http/health-check';
 import ServeStatic                                     from '~/app/module/http/serve-static';
-import Vike                                            from '~/app/module/http/vike';
 import LoggerModule                                    from '~/app/module/logger/logger.module.ts';
 
 
@@ -45,7 +44,7 @@ export default defineConfig({
         [fastifyEarlyHints, {}],
         [BaseRoutes, {}],
         [HealthCheck, { prefix: '/health' }],
-        [Vike, {}],
+        // [Vike, {}],
       ],
       development: [],
       production: [
