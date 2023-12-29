@@ -21,9 +21,9 @@ export const plugins = () => {
     return [...config.shalottsOptions.plugins.base, ...config.shalottsOptions.plugins.test];
   } else if (isProduction) {
     return [...config.shalottsOptions.plugins.base, ...config.shalottsOptions.plugins.production];
-  } else {
-    throw new Error(`Current stage "${ process.env.NODE_ENV }" is not supported`);
   }
+
+  throw new Error(`Current stage "${ process.env.NODE_ENV }" is not supported`);
 };
 
 export default class PluginModule extends AppModel {
@@ -36,8 +36,8 @@ export default class PluginModule extends AppModel {
         }
       }
       return { scopedModule };
-    } else {
-      throw new Error('No plugins in configuration, something wrong');
     }
+
+    throw new Error('No plugins in configuration, something wrong');
   }
 }

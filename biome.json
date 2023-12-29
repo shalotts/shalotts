@@ -5,8 +5,17 @@
 	},
 	"linter": {
 		"enabled": true,
+		"ignore": [
+			"./app/cache/"
+		],
 		"rules": {
-			"recommended": true
+			"recommended": true,
+			"suspicious": {
+				"noExplicitAny": "off"
+			},
+			"style": {
+				"noUselessElse": "off"
+			}
 		}
 	},
 	"formatter": {

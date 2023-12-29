@@ -32,7 +32,6 @@ export default class AppModule extends AppModel {
       if (checked && !viteDevServer) {
         await this.app.listen(config.listen);
       }
-
     } catch (error: any) {
       this.app.log.error(error);
       consola.error(colors.red(`${ error.message }`));

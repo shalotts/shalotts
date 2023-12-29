@@ -6,7 +6,7 @@ import { join } from 'node:path';
 /**
  * @description Serve static files from public. Best practice use NGINX or Apache.
  */
-const plugin = fastifyPlugin(function(app: FastifyInstance, options: any, done: () => void) {
+const plugin = fastifyPlugin((app: FastifyInstance, options: any, done: () => void) => {
   const root = join(__dirname, 'client');
   app.log.info(`nodejs serve static: "${ root }"`);
   app.register(FastifyStatic, {

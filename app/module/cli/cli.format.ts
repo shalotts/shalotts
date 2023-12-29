@@ -66,9 +66,9 @@ export const printMessage = (message: IPinoMessage) => {
     : message.res ? '-->' : '';
   const date = new Date(message.time);
   const time = `${ date.getHours() }:${ date.getMinutes() }:${ date.getSeconds() }:${ date.getMilliseconds() }`;
-  const request = message.req ? `${ colors.cyan(' [' + message.req.method + ']') } ${ message.reqId } PATH:${ colors.cyan(message.req.url) }` : '';
+  const request = message.req ? `${ colors.cyan(` [${ message.req.method }]`) } ${ message.reqId } PATH:${ colors.cyan(message.req.url) }` : '';
   const response = message.res ? `${ colors.magenta(message.responseTime || ' null ' + 'ms' || '') }` : '';
 
-  const text = `${ colors.gray(time) } ${ formatLevel(message.level.toString()) } ${ status } ${ arrow }${ request }${ response } ${ colors.yellow('.:' + message.msg) }`;
+  const text = `${ colors.gray(time) } ${ formatLevel(message.level.toString()) } ${ status } ${ arrow }${ request }${ response } ${ colors.yellow(`.:${ message.msg }`) }`;
   consola.log(text);
 };

@@ -9,7 +9,7 @@ import { kebabCase } from 'scule';
 export const toConsoleArg = (arg: object) => {
   return Object.entries(arg).reduce((acc, arg) => {
     const [key, value] = arg;
-    const argKey = '--' + kebabCase(key);
+    const argKey = `--${ kebabCase(key) }`;
     const option = {} as any;
     option[argKey] = value;
 

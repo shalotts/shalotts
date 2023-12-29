@@ -8,9 +8,6 @@ import { LOG_LVL, printMessage } from '~/app/module/cli/cli.format.ts';
 import { IPinoMessage } from '~/app/module/cli/cli.type.ts';
 
 export default class LoggerModule {
-  constructor() {
-  }
-
   pretty(msg: string) {
     try {
       const log = JSON.parse(msg) as IPinoMessage;

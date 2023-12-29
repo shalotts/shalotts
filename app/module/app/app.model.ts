@@ -1,7 +1,8 @@
 import { FastifyPluginAsync } from 'fastify';
 import { TApp } from '~/app/server.ts';
 
-export type AppOptions = {
+// biome-ignore lint/complexity/noBannedTypes: <explanation>
+export  type AppOptions = {
   // Place your custom options for app below here.
 };
 

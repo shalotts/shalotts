@@ -14,7 +14,7 @@ export default class CliModule {
     child: ChildProcess;
     stop: ChildProcess['kill']
   } | null = null;
-  _introMessage: string = '';
+  _introMessage = '';
   service: CliService;
 
   constructor(service: CliService) {
@@ -35,16 +35,15 @@ export default class CliModule {
     if (config.shalottsOptions?.tunnel) {
       await this.service.install();
       const hasTunnelName = !!config.shalottsOptions?.tunnelHost;
-      const tunnelName = hasTunnelName ? config.shalottsOptions?.tunnel.name : '';
-      this.tunnel = await this.service.open(tunnelName as string);
+      this.tunnel = await this.service.open();
       const link = hasTunnelName ? `https://${ config.shalottsOptions?.tunnelHost }` : await this.tunnel.url;
       this.introMessage += cloudflaredAddress(colors.yellow(link));
 
       if (config.shalottsOptions?.secured?.qr) {
-        this.introMessage += '\n\n' + renderUnicodeCompact(link, {
+        this.introMessage += `\n\n${ renderUnicodeCompact(link, {
           ecc: 'L',
           border: 1,
-        });
+        }) }`;
       }
     }
 

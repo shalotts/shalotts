@@ -19,7 +19,7 @@
     "build": "tsup --env.NODE_ENV production && vavite-multibuild",
     "start": "NODE_ENV=production PORT=3000 node dist/server.js",
     "test": "jest",
-    "check": "biome check ./app",
+    "lint": "biome lint ./app",
     "pm2": "pm2 start --name shalotts-boilerplate ./dist/server/index.mjs"
   },
   "devDependencies": {

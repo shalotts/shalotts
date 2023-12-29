@@ -1,1 +1,1 @@
-export type PluginsOptions = {};
+export type PluginsOptions = object;

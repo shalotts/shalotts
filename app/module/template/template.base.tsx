@@ -1,3 +1,4 @@
+// @ts-ignore
 import type { TemplateWrapped } from 'vike/dist/esm/node/runtime/html/renderHtml';
 import { dangerouslySkipEscape, escapeInject } from 'vike/server';
 import { IHtmlHead } from '~/app/module/template/template.type.ts';
@@ -13,7 +14,7 @@ export default function TEMPLATE_BASE(
     title: 'no-name',
     description: 'no-disc',
   },
-  html: string = '<h1>Sharlotts</h1>',
+  html = '<h1>Sharlotts</h1>',
 ): TemplateWrapped {
   return escapeInject`<!DOCTYPE html>
 <html class="no-js" lang="">
