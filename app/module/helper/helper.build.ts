@@ -8,9 +8,7 @@ export const build = () => {
   const plugins = new PluginModule(app as any);
 
   beforeAll(async () => {
-    plugins.__scoped().then(({ scopedModule }) => {
-      app.register(fastifyPlugin(scopedModule));
-    });
+    app.register(fastifyPlugin(plugins.__scoped()));
   });
 
   afterAll(() => app.close());

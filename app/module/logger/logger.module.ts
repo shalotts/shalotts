@@ -2,8 +2,9 @@ import consola from 'consola';
 import { defu } from 'defu';
 import type { PinoLoggerOptions } from 'fastify/types/logger';
 import isbot from 'isbot';
+import { join } from 'node:path';
 import pino from 'pino';
-import { ENV_VAR, ROOT_DIR } from '~/app/const.ts';
+import { ENV_VAR, LOG_DIR } from '~/app/const.ts';
 import { LOG_LVL, printMessage } from '~/app/module/cli/cli.format.ts';
 import { IPinoMessage } from '~/app/module/cli/cli.type.ts';
 
@@ -56,7 +57,7 @@ export default class LoggerModule {
       },
     } as PinoLoggerOptions;
     const defaultMultiSteam = [
-      { stream: pino.destination(`${ ROOT_DIR }/app/log/app.log`) },
+      { stream: pino.destination(join(LOG_DIR, 'app.log')) },
       { write: this.pretty },
     ];
 

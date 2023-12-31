@@ -1,0 +1,30 @@
+version: '3.8'
+services:
+  app:
+    container_name: shalotts_app
+    build:
+      context: .
+      dockerfile: ./docker/sha/Dockerfile
+    restart: always
+    ports:
+      - '3000:3000'
+    networks:
+      - shalotts
+    environment:
+      - NODE_ENV=production
+      - LOG_LVL=info
+      - HOST=localhost
+      - PORT=3000
+    volumes:
+      - ./:/home/bun/app
+#    deploy:
+#      resources:
+#        limits:
+#          cpus: '0.001'
+#          memory: 50M
+#        reservations:
+#          cpus: '0.0001'
+#          memory: 20M
+
+networks:
+  shalotts:

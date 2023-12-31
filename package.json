@@ -15,12 +15,11 @@
   "private": false,
   "repository": "https://github.com/shalotts/shalotts",
   "scripts": {
-    "dev": "tsup --onSuccess 'vavite serve'",
-    "build": "tsup --env.NODE_ENV production && vavite-multibuild",
-    "start": "NODE_ENV=production PORT=3000 node dist/server.js",
+    "dev": "vavite dev",
+    "build": "vavite-multibuild",
+    "start": "node ./dist/server/index.mjs",
     "test": "jest",
-    "lint": "biome lint ./app",
-    "pm2": "pm2 start --name shalotts-boilerplate ./dist/server/index.mjs"
+    "lint": "biome lint ./app"
   },
   "devDependencies": {
     "@biomejs/biome": "1.4.1",
@@ -53,6 +52,7 @@
     "defu": "^6.1.3",
     "fastify": "^4.25.0",
     "fastify-plugin": "^4.5.1",
+    "fastify-x-request-id": "^2.0.0",
     "get-port-please": "^3.1.1",
     "isbot": "^3.7.1-deprecated",
     "lightningcss": "^1.22.1",
