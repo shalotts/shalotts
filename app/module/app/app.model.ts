@@ -1,4 +1,10 @@
+import { FastifyPluginAsync } from 'fastify';
 import { TApp } from '~/app/server.ts';
+
+// biome-ignore lint/complexity/noBannedTypes: <explanation>
+export  type AppOptions = {
+  // Place your custom options for app below here.
+};
 
 export default class AppModel {
   protected _app: TApp;
@@ -9,5 +15,10 @@ export default class AppModel {
 
   get app(): TApp {
     return this._app;
+  }
+
+  get pluginAsync(): FastifyPluginAsync<AppOptions> {
+    return async (fastify, opts) => {
+    };
   }
 }

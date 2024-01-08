@@ -1,4 +1,4 @@
-import { inject }                 from 'vue';
+import { inject } from 'vue';
 import type { PageContextServer } from './vike.type';
 
 const key = Symbol('key');

@@ -1,5 +1,5 @@
 import { renderToString as renderToString_ } from '@vue/server-renderer';
-import type { App }                          from 'vue';
+import type { App } from 'vue';
 
 /**
  * @description Rendered html content

@@ -51,6 +51,7 @@ export interface ShalottsOptions {
      */
     base: ShalottsPlugin[];
     development: ShalottsPlugin[];
+    test: ShalottsPlugin[];
     production: ShalottsPlugin[];
   }
 }

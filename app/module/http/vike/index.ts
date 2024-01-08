@@ -1,8 +1,8 @@
 import { FastifyInstance, FastifyReply, FastifyRequest } from 'fastify';
-import { fastifyPlugin }                                 from 'fastify-plugin';
-import isbot                                             from 'isbot';
-import viteDevServer                                     from 'vavite/vite-dev-server';
-import { renderPage }                                    from 'vike/server';
+import { fastifyPlugin } from 'fastify-plugin';
+import isbot from 'isbot';
+import viteDevServer from 'vavite/vite-dev-server';
+import { renderPage } from 'vike/server';
 
 export const vikeMiddleware = async (request: FastifyRequest, response: FastifyReply) => {
   const pageContextInit = {
@@ -47,6 +47,7 @@ export const vikeMiddleware = async (request: FastifyRequest, response: FastifyR
     response.code(statusCode).send(body);
 
   } catch (e) {
+    // biome-ignore lint/suspicious/noShadowRestrictedNames: need type for error
     const Error = e as Error;
     viteDevServer?.ssrFixStacktrace(Error);
     response.log.error(Error.stack);
@@ -55,7 +56,7 @@ export const vikeMiddleware = async (request: FastifyRequest, response: FastifyR
   }
 };
 
-const plugin = fastifyPlugin(function(app: FastifyInstance, options: any, done: () => void) {
+const plugin = fastifyPlugin((app: FastifyInstance, options: any, done: () => void) => {
   app.get('*', vikeMiddleware);
   done();
 }, {

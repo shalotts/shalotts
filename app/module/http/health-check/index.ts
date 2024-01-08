@@ -10,7 +10,7 @@ export default function(app: FastifyInstance, options: { name: string }, next: (
     response.status(200).send();
   });
   app.get('/health/ready', async function handler(request, response) {
-    let isReady = false;
+    const isReady = false;
 
     // anything you need to verify before confirming your application is ready
     // to start handling incoming requests.
