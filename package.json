@@ -1,8 +1,13 @@
 {
-  "name": "shalotts",
+  "name": "@shalotts/f3v",
   "module": "app/index.ts",
   "version": "0.30.00",
-  "description": "Shalotts boilerplate for Vue",
+  "description": "Fastify boilerplate for SSR Vue app",
+  "author": {
+    "name": "francyfox",
+    "url": "https://github.com/francyfox",
+    "email": "7info7web@gmail.com"
+  },
   "keywords": [
     "shalotts",
     "boilerplate",
@@ -16,6 +21,7 @@
   "repository": "https://github.com/shalotts/shalotts",
   "scripts": {
     "dev": "vavite dev",
+    "build:npm": "tsup",
     "build": "vavite-multibuild",
     "start": "node ./dist/server/index.mjs",
     "test": "jest",
