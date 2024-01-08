@@ -1,5 +1,6 @@
 {
   "exclude": [
+    "dist",
     "node_modules"
   ],
   "compilerOptions": {
@@ -20,11 +21,11 @@
     "module": "esnext",
     "target": "ES2022",
     "moduleResolution": "bundler",
+    "outDir": "dist",
     "resolveJsonModule": true,
     "moduleDetection": "force",
     "allowImportingTsExtensions": true,
     "noEmit": true,
-    "composite": true,
     "strict": true,
     "esModuleInterop": true,
     "downlevelIteration": true,

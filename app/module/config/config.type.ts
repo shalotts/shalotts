@@ -12,6 +12,8 @@ export interface ITunnelOptions {
   name: string,
   hostname?: string,
   destination?: string,
+  tunnel?: string
+  credentialsFile?: string
   url?: string,
   serviceTokenId?: string,
   serviceTokenSecret?: string,

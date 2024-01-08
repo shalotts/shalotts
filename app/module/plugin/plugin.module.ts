@@ -1,10 +1,10 @@
 import { FastifyPluginAsync } from 'fastify';
 import { $shalotts } from '~/app/const.ts';
 import AppModel from '~/app/module/app/app.model.ts';
+import { IAppConfig } from '~/app/module/config/config.type.ts';
 import { PluginsOptions } from '~/app/module/plugin/plugin.type.ts';
-import config from '~/sha.config.ts';
 
-export const plugins = () => {
+export const plugins = (config: IAppConfig) => {
   if (!config.shalottsOptions?.plugins) {
     throw new Error('Plugins is undefined');
   }
@@ -27,10 +27,10 @@ export const plugins = () => {
 };
 
 export default class PluginModule extends AppModel {
-  async __scoped() {
-    if (config.shalottsOptions?.plugins) {
+  async __scoped(config: IAppConfig) {
+    if (this.config.shalottsOptions?.plugins) {
       const scopedModule: FastifyPluginAsync<PluginsOptions> = async (_app, opts): Promise<void> => {
-        for (const plugin of plugins()) {
+        for (const plugin of plugins(config)) {
           const [instance, options] = plugin;
           _app.register((instance as any), options);
         }

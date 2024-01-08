@@ -2,6 +2,7 @@ import consola from 'consola';
 import { defu } from 'defu';
 import type { PinoLoggerOptions } from 'fastify/types/logger';
 import isbot from 'isbot';
+import { access, constants, mkdir } from 'node:fs/promises';
 import { join } from 'node:path';
 import pino from 'pino';
 import { ENV_VAR, LOG_DIR } from '~/app/const.ts';
@@ -24,7 +25,13 @@ export default class LoggerModule {
    * @param {PinoLoggerOptions} options - merged with default
    * @param {[]} multistream - merged with default, configure https://getpino.io/#/docs/help?id=log-to-different-streams
    */
-  create(options: PinoLoggerOptions = {}, multistream: any[] = []) {
+  async create(options: PinoLoggerOptions = {}, multistream: any[] = []) {
+    try {
+      await access(LOG_DIR, constants.F_OK);
+    } catch (error) {
+      await mkdir(LOG_DIR, { recursive: true });
+    }
+
     const defaultOptions = {
       name: '#shalotts',
       level: ENV_VAR.LOG_LVL,

@@ -5,7 +5,7 @@ import config from '~/sha.config.ts';
 
 const http = new HttpModule(config.fastifyInstanceOptions);
 const FastifyInstance = await http.createServer();
-const $sha = new AppModule(FastifyInstance);
+const $sha = new AppModule(FastifyInstance, config);
 await $sha.create();
 
 let fastifyReadyPromise: PromiseLike<void> | undefined = $sha.app.ready();

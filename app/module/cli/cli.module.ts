@@ -5,9 +5,10 @@ import { ChildProcess } from 'node:child_process';
 import { renderUnicodeCompact } from 'uqr';
 import { cloudflaredAddress, serverStartMessage } from '~/app/module/cli/cli.const.tsx';
 import CliService from '~/app/module/cli/cli.service.ts';
-import config from '~/sha.config.ts';
+import ConfigModule from '~/app/module/config/config.module.ts';
+import { IAppConfig } from '~/app/module/config/config.type.ts';
 
-export default class CliModule {
+export default class CliModule extends ConfigModule {
   tunnel: {
     url: Promise<string>;
     connections: Promise<Connection>[];
@@ -17,8 +18,9 @@ export default class CliModule {
   _introMessage = '';
   service: CliService;
 
-  constructor(service: CliService) {
-    this.service = service;
+  constructor(config: IAppConfig) {
+    super(config);
+    this.service = new CliService();
   }
 
   set introMessage(text: string) {
@@ -32,14 +34,14 @@ export default class CliModule {
   async start() {
     this.introMessage = serverStartMessage;
 
-    if (config.shalottsOptions?.tunnel) {
+    if (this.config.shalottsOptions?.tunnel) {
       await this.service.install();
-      const hasTunnelName = !!config.shalottsOptions?.tunnelHost;
-      this.tunnel = await this.service.open();
-      const link = hasTunnelName ? `https://${ config.shalottsOptions?.tunnelHost }` : await this.tunnel.url;
+      const hasTunnelName = !!this.config.shalottsOptions?.tunnelHost;
+      this.tunnel = await this.service.open(this.config.shalottsOptions?.tunnel);
+      const link = hasTunnelName ? `https://${ this.config.shalottsOptions?.tunnelHost }` : await this.tunnel.url;
       this.introMessage += cloudflaredAddress(colors.yellow(link));
 
-      if (config.shalottsOptions?.secured?.qr) {
+      if (this.config.shalottsOptions?.secured?.qr) {
         this.introMessage += `\n\n${ renderUnicodeCompact(link, {
           ecc: 'L',
           border: 1,
