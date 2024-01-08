@@ -1,14 +1,2 @@
-.git
-.gitignore
-.github
-.husky
-
-bun.lockb
-node_modules
-tsconfig.json
-CHANGELOG.md
-
-CONTRIBUTING.md
-CODE_OF_CONDUCT.md
-
-/docker
+*
+!dist

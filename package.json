@@ -1,7 +1,7 @@
 {
-  "name": "@shalotts/f3v",
+  "name": "@francyfox/f3v",
   "module": "app/index.ts",
-  "version": "0.30.00",
+  "version": "0.30.01",
   "description": "Fastify boilerplate for SSR Vue app",
   "author": {
     "name": "francyfox",
@@ -33,6 +33,9 @@
       "default": "./dist/shallots.js"
     }
   },
+  "files": [
+    "./dist/"
+  ],
   "types": "./dist/shalotts.d.ts",
   "devDependencies": {
     "@biomejs/biome": "1.4.1",
