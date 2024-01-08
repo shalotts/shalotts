@@ -1,37 +1,25 @@
-FROM oven/bun:alpine as base
-LABEL authors="francyfox"
+FROM debian:11.6-slim as builder
 
-WORKDIR /usr/src/app
+WORKDIR /app
 
-# install dependencies into temp directory
-# this will cache them and speed up future builds
-FROM base AS install
-RUN mkdir -p /temp/dev
-COPY package.json bun.lockb /temp/dev/
-RUN cd /temp/dev && bun install --frozen-lockfile
+RUN apt update
+RUN apt install curl unzip -y
 
-# install with --production (exclude devDependencies)
-RUN mkdir -p /temp/prod
-COPY package.json bun.lockb /temp/prod/
-RUN cd /temp/prod && bun install --frozen-lockfile --production
+RUN curl https://bun.sh/install | bash
 
-# copy node_modules from temp directory
-# then copy all (non-ignored) project files into the image
-FROM base AS prerelease
-COPY --from=install /temp/dev/node_modules node_modules
 COPY . .
 
-# [optional] tests & build
-ENV NODE_ENV=production
-RUN bun test
-RUN bun run build
+RUN /root/.bun/bin/bun install --production
+RUN /root/.bun/bin/bun run build
 
-# copy production dependencies and source code into final image
-FROM base AS release
-COPY --from=install /temp/prod/node_modules node_modules
-COPY --from=prerelease /usr/src/app/index.ts .
-COPY --from=prerelease /usr/src/app/package.json .
+# ? -------------------------
+FROM gcr.io/distroless/base
 
-USER bun
+WORKDIR /app
+
+COPY --from=builder /root/.bun/bin/bun bun
+COPY --from=builder /app/ .
+
+ENV NODE_ENV production
 EXPOSE 3000/tcp
-ENTRYPOINT [ "node", "/temp/prod/server/index.mjs"]
+CMD ["ls" ]

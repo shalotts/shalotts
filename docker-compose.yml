@@ -16,7 +16,7 @@ services:
       - HOST=localhost
       - PORT=3000
     volumes:
-      - ./:/home/bun/app
+      - ./:/usr/src/app
 #    deploy:
 #      resources:
 #        limits:

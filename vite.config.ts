@@ -7,6 +7,7 @@ import ssr from 'vike/plugin';
 import { defineConfig } from 'vite';
 
 const root = path.dirname(url.fileURLToPath(import.meta.url));
+
 export default defineConfig({
   server: {
     host: process.env.HOST || '0.0.0.0',
