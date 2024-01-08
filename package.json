@@ -1,8 +1,13 @@
 {
-  "name": "shalotts",
+  "name": "@francyfox/f3v",
   "module": "app/index.ts",
-  "version": "0.30.00",
-  "description": "Shalotts boilerplate for Vue",
+  "version": "0.30.01",
+  "description": "Fastify boilerplate for SSR Vue app",
+  "author": {
+    "name": "francyfox",
+    "url": "https://github.com/francyfox",
+    "email": "7info7web@gmail.com"
+  },
   "keywords": [
     "shalotts",
     "boilerplate",
@@ -16,11 +21,22 @@
   "repository": "https://github.com/shalotts/shalotts",
   "scripts": {
     "dev": "vavite dev",
+    "build:npm": "tsup",
     "build": "vavite-multibuild",
     "start": "node ./dist/server/index.mjs",
     "test": "jest",
     "lint": "biome lint ./app"
   },
+  "exports": {
+    ".": {
+      "import": "./dist/shallots.js",
+      "default": "./dist/shallots.js"
+    }
+  },
+  "files": [
+    "./dist/"
+  ],
+  "types": "./dist/shalotts.d.ts",
   "devDependencies": {
     "@biomejs/biome": "1.4.1",
     "@types/node": "^20.10.4",

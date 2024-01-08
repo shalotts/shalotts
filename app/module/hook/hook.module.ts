@@ -6,7 +6,7 @@ import { onRequestLog, onResponseLog } from '~/app/module/hook/hook.log.ts';
 import { PluginsOptions } from '~/app/module/plugin/plugin.type.ts';
 
 export default class HookModule extends AppModel {
-  __scoped() {
+  __scoped(config: any) {
     const scopedModule: FastifyPluginAsync<PluginsOptions> = async (_app, opts): Promise<void> => {
       const closeListeners = closeWithGrace({ delay: ENV_VAR.CLOSE_GRACE_DELAY },
         async ({

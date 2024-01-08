@@ -1,4 +1,4 @@
-import { join } from 'node:path';
+import { join, resolve } from 'node:path';
 
 export interface IENVConfig {
   readonly MODE: string;
@@ -27,6 +27,8 @@ export const $shalotts = {
 };
 export const ROOT_DIR: string = process.cwd();
 export const PUBLIC_DIR: string = join(ROOT_DIR, 'public');
+
+export const CLOUDFLARED_CONFIG: string = resolve(ROOT_DIR, 'asset/cloudflared/config.yml');
 export const LOG_DIR = join(ROOT_DIR, './app/log');
 export const STATIC_DIR_CLIENT: string = $shalotts.state.isProduction
   ? join(ROOT_DIR, 'dist/client')

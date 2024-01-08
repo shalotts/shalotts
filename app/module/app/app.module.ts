@@ -1,17 +1,29 @@
 import consola from 'consola';
 import { colors } from 'consola/utils';
+import { FastifyPluginAsync } from 'fastify';
 import { fastifyPlugin } from 'fastify-plugin';
 import { ENV_VAR } from '~/app/const.ts';
 import AppModel from '~/app/module/app/app.model.ts';
-import { scopedModule } from '~/app/module/app/app.scoped-module.ts';
 import CliModule from '~/app/module/cli/cli.module.ts';
-import CliService from '~/app/module/cli/cli.service.ts';
+import { PluginsOptions } from '~/app/module/plugin/plugin.type.ts';
 
 export default class AppModule extends AppModel {
   async create() {
-    const cliService = new CliService();
-    const cli = new CliModule(cliService);
-    this.app.register(fastifyPlugin(scopedModule));
+    const cli = new CliModule(this.config);
+    const scopedModules: FastifyPluginAsync<PluginsOptions> = async (_app: any) => {
+      const modules = [
+        await import('~/app/module/plugin/plugin.module.ts'),
+        await import('~/app/module/hook/hook.module.ts'),
+      ];
+
+      for (const module of modules) {
+        const initiated = new module.default(_app, this.config);
+        const { scopedModule } = await initiated.__scoped(this.config);
+        _app.register(scopedModule);
+      }
+    };
+
+    this.app.register(fastifyPlugin(scopedModules));
 
     try {
       await cli.start();

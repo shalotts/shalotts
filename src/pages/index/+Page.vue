@@ -5,12 +5,11 @@ import Counter from '#root/pages/index/counter.vue';
 <template>
   <div>
     <h1 class='mb-[2px]'>
-      Welcome
+      Welcome to Shalotts
     </h1>
     This page is:
     <ul class='p-5'>
-      <li>ITS NOT WORDPRESS FUCKING IDIOT</li>
-      <li>Interactive.
+      <li>Simple counter:
         <Counter />
       </li>
     </ul>

@@ -1,5 +1,5 @@
-import { FastifyPluginAsync } from 'fastify';
-import { TApp } from '~/app/server.ts';
+import { FastifyInstance } from 'fastify';
+import { IAppConfig } from '~/app/module/config/config.type.ts';
 
 // biome-ignore lint/complexity/noBannedTypes: <explanation>
 export  type AppOptions = {
@@ -7,18 +7,19 @@ export  type AppOptions = {
 };
 
 export default class AppModel {
-  protected _app: TApp;
+  protected _app: FastifyInstance;
+  private readonly _config: IAppConfig;
 
-  constructor(app: TApp) {
+  constructor(app: FastifyInstance<any, any, any, any, any>, config: IAppConfig) {
     this._app = app;
+    this._config = config;
   }
 
-  get app(): TApp {
+  get app(): any {
     return this._app;
   }
 
-  get pluginAsync(): FastifyPluginAsync<AppOptions> {
-    return async (fastify, opts) => {
-    };
+  get config(): IAppConfig {
+    return this._config;
   }
 }

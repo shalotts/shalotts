@@ -17,14 +17,11 @@ services:
       - PORT=3000
     volumes:
       - ./:/usr/src/app
-#    deploy:
-#      resources:
-#        limits:
-#          cpus: '0.001'
-#          memory: 50M
-#        reservations:
-#          cpus: '0.0001'
-#          memory: 20M
+    deploy:
+      resources:
+        reservations:
+          cpus: '2'
+          memory: 200M
 
 networks:
   shalotts:
