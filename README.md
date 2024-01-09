@@ -13,7 +13,8 @@
  <img align="left" width="33%" src="asset/public/mstile-150x150.png" style='float: left'>
 
 
-Project created with UNIX paths. Will not work on windows. Package manager bun is required.
+**Support only: ESM, (not tested on windows)**
+
 To install dependencies:
 
 ```bash
