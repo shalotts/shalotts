@@ -51,10 +51,10 @@ export interface ShalottsOptions {
     /**
      * @description Will start at any stage
      */
-    base: ShalottsPlugin[];
-    development: ShalottsPlugin[];
-    test: ShalottsPlugin[];
-    production: ShalottsPlugin[];
+    base: any[];
+    development: any[];
+    test: any[];
+    production: any[];
   }
 }
 
