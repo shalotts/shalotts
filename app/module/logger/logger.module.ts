@@ -1,7 +1,7 @@
 import consola from 'consola';
 import { defu } from 'defu';
 import type { PinoLoggerOptions } from 'fastify/types/logger';
-import isbot from 'isbot';
+import { isbot } from 'isbot';
 import { access, constants, mkdir } from 'node:fs/promises';
 import { join } from 'node:path';
 import pino from 'pino';
