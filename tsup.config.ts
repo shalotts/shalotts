@@ -8,7 +8,7 @@ export default defineConfig({
   format: ['esm', 'cjs'],
   target: ['es2021'],
   skipNodeModulesBundle: true,
-  platform: 'node',
+  platform: 'browser',
   splitting: false,
   sourcemap: true,
   minify: true,
