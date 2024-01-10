@@ -1,7 +1,7 @@
 {
   "name": "f3v",
   "module": "app/index.ts",
-  "version": "0.30.20",
+  "version": "0.30.21",
   "description": "Fastify boilerplate for SSR Vue app",
   "author": {
     "name": "francyfox",
@@ -72,7 +72,7 @@
     "fastify-plugin": "^4.5.1",
     "fastify-x-request-id": "^2.0.0",
     "get-port-please": "^3.1.1",
-    "isbot": "^3.7.1-deprecated",
+    "isbot": "^4.3.0",
     "lightningcss": "^1.22.1",
     "nanoid": "^5.0.4",
     "postcss": "^8.4.32",
