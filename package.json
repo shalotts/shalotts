@@ -1,7 +1,7 @@
 {
   "name": "f3v",
   "module": "app/index.ts",
-  "version": "0.30.21",
+  "version": "0.30.22",
   "description": "Fastify boilerplate for SSR Vue app",
   "author": {
     "name": "francyfox",
