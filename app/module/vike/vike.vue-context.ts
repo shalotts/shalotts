@@ -1,16 +1,16 @@
-import { inject } from 'vue';
+// import { inject } from 'vue';
 import type { PageContextServer } from './vike.type';
 
 const key = Symbol('key');
 
-/**
- * @returns { object } Returns page context
- */
-// eslint-disable-next-line @typescript-eslint/no-redundant-type-constituents
-export function usePageContext(): unknown | undefined {
-  // eslint-disable-next-line @typescript-eslint/no-unsafe-call
-  return inject(key);
-}
+// /**
+//  * @returns { object } Returns page context
+//  */
+// // eslint-disable-next-line @typescript-eslint/no-redundant-type-constituents
+// export function usePageContext(): unknown | undefined {
+//   // eslint-disable-next-line @typescript-eslint/no-unsafe-call
+//   return inject(key);
+// }
 
 /**
  * @description setPageContext

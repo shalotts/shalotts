@@ -2,7 +2,7 @@
   "name": "f3v",
   "main": "dist/shalotts.js",
   "module": "dist/shalotts.js",
-  "version": "0.30.24",
+  "version": "0.30.25",
   "description": "Fastify boilerplate for SSR Vue app",
   "author": {
     "name": "francyfox",
@@ -36,6 +36,9 @@
       "default": "dist/shalotts.js"
     }
   },
+  "sideEffects": [
+    "dist/*"
+  ],
   "files": [
     "./dist/"
   ],
