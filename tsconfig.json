@@ -4,23 +4,9 @@
     "node_modules"
   ],
   "compilerOptions": {
-    "paths": {
-      "#root/*": [
-        "./src/*"
-      ],
-      "~/*": [
-        "./*"
-      ],
-      "~app/": [
-        "./app/*"
-      ]
-    },
-    "lib": [
-      "ESNext"
-    ],
-    "module": "esnext",
-    "target": "ES2022",
-    "moduleResolution": "bundler",
+    "module": "ES2022",
+    "target": "ES2021",
+    "moduleResolution": "node",
     "outDir": "dist",
     "resolveJsonModule": true,
     "moduleDetection": "force",
@@ -38,6 +24,21 @@
       "node",
       "vite/client",
       "jest"
+    ],
+    "paths": {
+      "#root/*": [
+        "./src/*"
+      ],
+      "~/*": [
+        "./*"
+      ],
+      "~app/": [
+        "./app/*"
+      ]
+    },
+    "lib": [
+      "ESNext",
+      "DOM"
     ]
   }
 }

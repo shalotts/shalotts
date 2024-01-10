@@ -1,6 +1,6 @@
 import { FastifyInstance, FastifyReply, FastifyRequest } from 'fastify';
 import { fastifyPlugin } from 'fastify-plugin';
-import isbot from 'isbot';
+import { isbot } from 'isbot';
 import viteDevServer from 'vavite/vite-dev-server';
 import { renderPage } from 'vike/server';
 

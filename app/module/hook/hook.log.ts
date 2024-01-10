@@ -1,4 +1,4 @@
-import isbot from 'isbot';
+import { isbot } from 'isbot';
 
 export const onRequestLog = (request: any, response: any, next: () => void) => {
   request.startTime = Date.now();

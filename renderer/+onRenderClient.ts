@@ -1,7 +1,6 @@
-import { createSSRApp }                 from 'vue';
+import { createSSRApp } from 'vue';
 import type { Page, PageContextServer } from '../app/module/vike/vike.type';
-import { setPageContext }               from '../app/module/vike/vike.vue-context';
-import '../src/pages/client';
+import { setPageContext } from '../app/module/vike/vike.vue-context';
 
 /**
  * @description Render function for "/renderer/_default.page.client"

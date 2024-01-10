@@ -1,17 +1,16 @@
-import { TemplateWrapped }        from 'vike/dist/esm/node/runtime/html/renderHtml';
 import type { PageContextServer } from 'vike/types';
-import { createApp }              from 'vue';
-import { renderToString }         from '../app/module/helper/helper.render.ts';
-import TEMPLATE_BASE              from '../app/module/template/template.base';
+import { createApp } from 'vue';
+import { renderToString } from '../app/module/helper/helper.render.ts';
+import TEMPLATE_BASE from '../app/module/template/template.base';
 
 /**
  * @description SSR vike page rendering
  * @param { PageContextServer } pageContext vike page context
- * @returns {{ documentHtml: TemplateWrapped, pageContext: object }} ready for render page. Page context for redirects
+ * @returns {{ documentHtml: object, pageContext: object }} ready for render page. Page context for redirects
  */
 async function onRenderHtml(
   pageContext: PageContextServer,
-): Promise<{ documentHtml: TemplateWrapped; pageContext: object }> {
+): Promise<{ documentHtml: any; pageContext: object }> {
   const {
     Page,
     pageProps,

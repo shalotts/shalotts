@@ -32,7 +32,7 @@ export default class CliModule extends ConfigModule {
   }
 
   async start() {
-    this.introMessage = serverStartMessage;
+    this.introMessage = serverStartMessage(this.config);
 
     if (this.config.shalottsOptions?.tunnel) {
       await this.service.install();
