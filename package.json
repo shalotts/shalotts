@@ -2,7 +2,7 @@
   "name": "f3v",
   "main": "dist/shalotts.js",
   "module": "dist/shalotts.js",
-  "version": "0.30.27",
+  "version": "0.30.28",
   "description": "Fastify boilerplate for SSR Vue app",
   "author": {
     "name": "francyfox",
@@ -34,12 +34,16 @@
     ".": {
       "import": {
         "types": "./dist/shalotts.d.ts",
-        "default": "./dist/shalotts.js"
-      },
-      "require": {
-        "types": "./dist/shalotts.d.cts",
-        "default": "./dist/shalotts.cjs"
+        "default": "./dist/esm/shalotts.js"
       }
+    },
+    "./renderer/onRenderHtml": {
+      "types": "./dist/onRenderHtml.d.ts",
+      "default": "./dist/esm/onRenderHtml.js"
+    },
+    "./renderer/onRenderClient": {
+      "types": "./dist/onRenderClient.d.ts",
+      "default": "./dist/esm/onRenderClient.js"
     }
   },
   "sideEffects": [
@@ -49,6 +53,19 @@
     "./dist/"
   ],
   "types": "./dist/shalotts.d.ts",
+  "typesVersions": {
+    "*": {
+      ".": [
+        "./dist/shalotts.d.ts"
+      ],
+      "renderer/onRenderHtml": [
+        "./dist/onRenderHtml.d.ts"
+      ],
+      "renderer/onRenderClient": [
+        "./dist/onRenderClient.d.ts"
+      ]
+    }
+  },
   "devDependencies": {
     "@biomejs/biome": "1.4.1",
     "@types/node": "^20.10.4",
@@ -66,6 +83,7 @@
     "/": "/"
   },
   "dependencies": {
+    "f3v": "link:f3v",
     "@fastify/caching": "^8.3.0",
     "@fastify/cors": "^8.4.2",
     "@fastify/early-hints": "^1.0.1",

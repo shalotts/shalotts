@@ -177,3 +177,4 @@ dist
 /app/cache
 /app/log/*
 vite.config.ts.*.mjs
+/test/

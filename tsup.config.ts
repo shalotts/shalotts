@@ -1,14 +1,18 @@
 import { defineConfig } from 'tsup';
 
 export default defineConfig({
-  entry: ['app/shalotts.ts'],
+  entry: {
+    shalotts: 'app/shalotts.ts',
+    onRenderClient: 'renderer/onRenderClient.ts',
+    onRenderHtml: 'renderer/onRenderHtml.ts',
+  },
+  legacyOutput: true,
   treeshake: true,
   shims: true,
   dts: true,
-  format: ['esm', 'cjs'],
+  format: ['esm'],
   target: ['es2021'],
-  skipNodeModulesBundle: true,
-  platform: 'browser',
+  platform: 'node',
   splitting: false,
   sourcemap: true,
   minify: true,
