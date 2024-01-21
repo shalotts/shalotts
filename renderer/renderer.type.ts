@@ -1,4 +1,10 @@
+import { Unhead } from '@unhead/schema';
+import { Component } from '~/app/module/vike/vike.type.ts';
+
 export type PageContext = {
-  pageProps: Record<string, unknown>;
-  is404: boolean;
+  Page?: Component,
+  head?: Unhead
+  pageProps?: NonNullable<unknown> | undefined;
+  is404?: boolean;
+  onBeforeMountApp?: any
 };
