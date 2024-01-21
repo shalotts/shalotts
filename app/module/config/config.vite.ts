@@ -1,3 +1,4 @@
+import UnheadVite from '@unhead/addons/vite';
 import { join } from 'node:path';
 
 export const defaultViteF3vConfig = {
@@ -29,4 +30,7 @@ export const defaultViteF3vConfig = {
     cssMinify: 'lightningcss',
   },
   cacheDir: join(process.cwd(), 'app/cache'),
+  plugins: [
+    UnheadVite(),
+  ],
 };

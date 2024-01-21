@@ -17,7 +17,7 @@ const key = Symbol('key');
  * @param {object} app hosted app element
  * @param {PageContextServer} pageContext page context
  */
-export function setPageContext(app: any, pageContext: PageContextServer) {
+export async function setPageContext(app: any, pageContext: any) {
   // eslint-disable-next-line @typescript-eslint/no-unsafe-call
   app.provide(key, pageContext);
 }

@@ -9,12 +9,14 @@ export  type AppOptions = {
 export default class AppModel {
   protected _app: FastifyInstance;
   private readonly _config: IAppConfig;
-
   constructor(app: FastifyInstance<any, any, any, any, any>, config: IAppConfig) {
     this._app = app;
     this._config = config;
   }
 
+  // plugins: [
+  //   CapoPlugin({ track: $shalotts.state.isDevelopment })
+  // ]
   get app(): any {
     return this._app;
   }

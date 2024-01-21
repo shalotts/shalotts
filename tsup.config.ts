@@ -5,6 +5,7 @@ export default defineConfig({
     shalotts: 'app/shalotts.ts',
     onRenderClient: 'renderer/onRenderClient.ts',
     onRenderHtml: 'renderer/onRenderHtml.ts',
+    '+config': 'renderer/+config.ts',
   },
   legacyOutput: true,
   treeshake: true,

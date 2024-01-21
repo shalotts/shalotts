@@ -1,3 +1,6 @@
+import { defu } from 'defu';
+import { CapoPlugin, createHead, UseHeadInput } from 'unhead';
+import { TemplateWrapped } from 'vike/dist/esm/node/runtime/html/renderHtml';
 import type { PageContextServer } from 'vike/types';
 import { createApp } from 'vue';
 import { renderToString } from '../app/module/helper/helper.render.ts';
@@ -10,7 +13,7 @@ import TEMPLATE_BASE from '../app/module/template/template.base';
  */
 async function onRenderHtml(
   pageContext: PageContextServer,
-): Promise<{ documentHtml: any; pageContext: object }> {
+): Promise<{ pageContext: object; documentHtml: TemplateWrapped }> {
   const {
     Page,
     pageProps,
@@ -23,17 +26,21 @@ async function onRenderHtml(
   const app = createApp(Page, pageProps, pageContext);
   const appHtml = Page ? await renderToString(app) : ''; // SSR | SPA
 
-  // See https://vike.dev/head
-  const {
-    title,
-    description,
-  } = config as any;
+  // // See https://vike.dev/head
 
-  const documentHtml = TEMPLATE_BASE(
-    {
-      title,
-      description,
-    },
+  const headSchema = createHead({
+    plugins: [
+      CapoPlugin({ track: true }),
+    ],
+  });
+
+  const { head } = config as { head: UseHeadInput<object> };
+  const defaultHead = { title: 'Unknown' };
+
+  headSchema.push(defu(head, defaultHead));
+
+  const documentHtml = await TEMPLATE_BASE(
+    headSchema,
     appHtml,
   );
 
