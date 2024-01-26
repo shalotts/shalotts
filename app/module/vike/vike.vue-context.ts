@@ -1,23 +1,20 @@
-// import { inject } from 'vue';
-import type { PageContextServer } from './vike.type';
+import type { PageContext } from 'vike/types';
+import { inject } from 'vue';
 
 const key = Symbol('key');
 
-// /**
-//  * @returns { object } Returns page context
-//  */
-// // eslint-disable-next-line @typescript-eslint/no-redundant-type-constituents
-// export function usePageContext(): unknown | undefined {
-//   // eslint-disable-next-line @typescript-eslint/no-unsafe-call
-//   return inject(key);
-// }
+/**
+ * @returns { PageContext } Returns page context
+ */
+export function usePageContext(): PageContext | undefined {
+  return inject(key);
+}
 
 /**
  * @description setPageContext
  * @param {object} app hosted app element
- * @param {PageContextServer} pageContext page context
+ * @param {PageContext} pageContext page context
  */
-export async function setPageContext(app: any, pageContext: any) {
-  // eslint-disable-next-line @typescript-eslint/no-unsafe-call
+export async function setPageContext(app: any, pageContext: PageContext) {
   app.provide(key, pageContext);
 }
