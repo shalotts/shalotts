@@ -1,19 +1,23 @@
 import { defu } from 'defu';
 import { CapoPlugin, createHead, UseHeadInput } from 'unhead';
 import { TemplateWrapped } from 'vike/dist/esm/node/runtime/html/renderHtml';
-import type { PageContextServer } from 'vike/types';
+import type { PageContextServer } from 'vike/dist/esm/types';
 import { createApp } from 'vue';
 import { renderToString } from '../app/module/helper/helper.render.ts';
 import TEMPLATE_BASE from '../app/module/template/template.base';
 
+interface PageCtx extends PageContextServer {
+  pageProps?: NonNullable<unknown> | undefined;
+}
+
 /**
  * @description SSR vike page rendering
- * @param { PageContextServer } pageContext vike page context
+ * @param { PageCtx } pageContext vike page context
  * @returns {{ documentHtml: object, pageContext: object }} ready for render page. Page context for redirects
  */
 async function onRenderHtml(
-  pageContext: PageContextServer,
-): Promise<{ pageContext: object; documentHtml: TemplateWrapped }> {
+  pageContext: PageCtx,
+): Promise<{ pageContext: PageCtx; documentHtml: TemplateWrapped }> {
   const {
     Page,
     pageProps,
@@ -46,7 +50,7 @@ async function onRenderHtml(
 
   return {
     documentHtml,
-    pageContext: {},
+    pageContext,
   };
 }
 
