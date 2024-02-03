@@ -96,7 +96,7 @@
     "@fastify/early-hints": "^1.0.1",
     "@fastify/etag": "^5.1.0",
     "@fastify/helmet": "^11.1.1",
-    "@fastify/static": "^6.12.0",
+    "@fastify/static": "^7.0.0",
     "@types/jest": "^29.5.11",
     "@unhead/ssr": "^1.8.10",
     "@vitejs/plugin-vue": "^5.0.2",
