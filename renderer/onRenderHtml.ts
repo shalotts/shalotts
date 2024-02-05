@@ -17,7 +17,7 @@ interface PageCtx extends PageContextServer {
  */
 async function onRenderHtml(
   pageContext: PageCtx,
-): Promise<{ pageContext: PageCtx; documentHtml: TemplateWrapped }> {
+): Promise<{ pageContext: object; documentHtml: TemplateWrapped }> {
   const {
     Page,
     pageProps,
@@ -50,7 +50,7 @@ async function onRenderHtml(
 
   return {
     documentHtml,
-    pageContext,
+    pageContext: {}
   };
 }
 
