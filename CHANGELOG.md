@@ -1,4 +1,15 @@
-### v0.40.00 - 22.01.2024
+### v0.30.45 - 06.02.2024
+_features:_
+
+- Export provide key
+- Add onCreateApp hook for client | server
+
+_hotfix:_
+
+- Remove usePageContext (add warn to console)
+- Cli text. Remove emoji (unsupported default OS)
+
+### v0.XX.00 - 22.01.2024
 
 _features:_
 

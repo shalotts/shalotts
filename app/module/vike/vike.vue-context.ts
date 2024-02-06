@@ -1,14 +1,5 @@
 import type { PageContext } from 'vike/types';
-import { inject } from 'vue';
-
-const key = Symbol('key');
-
-/**
- * @returns { PageContext } Returns page context
- */
-export function usePageContext(): PageContext | undefined {
-  return inject(key);
-}
+import { contextKey } from '~/app/module/vike/vike.key.ts';
 
 /**
  * @description setPageContext
@@ -16,5 +7,5 @@ export function usePageContext(): PageContext | undefined {
  * @param {PageContext} pageContext page context
  */
 export async function setPageContext(app: any, pageContext: PageContext) {
-  app.provide(key, pageContext);
+  app.provide(contextKey, pageContext);
 }

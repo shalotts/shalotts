@@ -7,6 +7,7 @@ import { cloudflaredAddress, serverStartMessage } from '~/app/module/cli/cli.con
 import CliService from '~/app/module/cli/cli.service.ts';
 import ConfigModule from '~/app/module/config/config.module.ts';
 import { IAppConfig } from '~/app/module/config/config.type.ts';
+import { $shalotts } from '~/app/const.ts';
 
 export default class CliModule extends ConfigModule {
   tunnel: {
@@ -32,6 +33,7 @@ export default class CliModule extends ConfigModule {
   }
 
   async start() {
+    console.clear();
     this.introMessage = serverStartMessage(this.config);
 
     if (this.config.shalottsOptions?.tunnel) {

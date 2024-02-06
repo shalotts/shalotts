@@ -1,5 +1,6 @@
 import { Unhead } from '@unhead/schema';
-import type { Config, PageContext } from 'vike/types';
+import type { PageContext } from 'vike/types';
+import { App } from 'vue';
 
 export default ({
   onRenderClient: 'import:f3v/renderer/onRenderClient:default',
@@ -12,17 +13,27 @@ export default ({
     onBeforeMountApp: {
       env: { server: false, client: true },
     },
+    onCreateApp: {
+      env: { server: true, client: true }
+    },
   },
-} satisfies Config);
+});
 
-export type OnBeforeMountAppSync = (pageContext: PageContext) => void;
-export type OnBeforeMountAppAsync = (pageContext: PageContext) => Promise<void>;
+export type vikeHook = (app: App, pageContext: PageContext) => void;
+export type vikeHookAsync = (app: App, pageContext: PageContext) => Promise<void>;
 
 declare global {
-  namespace VikePackages {
-    interface ConfigF3v {
+  namespace Vike {
+    interface Config {
       head: Unhead<object>;
-      onBeforeMountApp?: OnBeforeMountAppSync | OnBeforeMountAppAsync;
+      /**
+       * @description client only hook
+       */
+      onBeforeMountApp?: vikeHook | vikeHookAsync;
+      /**
+       * @description client | server hook. Use for mount vue plugins
+       */
+      onCreateApp?: vikeHook | vikeHookAsync;
     }
   }
 }

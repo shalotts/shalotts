@@ -4,8 +4,8 @@ import { defaultConfig, defineConfig, listen } from '~/app/module/config/config.
 import type { IAppConfig, ITunnelOptions, ShalottsOptions } from '~/app/module/config/config.type.ts';
 import { defaultViteF3vConfig } from '~/app/module/config/config.vite.ts';
 import HttpModule from '~/app/module/http/http.module.ts';
-import { usePageContext } from '~/app/module/vike/vike.vue-context.ts';
-import type { PageContext } from '~/renderer/renderer.type.ts';
+import type { PageContext, f3VRendererConfig } from '~/renderer/renderer.type.ts';
+import { contextKey } from '~/app/module/vike/vike.key.ts';
 
 export {
   HttpModule,
@@ -16,7 +16,8 @@ export {
   listen,
   $shalotts,
   ENV_VAR,
-  usePageContext,
+  f3VRendererConfig,
+  contextKey
 };
 
 export type { ITunnelOptions, ShalottsOptions, IAppConfig, PageContext };

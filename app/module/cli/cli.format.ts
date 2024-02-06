@@ -1,16 +1,15 @@
 import consola from 'consola';
 import { colors } from 'consola/utils';
 import { IPinoMessage } from '~/app/module/cli/cli.type.ts';
-
 export const emojiLog = {
-  emerg: '💀',
-  alert: '🥀',
-  crit: '🛑',
-  error: '🚨',
-  warn: '⚠️',
-  notice: '✨',
-  info: '📌',
-  debug: '🐛',
+  emerg:    colors.bgRed('::EMERG::'),
+  alert:colors.bgMagenta('::ALERT::'),
+  crit:     colors.bgRed('::CRITI::'),
+  error:    colors.bgRed('::ERROR::'),
+  warn:  colors.bgYellow('::WARNI::'),
+  notice:  colors.bgBlack('::NOTIC::'),
+  info:    colors.bgBlack('::INFO:::'),
+  debug: colors.bgYellow('::DEBUG::'),
 };
 
 export const LOG_LVL = {
@@ -31,7 +30,7 @@ export const formatMessageName = (message: string) => {
 };
 
 export const isWideEmoji = (character: string): boolean => {
-  return character !== '⚠️';
+  return character !== ':X:';
 };
 
 type TemojiLog = typeof emojiLog;
