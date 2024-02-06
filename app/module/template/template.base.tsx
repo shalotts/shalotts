@@ -25,9 +25,9 @@ export default async function TEMPLATE_BASE(
 <html ${ dangerouslySkipEscape(htmlAttrs) }>
   <head>
     ${ dangerouslySkipEscape(headTags) }
-    ${ dangerouslySkipEscape(bodyTagsOpen) }
   </head>
   <body ${ dangerouslySkipEscape(bodyAttrs) }>
+    ${ dangerouslySkipEscape(bodyTagsOpen) }
     <div id="app">${ dangerouslySkipEscape(html) }</div>
     ${ dangerouslySkipEscape(bodyTags) }
   </body>

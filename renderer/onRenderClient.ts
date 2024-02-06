@@ -20,7 +20,9 @@ export const onRenderClient: OnRenderClientAsync = async (pageContext: PageCtx):
   if (!Page) throw new Error('Client-side render() hook expects pageContext.Page to be defined');
 
   const app = createSSRApp(Page, pageProps);
-  await (config as any).onBeforeMountApp?.(app); // Test custom hook from vike-vue
+  await (config as any).onCreateApp?.(app, pageContext);
+  await (config as any).onBeforeMountApp?.(app, pageContext);
+
   await setPageContext(app, pageContext);
   app.mount('#app');
 }
