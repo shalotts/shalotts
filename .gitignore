@@ -178,3 +178,5 @@ dist
 /app/log/*
 vite.config.ts.*.mjs
 /test/
+pages
+build

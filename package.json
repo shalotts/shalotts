@@ -2,7 +2,7 @@
   "name": "f3v",
   "main": "dist/shalotts.js",
   "module": "dist/shalotts.js",
-  "version": "0.30.45",
+  "version": "0.30.46",
   "description": "Fastify boilerplate for SSR Vue app",
   "author": {
     "name": "francyfox",
@@ -117,7 +117,6 @@
     "scule": "^1.1.1",
     "ts-node": "^10.9.2",
     "unhead": "^1.8.10",
-    "unocss": "^0.58.0",
     "uqr": "^0.1.2",
     "vavite": "^3.0.0",
     "vike": "^0.4.158",
