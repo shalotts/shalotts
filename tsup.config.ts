@@ -11,7 +11,7 @@ export default defineConfig({
   treeshake: true,
   shims: true,
   dts: true,
-  target: 'es2020',
+  target: 'esnext',
   format: ['esm'],
   platform: 'node',
   splitting: false,
