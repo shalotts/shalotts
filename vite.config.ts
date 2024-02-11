@@ -59,6 +59,7 @@ export default defineConfig({
     manifest: true,
     target: 'esnext',
     cssMinify: 'lightningcss',
+    outDir: 'build'
   },
   cacheDir: join(root, './app/cache'),
 });
