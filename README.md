@@ -1,6 +1,9 @@
 # #Sha.lotts
 
-### Boilerplate for fullstack hybrid (SSR/SPA) Vue App.
+Ecosystem for develop, testing, design and maintence;
+Its includes docs for biggeners companies or startup, about creating iternal infrastructure.
+
+### F3V - Boilerplate for fullstack hybrid (SSR/SPA) Vue App.
 
 ![GitHub code size in bytes](https://img.shields.io/github/languages/code-size/shalotts/shalotts)
 [![Code Coverage](https://img.shields.io/codecov/c/github/shalotts/shalotts)](https://codecov.io/github/username/repo)
