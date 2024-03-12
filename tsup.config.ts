@@ -7,11 +7,11 @@ export default defineConfig({
     onRenderHtml: 'renderer/onRenderHtml.ts',
     '+config': 'renderer/+config.ts',
   },
+  skipNodeModulesBundle: true,
   legacyOutput: true,
   treeshake: true,
   shims: true,
   dts: true,
-  target: 'esnext',
   format: ['esm'],
   platform: 'node',
   splitting: false,
@@ -22,8 +22,5 @@ export default defineConfig({
     'vue',
     'vue/server-renderer',
     'vike/server',
-  ],
-  banner: {
-    js: `import{fileURLToPath}from"node:url";import path from"node:path";import{createRequire as topLevelCreateRequire}from"module";const require=topLevelCreateRequire(import.meta.url),__filename=fileURLToPath(import.meta.url),__dirname=path.dirname(__filename);`,
-  },
+  ]
 });

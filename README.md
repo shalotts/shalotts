@@ -3,6 +3,9 @@
 Ecosystem for develop, testing, design and maintence;
 Its includes docs for biggeners companies or startup, about creating iternal infrastructure.
 
+### Watch docs (currently only Ru language available) 
+https://docs.shalotts.site/
+
 ### F3V - Boilerplate for fullstack hybrid (SSR/SPA) Vue App.
 
 ![GitHub code size in bytes](https://img.shields.io/github/languages/code-size/shalotts/shalotts)
@@ -29,8 +32,6 @@ To run:
 ```bash
 bun dev
 ```
-
-### Watch docs https://shalodoc.netlify.app
 
 ### STAGES
 

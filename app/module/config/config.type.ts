@@ -27,8 +27,6 @@ export interface ITunnelOptions {
   maxUpstreamConns?: string,
 }
 
-export type ShalottsPlugin = [object, object]
-
 export interface ShalottsOptions {
   tunnel?: ITunnelOptions,
   /**
